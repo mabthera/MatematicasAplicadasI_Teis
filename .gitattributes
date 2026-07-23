@@ -1,1 +1,1 @@
-*.html linguist-detectable=true linguist-language=HTML
+*.html linguist-language=HTML linguist-detectable=true -linguist-generated -linguist-vendored -linguist-documentation
