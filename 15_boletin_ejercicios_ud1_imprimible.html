@@ -1,0 +1,2002 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>UD 1 · Fundamentos numéricos · Boletín imprimible</title>
+  <style>
+
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+</style>
+  <style type="text/css">:root {
+--ink: #17222d;
+--muted: #536473;
+--line: #c9d5df;
+--primary: #174f7d;
+--primary-dark: #123e64;
+--soft: #edf4f8;
+--accent: #9a5b13;
+--accent-soft: #fff4df;
+--paper: #ffffff;
+--screen: #eaf0f4;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+max-width: 940px;
+margin: 0 auto;
+padding: 78px 34px 44px;
+color: var(--ink);
+background: var(--paper);
+font: 15.5px/1.52 "Segoe UI", Arial, sans-serif;
+box-shadow: 0 0 34px rgba(25, 50, 68, 0.16);
+}
+body::before {
+content: "";
+position: fixed;
+inset: 0;
+z-index: -1;
+background: var(--screen);
+}
+.print-toolbar {
+position: fixed;
+inset: 0 0 auto;
+z-index: 20;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 16px;
+min-height: 58px;
+padding: 9px 18px;
+color: #fff;
+background: var(--primary-dark);
+box-shadow: 0 4px 18px rgba(18, 62, 100, 0.25);
+}
+.print-toolbar p { margin: 0; font-size: 0.9rem; }
+.print-toolbar button {
+border: 1px solid rgba(255,255,255,0.75);
+border-radius: 7px;
+padding: 8px 15px;
+color: var(--primary-dark);
+background: #fff;
+font: inherit;
+font-weight: 800;
+cursor: pointer;
+}
+.print-toolbar button:hover,
+.print-toolbar button:focus-visible { background: #dfeefa; outline: none; }
+h1, h2, h3 { color: var(--primary); line-height: 1.18; }
+h1 { margin: 0 0 12px; font-size: 2rem; }
+h2 { margin: 30px 0 14px; font-size: 1.46rem; }
+h3 { margin: 0 0 10px; font-size: 1.06rem; }
+p { margin: 8px 0; }
+ul, ol { margin: 7px 0 11px; padding-left: 1.55rem; }
+li + li { margin-top: 4px; }
+strong { font-weight: 750; }
+body > section.level1:first-of-type {
+position: relative;
+display: flex;
+min-height: 238mm;
+flex-direction: column;
+justify-content: center;
+padding: 28mm 18mm 24mm;
+color: #fff;
+background: linear-gradient(145deg, var(--primary-dark), #1d6b98);
+border: 1px solid var(--primary-dark);
+border-radius: 14px;
+}
+body > section.level1:first-of-type::before {
+content: "CUADERNO DE TRABAJO · CURSO 2026-2027";
+display: inline-block;
+width: fit-content;
+margin-bottom: 20px;
+padding: 6px 12px;
+border: 1px solid rgba(255,255,255,0.55);
+border-radius: 999px;
+font-size: 0.75rem;
+font-weight: 800;
+letter-spacing: 0.08em;
+}
+body > section.level1:first-of-type h1,
+body > section.level1:first-of-type h2 { color: #fff; }
+body > section.level1:first-of-type h1 { max-width: 12ch; font-size: 3.35rem; }
+body > section.level1:first-of-type h2 { margin: 6px 0 20px; font-size: 1.55rem; }
+body > section.level1:first-of-type p { max-width: 68ch; }
+body > section.level1:first-of-type ul {
+margin-top: 20px;
+padding: 15px 20px 15px 36px;
+color: var(--ink);
+background: rgba(255,255,255,0.94);
+border-radius: 10px;
+}
+body > section.level1:not(:first-of-type) > h1 {
+margin: 0 0 22px;
+padding: 13px 16px;
+color: #fff;
+background: var(--primary-dark);
+border-radius: 8px;
+font-size: 1.72rem;
+}
+section.level2 > h2 {
+padding: 9px 12px;
+background: var(--soft);
+border-left: 5px solid var(--primary);
+border-radius: 0 7px 7px 0;
+}
+section.level3 {
+margin: 0 0 14px;
+padding: 12px 14px 11px;
+border: 1px solid var(--line);
+border-radius: 8px;
+background: #fff;
+break-inside: avoid;
+page-break-inside: avoid;
+}
+section.level3:nth-of-type(even) { background: #fbfcfd; }
+.session-chip {
+display: inline-block;
+margin: 0 8px 2px 0;
+padding: 3px 8px;
+color: #fff;
+background: var(--primary);
+border-radius: 999px;
+font-size: 0.72rem;
+font-weight: 850;
+letter-spacing: 0.025em;
+vertical-align: 0.12em;
+white-space: nowrap;
+}
+blockquote {
+margin: 10px 0;
+padding: 9px 12px;
+color: #5f3c0d;
+background: var(--accent-soft);
+border-left: 4px solid var(--accent);
+}
+hr { margin: 30px 0; border: 0; border-top: 2px solid var(--line); }
+math { font-family: "Cambria Math", "STIX Two Math", serif; font-size: 1.03em; }
+math[display="block"] { margin: 0.65em auto; }
+a { color: var(--primary); }
+.app-footer {
+display: grid;
+gap: 12px;
+justify-items: center;
+margin-top: 34px;
+padding: 14px 18px 10px;
+color: var(--muted);
+border-top: 1px solid var(--line);
+font-family: "Segoe UI", Arial, sans-serif;
+text-align: center;
+}
+.footer-meta {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 10px;
+flex-wrap: nowrap;
+font-size: 0.94rem;
+line-height: 1.55;
+white-space: nowrap;
+}
+.footer-separator { color: rgba(88, 101, 106, 0.55); font-weight: 700; }
+.footer-highlight {
+display: inline-block;
+padding: 2px 10px;
+color: var(--ink);
+background: rgba(28, 77, 127, 0.1);
+border-radius: 999px;
+font-weight: 800;
+text-decoration: none;
+}
+a.footer-highlight:hover,
+a.footer-highlight:focus-visible { background: rgba(28, 77, 127, 0.16); outline: none; }
+@page {
+size: A4 portrait;
+margin: 14mm 13mm 15mm;
+@bottom-center {
+content: "Creado por: IES de Teis - Matemáticas Aplicadas 1  |  Licencia: CC BY-NC-SA 4.0";
+padding-top: 1.8mm;
+color: #5d6c78;
+font: 7.5pt Arial, sans-serif;
+}
+}
+@media print {
+:root { --ink: #111820; --line: #aebbc5; --soft: #eef3f6; }
+html, body { width: auto; min-width: 0; }
+body {
+max-width: none;
+margin: 0;
+padding: 0;
+font: 9.6pt/1.38 Arial, sans-serif;
+box-shadow: none;
+print-color-adjust: exact;
+-webkit-print-color-adjust: exact;
+}
+body::before, .print-toolbar { display: none !important; }
+body > section.level1:first-of-type {
+min-height: 297mm;
+margin: -14mm -13mm -15mm;
+padding: 35mm 27mm 28mm;
+border: 1.2mm solid var(--primary);
+border-radius: 0;
+color: var(--ink);
+background: #fff;
+break-after: page;
+page-break-after: always;
+}
+body > section.level1:first-of-type h1 { font-size: 29pt; }
+body > section.level1:first-of-type h1,
+body > section.level1:first-of-type h2 { color: var(--primary); }
+body > section.level1:first-of-type::before { color: var(--primary); border-color: var(--primary); }
+body > section.level1:first-of-type ul { background: #fff; border: 0.4mm solid var(--line); }
+body > section.level1:first-of-type h2 { font-size: 16pt; }
+body > section.level1:not(:first-of-type) { break-before: page; page-break-before: always; }
+body > section.level1:not(:first-of-type) > h1 {
+margin-bottom: 5mm;
+font-size: 17pt;
+color: var(--primary);
+background: #fff;
+border: 0.6mm solid var(--primary);
+}
+section.level2 > h2 {
+margin: 5mm 0 3mm;
+padding: 2.4mm 3mm;
+font-size: 13.2pt;
+break-after: avoid;
+page-break-after: avoid;
+}
+section.level3 {
+margin-bottom: 3.2mm;
+padding: 2.7mm 3.2mm 2.5mm;
+border-radius: 4px;
+break-inside: avoid;
+page-break-inside: avoid;
+}
+h3 { font-size: 10.5pt; break-after: avoid; page-break-after: avoid; }
+p { margin: 1.5mm 0; }
+ul, ol { margin: 1.4mm 0 2mm; padding-left: 5.5mm; }
+li + li { margin-top: 0.7mm; }
+p, li { orphans: 2; widows: 2; }
+.session-chip {
+padding: 0.7mm 2mm;
+font-size: 7.3pt;
+color: var(--primary);
+background: #fff;
+border: 0.3mm solid var(--primary);
+}
+math { font-size: 1em; }
+math[display="block"] { margin: 2mm auto; }
+hr { display: none; }
+a { color: inherit; text-decoration: none; }
+.app-footer { display: none !important; }
+}
+@media screen and (max-width: 720px) {
+body { padding: 76px 14px 30px; }
+.print-toolbar { justify-content: space-between; }
+.print-toolbar p { display: none; }
+.footer-meta { flex-wrap: wrap; white-space: normal; }
+body > section.level1:first-of-type { min-height: auto; padding: 42px 24px; }
+body > section.level1:first-of-type h1 { font-size: 2.45rem; }
+}
+</style>
+</head>
+<body>
+<aside class="print-toolbar" aria-label="Herramientas de impresión">
+  <p>Documento preparado para papel A4 · Matemáticas Aplicadas a las Ciencias Sociales I</p>
+  <button type="button" onclick="window.print()">Imprimir o guardar en PDF</button>
+</aside>
+<section id="ud-1.-fundamentos-numéricos" class="level1">
+<h1>UD 1. Fundamentos numéricos</h1>
+<section id="boletín-de-ejercicios" class="level2">
+<h2>Boletín de ejercicios</h2>
+<p><strong>Matemáticas Aplicadas a las Ciencias Sociales I - 1.º de
+Bachillerato</strong></p>
+<p>Este boletín acompaña a las catorce sesiones de teoría de la unidad.
+Está dividido en tres bloques autónomos y ordenados según la misma
+secuencia de contenidos.</p>
+<ul>
+<li><strong>Bloque I. Ejercicios para hacer en clase:</strong>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>4</mn><annotation encoding="application/x-tex">4</annotation></semantics></math>
+ejercicios breves por sesión, con indicaciones y dificultad
+localizada.</li>
+<li><strong>Bloque II. Ejercicios de consolidación para casa:</strong>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>3</mn><annotation encoding="application/x-tex">3</annotation></semantics></math>
+ejercicios de mayor dificultad por sesión.</li>
+<li><strong>Bloque III. Ejercicios escalados para entregar:</strong>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>18</mn><annotation encoding="application/x-tex">18</annotation></semantics></math>
+ejercicios individuales que recorren cinco niveles: aplicación,
+variación, combinación, contexto e interpretación.</li>
+</ul>
+<p>Salvo que se indique lo contrario, se debe mostrar el procedimiento,
+mantener los resultados exactos durante el cálculo y utilizar la
+calculadora únicamente para aproximar o comprobar al final.</p>
+<p>Los apartados marcados como <strong>Ampliación</strong> son
+opcionales: se realizarán cuando se haya completado con seguridad el
+núcleo de la sesión.</p>
+<hr />
+</section>
+</section>
+<section id="bloque-i.-ejercicios-para-hacer-en-clase" class="level1">
+<h1>Bloque I. Ejercicios para hacer en clase</h1>
+<section id="sesión-1.-diagnóstico-y-reparación" class="level2">
+<h2>Sesión 1. Diagnóstico y reparación</h2>
+<p>Realiza primero estos ejercicios sin ayuda. Tras revisarlos, el
+profesor indicará qué destrezas necesitan refuerzo y qué ejercicios de
+casa corresponden a cada estudiante.</p>
+<section id="c1.-números-con-signo" class="level3">
+<h3><span class="session-chip">Sesión 1</span> C1. Números con signo</h3>
+<p>Antes de calcular, indica el signo esperado. Después, efectúa:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>7</mn><mo>+</mo><mn>15</mn><mo>−</mo><mn>12</mn></mrow><annotation encoding="application/x-tex">-7+15-12</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mn>3</mn><mo stretchy="false" form="postfix">)</mo><mo>⋅</mo><mn>5</mn><mo>⋅</mo><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mn>2</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(-3)\cdot 5\cdot(-2)</annotation></semantics></math></li>
+</ol>
+</section>
+<section id="c2.-jerarquía-de-operaciones" class="level3">
+<h3><span class="session-chip">Sesión 1</span> C2. Jerarquía de operaciones</h3>
+<p>Resuelve escribiendo una sola transformación en cada línea:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>24</mn><mo>:</mo><mn>6</mn><mo>⋅</mo><mn>2</mn><mo>−</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">24:6\cdot 2-3</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5</mn><mo>−</mo><mo stretchy="false" form="prefix">[</mo><mn>2</mn><mo>−</mo><mn>4</mn><mo stretchy="false" form="prefix">(</mo><mn>3</mn><mo>−</mo><mn>5</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">5-[2-4(3-5)]</annotation></semantics></math></li>
+</ol>
+<p><strong>Guía:</strong> agrupadores, potencias, productos y cocientes,
+sumas y restas.</p>
+</section>
+<section id="c3.-fracciones" class="level3">
+<h3><span class="session-chip">Sesión 1</span> C3. Fracciones</h3>
+<p>Simplifica el resultado:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle displaystyle="true"><mfrac><mn>3</mn><mn>4</mn></mfrac></mstyle><mo>−</mo><mstyle displaystyle="true"><mfrac><mn>5</mn><mn>6</mn></mfrac></mstyle></mrow><annotation encoding="application/x-tex">\dfrac{3}{4}-\dfrac{5}{6}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle displaystyle="true"><mfrac><mn>1</mn><mn>3</mn></mfrac></mstyle><mo>+</mo><mstyle displaystyle="true"><mfrac><mn>3</mn><mn>5</mn></mfrac></mstyle><mo>⋅</mo><mstyle displaystyle="true"><mfrac><mn>10</mn><mn>9</mn></mfrac></mstyle></mrow><annotation encoding="application/x-tex">\dfrac{1}{3}+\dfrac{3}{5}\cdot\dfrac{10}{9}</annotation></semantics></math></li>
+</ol>
+</section>
+<section id="c4.-porcentajes-y-potencias-básicas" class="level3">
+<h3><span class="session-chip">Sesión 1</span> C4. Porcentajes y potencias básicas</h3>
+<ol type="1">
+<li>Expresa
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle displaystyle="true"><mfrac><mn>7</mn><mn>20</mn></mfrac></mstyle><annotation encoding="application/x-tex">\dfrac{7}{20}</annotation></semantics></math>
+como decimal y porcentaje.</li>
+<li>Si
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>42</mn><annotation encoding="application/x-tex">42</annotation></semantics></math>
+representa el
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>30</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">30\%</annotation></semantics></math>
+de una cantidad, halla la cantidad total.</li>
+<li>Calcula
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mn>3</mn><msup><mo stretchy="false" form="postfix">)</mo><mn>4</mn></msup></mrow><annotation encoding="application/x-tex">(-3)^4</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><msup><mn>3</mn><mn>4</mn></msup></mrow><annotation encoding="application/x-tex">-3^4</annotation></semantics></math>
+y
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>7</mn><mn>0</mn></msup><annotation encoding="application/x-tex">7^0</annotation></semantics></math>.</li>
+</ol>
+</section>
+</section>
+<section id="sesión-2.-conjuntos-numéricos-y-decimales" class="level2">
+<h2>Sesión 2. Conjuntos numéricos y decimales</h2>
+<section id="c5.-la-familia-más-pequeña" class="level3">
+<h3><span class="session-chip">Sesión 2</span> C5. La familia más pequeña</h3>
+<p>Clasifica cada número en el conjunto más pequeño posible, usando
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="double-struck">ℕ</mi><annotation encoding="application/x-tex">\mathbb{N}</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="double-struck">ℤ</mi><annotation encoding="application/x-tex">\mathbb{Z}</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="double-struck">ℚ</mi><annotation encoding="application/x-tex">\mathbb{Q}</annotation></semantics></math>
+o
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="double-struck">ℝ</mi><mo>\</mo><mi mathvariant="double-struck">ℚ</mi></mrow><annotation encoding="application/x-tex">\mathbb{R}\setminus\mathbb{Q}</annotation></semantics></math>,
+y justifica:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>12</mn><mo>,</mo><mspace width="2.0em"></mspace><mfrac><mn>21</mn><mn>7</mn></mfrac><mo>,</mo><mspace width="2.0em"></mspace><msqrt><mn>11</mn></msqrt><mo>,</mo><mspace width="2.0em"></mspace><mn>0</mn><mo>,</mo><mn>125</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">
+-12,\qquad \frac{21}{7},\qquad \sqrt{11},\qquad 0{,}125.
+</annotation></semantics></math></p>
+</section>
+<section id="c6.-tipos-de-decimal" class="level3">
+<h3><span class="session-chip">Sesión 2</span> C6. Tipos de decimal</h3>
+<p>Indica si cada expresión es decimal exacta, periódica pura, periódica
+mixta o infinita no periódica. Deduce si es racional o irracional.</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn><mo>,</mo><mn>125</mn></mrow><annotation encoding="application/x-tex">3{,}125</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mover><mn>27</mn><mo accent="true">¯</mo></mover></mrow><annotation encoding="application/x-tex">0{,}\overline{27}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>101001000100001</mn><mi>…</mi></mrow><annotation encoding="application/x-tex">0{,}101001000100001\ldots</annotation></semantics></math></li>
+</ol>
+</section>
+<section id="c7.-predecir-sin-dividir" class="level3">
+<h3><span class="session-chip">Sesión 2</span> C7. Predecir sin dividir</h3>
+<p>Simplifica, factoriza el denominador y decide si la expresión decimal
+será exacta o periódica:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle displaystyle="true"><mfrac><mn>7</mn><mn>40</mn></mfrac></mstyle><annotation encoding="application/x-tex">\dfrac{7}{40}</annotation></semantics></math>,
+sabiendo que
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>40</mn><mo>=</mo><msup><mn>2</mn><mn>3</mn></msup><mo>⋅</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">40=2^3\cdot5</annotation></semantics></math>.</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle displaystyle="true"><mfrac><mn>14</mn><mn>35</mn></mfrac></mstyle><annotation encoding="application/x-tex">\dfrac{14}{35}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle displaystyle="true"><mfrac><mn>11</mn><mn>24</mn></mfrac></mstyle><annotation encoding="application/x-tex">\dfrac{11}{24}</annotation></semantics></math></li>
+</ol>
+</section>
+<section id="c8.-de-decimal-a-fracción" class="level3">
+<h3><span class="session-chip">Sesión 2</span> C8. De decimal a fracción</h3>
+<p>Convierte en fracción irreducible, escribiendo el procedimiento:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>375</mn></mrow><annotation encoding="application/x-tex">0{,}375</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>2</mn><mover><mn>7</mn><mo accent="true">¯</mo></mover></mrow><annotation encoding="application/x-tex">1{,}2\overline{7}</annotation></semantics></math></li>
+</ol>
+<p><strong>Guía:</strong> en el segundo caso, llama
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+al decimal, desplaza primero la parte no periódica y después elimina el
+período.</p>
+<p><strong>Conjetura sobre decimales.</strong></p>
+<p>Decide si las afirmaciones son verdaderas o falsas y justifica con
+una regla o un contraejemplo:</p>
+<ol type="1">
+<li>Todo decimal infinito es irracional.</li>
+<li>Un número irracional puede tener un decimal periódico.</li>
+</ol>
+</section>
+</section>
+<section id="sesión-3.-orden-recta-valor-absoluto-y-aproximación"
+class="level2">
+<h2>Sesión 3. Orden, recta, valor absoluto y aproximación</h2>
+<section id="c9.-ordenar-números-reales" class="level3">
+<h3><span class="session-chip">Sesión 3</span> C9. Ordenar números reales</h3>
+<p>Ordena de menor a mayor. Usa valores exactos o cotas antes de
+aproximar.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mn>2</mn></msqrt><mo>,</mo><mspace width="2.0em"></mspace><mn>1</mn><mo>,</mo><mn>42</mn><mo>,</mo><mspace width="2.0em"></mspace><mfrac><mn>7</mn><mn>5</mn></mfrac><mo>,</mo><mspace width="2.0em"></mspace><mfrac><mn>3</mn><mn>2</mn></mfrac><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\sqrt{2},\qquad 1{,}42,\qquad \frac{7}{5},\qquad \frac{3}{2}.
+</annotation></semantics></math></p>
+<p>Sitúa después los cuatro valores de forma aproximada en una recta
+real.</p>
+</section>
+<section id="c10.-valor-absoluto-y-distancia" class="level3">
+<h3><span class="session-chip">Sesión 3</span> C10. Valor absoluto y distancia</h3>
+<ol type="1">
+<li>Calcula
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">|</mo><mi>−</mi><mn>8</mn><mo stretchy="false" form="prefix">|</mo></mrow><annotation encoding="application/x-tex">|-8|</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">|</mo><mn>3</mn><mo>−</mo><mn>11</mn><mo stretchy="false" form="prefix">|</mo></mrow><annotation encoding="application/x-tex">|3-11|</annotation></semantics></math>
+y
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">|</mo><mi>−</mi><mn>4</mn><mo>−</mo><mn>7</mn><mo stretchy="false" form="prefix">|</mo></mrow><annotation encoding="application/x-tex">|-4-7|</annotation></semantics></math>.</li>
+<li>Halla la distancia entre
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mstyle displaystyle="true"><mfrac><mn>3</mn><mn>2</mn></mfrac></mstyle></mrow><annotation encoding="application/x-tex">-\dfrac{3}{2}</annotation></semantics></math>
+y
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle displaystyle="true"><mfrac><mn>5</mn><mn>4</mn></mfrac></mstyle><annotation encoding="application/x-tex">\dfrac{5}{4}</annotation></semantics></math>.</li>
+<li>La temperatura pasa de
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>6</mn><msup><mspace width="0.167em"></mspace><mo>∘</mo></msup><mi mathvariant="normal">C</mi></mrow><annotation encoding="application/x-tex">-6\,^{\circ}\mathrm{C}</annotation></semantics></math>
+a
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>9</mn><msup><mspace width="0.167em"></mspace><mo>∘</mo></msup><mi mathvariant="normal">C</mi></mrow><annotation encoding="application/x-tex">9\,^{\circ}\mathrm{C}</annotation></semantics></math>.
+¿Cuál es la variación total?</li>
+</ol>
+</section>
+<section id="c11.-aproximar-y-comunicar-precisión" class="level3">
+<h3><span class="session-chip">Sesión 3</span> C11. Aproximar y comunicar precisión</h3>
+<p>Para
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>18</mn><mo>,</mo><mn>49673</mn></mrow><annotation encoding="application/x-tex">x=18{,}49673</annotation></semantics></math>:</p>
+<ol type="1">
+<li>Trunca a centésimas.</li>
+<li>Redondea a centésimas.</li>
+<li>Redondea a cuatro cifras significativas.</li>
+<li>Escribe el orden de magnitud de
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+mediante notación científica.</li>
+</ol>
+</section>
+<section id="c12.-error-absoluto-y-relativo" class="level3">
+<h3><span class="session-chip">Sesión 3</span> C12. Error absoluto y relativo</h3>
+<p>Una distancia real de
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>12</mn><mo>,</mo><mn>47</mn></mrow><annotation encoding="application/x-tex">12{,}47</annotation></semantics></math>
+km se registra como
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>12</mn><mo>,</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">12{,}5</annotation></semantics></math>
+km.</p>
+<ol type="1">
+<li>Calcula el error absoluto.</li>
+<li>Calcula el error relativo y exprésalo en porcentaje.</li>
+<li>Interpreta el resultado en una frase.</li>
+<li>Indica una cota del error absoluto si
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>12</mn><mo>,</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">12{,}5</annotation></semantics></math>
+procede de redondear a décimas.</li>
+</ol>
+</section>
+</section>
+<section id="sesión-4.-intervalos-y-semirrectas" class="level2">
+<h2>Sesión 4. Intervalos y semirrectas</h2>
+<section id="c13.-de-desigualdad-a-intervalo" class="level3">
+<h3><span class="session-chip">Sesión 4</span> C13. De desigualdad a intervalo</h3>
+<p>Escribe como intervalo y representa en la recta:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>3</mn><mo>&lt;</mo><mi>x</mi><mo>≤</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">-3&lt;x\leq 4</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>≤</mo><mi>x</mi><mo>&lt;</mo><mn>7</mn></mrow><annotation encoding="application/x-tex">2\leq x&lt;7</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>&lt;</mo><mi>x</mi><mo>&lt;</mo><mn>6</mn></mrow><annotation encoding="application/x-tex">0&lt;x&lt;6</annotation></semantics></math></li>
+</ol>
+</section>
+<section id="c14.-semirrectas" class="level3">
+<h3><span class="session-chip">Sesión 4</span> C14. Semirrectas</h3>
+<p>Escribe en notación de intervalo y representa:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>≥</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">x\geq 3</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>&lt;</mo><mi>−</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">x&lt;-2</annotation></semantics></math></li>
+</ol>
+</section>
+<section id="c15.-pertenencia-y-extremos" class="level3">
+<h3><span class="session-chip">Sesión 4</span> C15. Pertenencia y extremos</h3>
+<p>Completa con
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>∈</mo><annotation encoding="application/x-tex">\in</annotation></semantics></math>
+o
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>∉</mo><annotation encoding="application/x-tex">\notin</annotation></semantics></math>:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>2</mn><mspace width="0.222em"></mspace><mi>▫</mi><mspace width="0.222em"></mspace><mo stretchy="false" form="prefix">[</mo><mi>−</mi><mn>2</mn><mo>,</mo><mn>4</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">-2\ \square\ [-2,4)</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn><mspace width="0.222em"></mspace><mi>▫</mi><mspace width="0.222em"></mspace><mo stretchy="false" form="prefix">[</mo><mi>−</mi><mn>2</mn><mo>,</mo><mn>4</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">4\ \square\ [-2,4)</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mspace width="0.222em"></mspace><mi>▫</mi><mspace width="0.222em"></mspace><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mi>∞</mi><mo>,</mo><mn>0</mn><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">0\ \square\ (-\infty,0]</annotation></semantics></math></li>
+</ol>
+<p>Justifica especialmente los casos que coinciden con un extremo.</p>
+</section>
+<section id="c16.-del-lenguaje-al-símbolo" class="level3">
+<h3><span class="session-chip">Sesión 4</span> C16. Del lenguaje al símbolo</h3>
+<p>Define la variable y escribe cada condición como desigualdad e
+intervalo:</p>
+<ol type="1">
+<li>Una edad de al menos
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>16</mn><annotation encoding="application/x-tex">16</annotation></semantics></math>
+años.</li>
+<li>Una temperatura inferior a
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>28</mn><msup><mspace width="0.167em"></mspace><mo>∘</mo></msup><mi mathvariant="normal">C</mi></mrow><annotation encoding="application/x-tex">28\,^{\circ}\mathrm{C}</annotation></semantics></math>.</li>
+<li>Un porcentaje estrictamente entre el
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>35</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">35\%</annotation></semantics></math>
+y el
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>60</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">60\%</annotation></semantics></math>.</li>
+</ol>
+</section>
+</section>
+<section id="sesión-5.-unión-intersección-y-restricciones"
+class="level2">
+<h2>Sesión 5. Unión, intersección y restricciones</h2>
+<section id="c17.-intersecciones" class="level3">
+<h3><span class="session-chip">Sesión 5</span> C17. Intersecciones</h3>
+<p>Representa primero en rectas alineadas y calcula:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><mi>−</mi><mn>3</mn><mo>,</mo><mn>5</mn><mo stretchy="false" form="postfix">)</mo><mo>∩</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>,</mo><mn>8</mn><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">[-3,5)\cap(1,8]</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>4</mn><mo stretchy="false" form="postfix">]</mo><mo>∩</mo><mo stretchy="false" form="prefix">[</mo><mn>4</mn><mo>,</mo><mn>9</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(0,4]\cap[4,9)</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mi>∞</mi><mo>,</mo><mn>2</mn><mo stretchy="false" form="postfix">)</mo><mo>∩</mo><mo stretchy="false" form="prefix">[</mo><mi>−</mi><mn>1</mn><mo>,</mo><mi>∞</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(-\infty,2)\cap[-1,\infty)</annotation></semantics></math></li>
+</ol>
+</section>
+<section id="c18.-uniones" class="level3">
+<h3><span class="session-chip">Sesión 5</span> C18. Uniones</h3>
+<p>Calcula y simplifica cuando sea posible:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><mi>−</mi><mn>3</mn><mo>,</mo><mn>5</mn><mo stretchy="false" form="postfix">)</mo><mo>∪</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>,</mo><mn>8</mn><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">[-3,5)\cup(1,8]</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mi>∞</mi><mo>,</mo><mn>0</mn><mo stretchy="false" form="postfix">)</mo><mo>∪</mo><mo stretchy="false" form="prefix">[</mo><mn>0</mn><mo>,</mo><mi>∞</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(-\infty,0)\cup[0,\infty)</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>,</mo><mn>4</mn><mo stretchy="false" form="postfix">)</mo><mo>∪</mo><mo stretchy="false" form="prefix">(</mo><mn>4</mn><mo>,</mo><mn>7</mn><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">(1,4)\cup(4,7]</annotation></semantics></math></li>
+</ol>
+</section>
+<section id="c19.-vacío-un-punto-o-varios-tramos" class="level3">
+<h3><span class="session-chip">Sesión 5</span> C19. Vacío, un punto o varios tramos</h3>
+<p>Sean
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mo stretchy="false" form="prefix">[</mo><mi>−</mi><mn>2</mn><mo>,</mo><mn>3</mn><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">A=[-2,3]</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mn>3</mn><mo>,</mo><mn>6</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">B=(3,6)</annotation></semantics></math>
+y
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>=</mo><mo stretchy="false" form="prefix">[</mo><mn>3</mn><mo>,</mo><mn>8</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">C=[3,8)</annotation></semantics></math>.</p>
+<ol type="1">
+<li>Calcula
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>∩</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A\cap B</annotation></semantics></math>
+y
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>∩</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">A\cap C</annotation></semantics></math>.</li>
+<li>Calcula
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>∪</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">B\cup C</annotation></semantics></math>.</li>
+<li>Explica por qué el número
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>3</mn><annotation encoding="application/x-tex">3</annotation></semantics></math>
+cambia los resultados.</li>
+</ol>
+</section>
+<section id="c20.-restricciones-en-contexto" class="level3">
+<h3><span class="session-chip">Sesión 5</span> C20. Restricciones en contexto</h3>
+<ol type="1">
+<li>Una actividad admite participantes de al menos
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>18</mn><annotation encoding="application/x-tex">18</annotation></semantics></math>
+años y menores de
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>65</mn><annotation encoding="application/x-tex">65</annotation></semantics></math>.
+Expresa las edades permitidas.</li>
+<li>Se activa una alerta si
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo>≤</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">T\leq 0</annotation></semantics></math>
+o
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo>&gt;</mo><mn>35</mn></mrow><annotation encoding="application/x-tex">T&gt;35</annotation></semantics></math>.
+Expresa el conjunto de temperaturas de alerta.</li>
+<li>Comprueba cada resultado con un valor interior, uno exterior y los
+extremos conflictivos.</li>
+</ol>
+</section>
+</section>
+<section id="sesión-6.-potencias-enteras-y-notación-científica"
+class="level2">
+<h2>Sesión 6. Potencias enteras y notación científica</h2>
+<section id="c21.-signo-base-y-propiedades" class="level3">
+<h3><span class="session-chip">Sesión 6</span> C21. Signo, base y propiedades</h3>
+<p>Calcula o simplifica:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mn>2</mn><msup><mo stretchy="false" form="postfix">)</mo><mn>6</mn></msup></mrow><annotation encoding="application/x-tex">(-2)^6</annotation></semantics></math>
+y
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><msup><mn>2</mn><mn>6</mn></msup></mrow><annotation encoding="application/x-tex">-2^6</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>3</mn><mn>4</mn></msup><mo>⋅</mo><msup><mn>3</mn><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">3^4\cdot 3^2</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle displaystyle="true"><mfrac><msup><mn>5</mn><mn>7</mn></msup><msup><mn>5</mn><mn>3</mn></msup></mfrac></mstyle><annotation encoding="application/x-tex">\dfrac{5^7}{5^3}</annotation></semantics></math></li>
+</ol>
+</section>
+<section id="c22.-exponentes-negativos" class="level3">
+<h3><span class="session-chip">Sesión 6</span> C22. Exponentes negativos</h3>
+<p>Expresa con exponentes positivos y simplifica:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mrow><mi>−</mi><mn>4</mn></mrow></msup><annotation encoding="application/x-tex">2^{-4}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle displaystyle="true"><mfrac><msup><mn>3</mn><mrow><mi>−</mi><mn>2</mn></mrow></msup><msup><mn>3</mn><mrow><mi>−</mi><mn>5</mn></mrow></msup></mfrac></mstyle><annotation encoding="application/x-tex">\dfrac{3^{-2}}{3^{-5}}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msup><mn>5</mn><mrow><mi>−</mi><mn>1</mn></mrow></msup><msup><mo stretchy="false" form="postfix">)</mo><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">(5^{-1})^3</annotation></semantics></math></li>
+</ol>
+</section>
+<section id="c23.-escribir-y-normalizar" class="level3">
+<h3><span class="session-chip">Sesión 6</span> C23. Escribir y normalizar</h3>
+<p>Escribe en notación científica:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>72</mn><mspace width="0.167em"></mspace><mn>500</mn><mspace width="0.167em"></mspace><mn>000</mn></mrow><annotation encoding="application/x-tex">72\,500\,000</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>0000084</mn></mrow><annotation encoding="application/x-tex">0{,}0000084</annotation></semantics></math></li>
+<li>Normaliza
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>31</mn><mo>,</mo><mn>7</mn><mo>⋅</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>5</mn></mrow></msup></mrow><annotation encoding="application/x-tex">31{,}7\cdot 10^{-5}</annotation></semantics></math>.</li>
+</ol>
+</section>
+<section id="c24.-operaciones-en-notación-científica" class="level3">
+<h3><span class="session-chip">Sesión 6</span> C24. Operaciones en notación científica</h3>
+<p>Una plataforma educativa registra
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>8</mn><mo>⋅</mo><msup><mn>10</mn><mn>6</mn></msup></mrow><annotation encoding="application/x-tex">1{,}8\cdot10^6</annotation></semantics></math>
+accesos desde ordenadores y
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn><mo>,</mo><mn>5</mn><mo>⋅</mo><msup><mn>10</mn><mn>5</mn></msup></mrow><annotation encoding="application/x-tex">3{,}5\cdot10^5</annotation></semantics></math>
+desde dispositivos móviles. Además, practica las otras operaciones.
+Calcula y expresa cada resultado normalizado:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>3</mn><mo>⋅</mo><msup><mn>10</mn><mn>5</mn></msup><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>2</mn><mo>,</mo><mn>4</mn><mo>⋅</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>3</mn></mrow></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(3\cdot 10^5)(2{,}4\cdot 10^{-3})</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle displaystyle="true"><mfrac><mrow><mn>8</mn><mo>,</mo><mn>1</mn><mo>⋅</mo><msup><mn>10</mn><mn>9</mn></msup></mrow><mrow><mn>3</mn><mo>⋅</mo><msup><mn>10</mn><mn>4</mn></msup></mrow></mfrac></mstyle><annotation encoding="application/x-tex">\dfrac{8{,}1\cdot 10^9}{3\cdot 10^4}</annotation></semantics></math></li>
+<li>El número total de accesos de la plataforma.</li>
+</ol>
+</section>
+</section>
+<section id="sesión-7.-exponentes-racionales-y-radicales"
+class="level2">
+<h2>Sesión 7. Exponentes racionales y radicales</h2>
+<section id="c25.-raíz-enésima-existencia-y-signo" class="level3">
+<h3><span class="session-chip">Sesión 7</span> C25. Raíz enésima, existencia y signo</h3>
+<p>Calcula si existe en
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="double-struck">ℝ</mi><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math>;
+si no existe, justifícalo:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msqrt><mn>81</mn></msqrt><annotation encoding="application/x-tex">\sqrt{81}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msqrt><mrow><mi>−</mi><mn>36</mn></mrow></msqrt><annotation encoding="application/x-tex">\sqrt{-36}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mroot><mrow><mi>−</mi><mn>125</mn></mrow><mn>3</mn></mroot><annotation encoding="application/x-tex">\sqrt[3]{-125}</annotation></semantics></math></li>
+</ol>
+</section>
+<section id="c26.-exponentes-racionales" class="level3">
+<h3><span class="session-chip">Sesión 7</span> C26. Exponentes racionales</h3>
+<p>Calcula exactamente:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>25</mn><mrow><mn>1</mn><mi>/</mi><mn>2</mn></mrow></msup><annotation encoding="application/x-tex">25^{1/2}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>27</mn><mrow><mn>2</mn><mi>/</mi><mn>3</mn></mrow></msup><annotation encoding="application/x-tex">27^{2/3}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>16</mn><mrow><mn>3</mn><mi>/</mi><mn>4</mn></mrow></msup><annotation encoding="application/x-tex">16^{3/4}</annotation></semantics></math></li>
+</ol>
+</section>
+<section id="c27.-convertir-en-ambos-sentidos" class="level3">
+<h3><span class="session-chip">Sesión 7</span> C27. Convertir en ambos sentidos</h3>
+<ol type="1">
+<li>Escribe como radical:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>x</mi><mrow><mn>3</mn><mi>/</mi><mn>2</mn></mrow></msup><annotation encoding="application/x-tex">x^{3/2}</annotation></semantics></math>
+y
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>a</mi><mrow><mn>2</mn><mi>/</mi><mn>5</mn></mrow></msup><annotation encoding="application/x-tex">a^{2/5}</annotation></semantics></math>.</li>
+<li>Escribe como potencia:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mroot><msup><mi>m</mi><mn>2</mn></msup><mn>3</mn></mroot><annotation encoding="application/x-tex">\sqrt[3]{m^2}</annotation></semantics></math>
+y
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msqrt><msup><mi>z</mi><mn>5</mn></msup></msqrt><annotation encoding="application/x-tex">\sqrt{z^5}</annotation></semantics></math>.</li>
+<li>Indica las condiciones sobre
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+y
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>z</mi><annotation encoding="application/x-tex">z</annotation></semantics></math>
+para que las expresiones correspondientes existan en
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="double-struck">ℝ</mi><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math>.</li>
+</ol>
+</section>
+<section id="c28.-raíz-principal-y-estimación" class="level3">
+<h3><span class="session-chip">Sesión 7</span> C28. Raíz principal y estimación</h3>
+<ol type="1">
+<li>Explica la diferencia entre
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msqrt><mn>64</mn></msqrt><annotation encoding="application/x-tex">\sqrt{64}</annotation></semantics></math>
+y resolver
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>=</mo><mn>64</mn></mrow><annotation encoding="application/x-tex">x^2=64</annotation></semantics></math>.</li>
+<li>Acota
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msqrt><mn>15</mn></msqrt><annotation encoding="application/x-tex">\sqrt{15}</annotation></semantics></math>
+entre dos enteros consecutivos.</li>
+<li>Aproxima
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msqrt><mn>15</mn></msqrt><annotation encoding="application/x-tex">\sqrt{15}</annotation></semantics></math>
+a centésimas y comprueba la cota.</li>
+</ol>
+</section>
+</section>
+<section id="sesión-8.-radicales-equivalentes-y-simplificación"
+class="level2">
+<h2>Sesión 8. Radicales equivalentes y simplificación</h2>
+<section id="c29.-radicales-equivalentes" class="level3">
+<h3><span class="session-chip">Sesión 8</span> C29. Radicales equivalentes</h3>
+<p>Completa para obtener radicales equivalentes:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mn>3</mn></msqrt><mo>=</mo><mroot><mrow><mspace width="0.167em"></mspace><mi>▫</mi><mspace width="0.167em"></mspace></mrow><mn>4</mn></mroot></mrow><annotation encoding="application/x-tex">\sqrt{3}=\sqrt[4]{\,\square\,}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mroot><mn>5</mn><mn>3</mn></mroot><mo>=</mo><mroot><mrow><mspace width="0.167em"></mspace><mi>▫</mi><mspace width="0.167em"></mspace></mrow><mn>6</mn></mroot></mrow><annotation encoding="application/x-tex">\sqrt[3]{5}=\sqrt[6]{\,\square\,}</annotation></semantics></math></li>
+<li>Simplifica
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mroot><msup><mn>7</mn><mn>8</mn></msup><mn>12</mn></mroot><annotation encoding="application/x-tex">\sqrt[12]{7^8}</annotation></semantics></math>
+reduciendo índice y exponente.</li>
+</ol>
+</section>
+<section id="c30.-extraer-factores" class="level3">
+<h3><span class="session-chip">Sesión 8</span> C30. Extraer factores</h3>
+<p>Factoriza y simplifica:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msqrt><mn>72</mn></msqrt><annotation encoding="application/x-tex">\sqrt{72}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msqrt><mn>180</mn></msqrt><annotation encoding="application/x-tex">\sqrt{180}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mroot><mn>54</mn><mn>3</mn></mroot><annotation encoding="application/x-tex">\sqrt[3]{54}</annotation></semantics></math></li>
+</ol>
+<p><strong>Guía:</strong> comienza
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mn>72</mn></msqrt><mo>=</mo><msqrt><mrow><mn>36</mn><mo>⋅</mo><mn>2</mn></mrow></msqrt></mrow><annotation encoding="application/x-tex">\sqrt{72}=\sqrt{36\cdot2}</annotation></semantics></math>
+y usa el mismo criterio de factorización en los siguientes casos.</p>
+</section>
+<section id="c31.-radicales-con-letras" class="level3">
+<h3><span class="session-chip">Sesión 8</span> C31. Radicales con letras</h3>
+<p>Simplifica para cualquier valor real de las letras:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msqrt><msup><mi>x</mi><mn>2</mn></msup></msqrt><annotation encoding="application/x-tex">\sqrt{x^2}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msqrt><mrow><mn>25</mn><msup><mi>a</mi><mn>2</mn></msup></mrow></msqrt><annotation encoding="application/x-tex">\sqrt{25a^2}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msqrt><mrow><mn>12</mn><msup><mi>y</mi><mn>2</mn></msup></mrow></msqrt><annotation encoding="application/x-tex">\sqrt{12y^2}</annotation></semantics></math></li>
+</ol>
+<p><strong>Atención:</strong> en una raíz de índice par puede aparecer
+valor absoluto.</p>
+</section>
+<section id="c32.-introducir-factores" class="level3">
+<h3><span class="session-chip">Sesión 8</span> C32. Introducir factores</h3>
+<p>Introduce todos los factores exteriores en el radical:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn><msqrt><mn>2</mn></msqrt></mrow><annotation encoding="application/x-tex">3\sqrt{2}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mroot><mn>5</mn><mn>3</mn></mroot></mrow><annotation encoding="application/x-tex">2\sqrt[3]{5}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>x</mi><msqrt><mn>3</mn></msqrt></mrow><annotation encoding="application/x-tex">2x\sqrt{3}</annotation></semantics></math>,
+suponiendo
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>≥</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x\geq 0</annotation></semantics></math>.</li>
+</ol>
+<p>Comprueba uno de los resultados extrayendo de nuevo los factores.</p>
+</section>
+</section>
+<section id="sesión-9.-operaciones-elementales-con-radicales"
+class="level2">
+<h2>Sesión 9. Operaciones elementales con radicales</h2>
+<section id="c33.-productos-y-cocientes" class="level3">
+<h3><span class="session-chip">Sesión 9</span> C33. Productos y cocientes</h3>
+<p>Calcula y simplifica:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mn>6</mn></msqrt><mo>⋅</mo><msqrt><mn>24</mn></msqrt></mrow><annotation encoding="application/x-tex">\sqrt{6}\cdot\sqrt{24}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><msqrt><mn>3</mn></msqrt><mo>⋅</mo><mn>5</mn><msqrt><mn>6</mn></msqrt></mrow><annotation encoding="application/x-tex">2\sqrt{3}\cdot 5\sqrt{6}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle displaystyle="true"><mfrac><msqrt><mn>75</mn></msqrt><msqrt><mn>3</mn></msqrt></mfrac></mstyle><annotation encoding="application/x-tex">\dfrac{\sqrt{75}}{\sqrt{3}}</annotation></semantics></math></li>
+</ol>
+</section>
+<section id="c34.-índice-común" class="level3">
+<h3><span class="session-chip">Sesión 9</span> C34. Índice común</h3>
+<p>Reduce al menor índice común y opera:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mn>2</mn></msqrt><mo>⋅</mo><mroot><mn>2</mn><mn>3</mn></mroot></mrow><annotation encoding="application/x-tex">\sqrt{2}\cdot\sqrt[3]{2}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle displaystyle="true"><mfrac><mroot><mn>4</mn><mn>3</mn></mroot><msqrt><mn>2</mn></msqrt></mfrac></mstyle><annotation encoding="application/x-tex">\dfrac{\sqrt[3]{4}}{\sqrt{2}}</annotation></semantics></math></li>
+</ol>
+</section>
+<section id="c35.-sumas-y-restas" class="level3">
+<h3><span class="session-chip">Sesión 9</span> C35. Sumas y restas</h3>
+<p>Simplifica antes de reunir radicales semejantes:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mn>50</mn></msqrt><mo>+</mo><msqrt><mn>8</mn></msqrt></mrow><annotation encoding="application/x-tex">\sqrt{50}+\sqrt{8}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><msqrt><mn>12</mn></msqrt><mo>−</mo><msqrt><mn>27</mn></msqrt></mrow><annotation encoding="application/x-tex">2\sqrt{12}-\sqrt{27}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mn>75</mn></msqrt><mo>−</mo><mn>2</mn><msqrt><mn>3</mn></msqrt><mo>+</mo><msqrt><mn>12</mn></msqrt></mrow><annotation encoding="application/x-tex">\sqrt{75}-2\sqrt{3}+\sqrt{12}</annotation></semantics></math></li>
+</ol>
+</section>
+<section id="c36.-forma-exacta-y-propiedades-falsas" class="level3">
+<h3><span class="session-chip">Sesión 9</span> C36. Forma exacta y propiedades falsas</h3>
+<ol type="1">
+<li>Usa
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a=1</annotation></semantics></math>
+y
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>=</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">b=4</annotation></semantics></math>
+para refutar
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mrow><mi>a</mi><mo>+</mo><mi>b</mi></mrow></msqrt><mo>=</mo><msqrt><mi>a</mi></msqrt><mo>+</mo><msqrt><mi>b</mi></msqrt></mrow><annotation encoding="application/x-tex">\sqrt{a+b}=\sqrt a+\sqrt b</annotation></semantics></math>.</li>
+<li>Simplifica exactamente
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mn>18</mn></msqrt><mo>+</mo><msqrt><mn>8</mn></msqrt></mrow><annotation encoding="application/x-tex">\sqrt{18}+\sqrt{8}</annotation></semantics></math>.</li>
+<li>Aproxima el resultado anterior a centésimas solo al final y explica
+qué se perdería al aproximar antes.</li>
+</ol>
+</section>
+</section>
+<section id="sesión-10.-radicales-consolidación-y-casos-combinados"
+class="level2">
+<h2>Sesión 10. Radicales: consolidación y casos combinados</h2>
+<section id="c37.-elegir-estrategia" class="level3">
+<h3><span class="session-chip">Sesión 10</span> C37. Elegir estrategia</h3>
+<p>Sin resolver todavía, indica qué harías primero en cada caso y por
+qué:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mn>72</mn></msqrt><mo>−</mo><msqrt><mn>8</mn></msqrt></mrow><annotation encoding="application/x-tex">\sqrt{72}-\sqrt{8}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mn>12</mn></msqrt><mo>⋅</mo><msqrt><mn>3</mn></msqrt><mo>−</mo><msqrt><mn>27</mn></msqrt></mrow><annotation encoding="application/x-tex">\sqrt{12}\cdot\sqrt{3}-\sqrt{27}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle displaystyle="true"><mfrac><mn>6</mn><msqrt><mn>12</mn></msqrt></mfrac></mstyle><annotation encoding="application/x-tex">\dfrac{6}{\sqrt{12}}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msqrt><mn>8</mn></msqrt><mo>+</mo><msqrt><mn>2</mn></msqrt><mo stretchy="false" form="postfix">)</mo><msqrt><mn>2</mn></msqrt></mrow><annotation encoding="application/x-tex">(\sqrt{8}+\sqrt{2})\sqrt{2}</annotation></semantics></math></li>
+</ol>
+</section>
+<section id="c38.-operaciones-combinadas" class="level3">
+<h3><span class="session-chip">Sesión 10</span> C38. Operaciones combinadas</h3>
+<p>Simplifica, respetando la jerarquía:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mn>50</mn></msqrt><mo>−</mo><msqrt><mn>8</mn></msqrt><mo>+</mo><msqrt><mn>18</mn></msqrt></mrow><annotation encoding="application/x-tex">\sqrt{50}-\sqrt{8}+\sqrt{18}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><msqrt><mn>3</mn></msqrt><mo stretchy="false" form="prefix">(</mo><msqrt><mn>12</mn></msqrt><mo>−</mo><msqrt><mn>3</mn></msqrt><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">2\sqrt{3}(\sqrt{12}-\sqrt{3})</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mn>27</mn></msqrt><mo>−</mo><msqrt><mn>3</mn></msqrt><mo>⋅</mo><msqrt><mn>12</mn></msqrt></mrow><annotation encoding="application/x-tex">\sqrt{27}-\sqrt{3}\cdot\sqrt{12}</annotation></semantics></math></li>
+</ol>
+</section>
+<section id="c39.-racionalización-sencilla" class="level3">
+<h3><span class="session-chip">Sesión 10</span> C39. Racionalización sencilla</h3>
+<p>Racionaliza y simplifica:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle displaystyle="true"><mfrac><mn>3</mn><msqrt><mn>5</mn></msqrt></mfrac></mstyle><annotation encoding="application/x-tex">\dfrac{3}{\sqrt{5}}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle displaystyle="true"><mfrac><mn>5</mn><msqrt><mn>20</mn></msqrt></mfrac></mstyle><annotation encoding="application/x-tex">\dfrac{5}{\sqrt{20}}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle displaystyle="true"><mfrac><mn>2</mn><mroot><mn>3</mn><mn>3</mn></mroot></mfrac></mstyle><annotation encoding="application/x-tex">\dfrac{2}{\sqrt[3]{3}}</annotation></semantics></math></li>
+</ol>
+</section>
+<section id="c40.-conjugado-y-control" class="level3">
+<h3><span class="session-chip">Sesión 10</span> C40. Conjugado y control</h3>
+<ol type="1">
+<li>Escribe el conjugado de
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mn>5</mn></msqrt><mo>+</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">\sqrt{5}+2</annotation></semantics></math>
+y calcula el producto de ambos.</li>
+<li>Racionaliza
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle displaystyle="true"><mfrac><mn>1</mn><mrow><msqrt><mn>3</mn></msqrt><mo>+</mo><mn>1</mn></mrow></mfrac></mstyle><annotation encoding="application/x-tex">\dfrac{1}{\sqrt{3}+1}</annotation></semantics></math>.</li>
+<li>Comprueba el último resultado mediante una aproximación
+decimal.</li>
+</ol>
+</section>
+</section>
+<section id="sesión-11.-el-logaritmo-como-exponente" class="level2">
+<h2>Sesión 11. El logaritmo como exponente</h2>
+<section id="c41.-dos-formas-de-la-misma-igualdad" class="level3">
+<h3><span class="session-chip">Sesión 11</span> C41. Dos formas de la misma igualdad</h3>
+<p>Convierte a la otra forma:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>2</mn></msub><mn>32</mn><mo>=</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">\log_2 32=5</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>3</mn></msub><mstyle displaystyle="true"><mfrac><mn>1</mn><mn>27</mn></mfrac></mstyle><mo>=</mo><mi>−</mi><mn>3</mn></mrow><annotation encoding="application/x-tex">\log_3 \dfrac{1}{27}=-3</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>5</mn><mn>3</mn></msup><mo>=</mo><mn>125</mn></mrow><annotation encoding="application/x-tex">5^3=125</annotation></semantics></math></li>
+</ol>
+</section>
+<section id="c42.-condiciones-de-existencia" class="level3">
+<h3><span class="session-chip">Sesión 11</span> C42. Condiciones de existencia</h3>
+<p>Decide si existe en
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="double-struck">ℝ</mi><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math>
+y justifica:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>2</mn></msub><mn>8</mn></mrow><annotation encoding="application/x-tex">\log_2 8</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>2</mn></msub><mn>0</mn></mrow><annotation encoding="application/x-tex">\log_2 0</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>3</mn></msub><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mn>9</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\log_3(-9)</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>1</mn></msub><mn>7</mn></mrow><annotation encoding="application/x-tex">\log_1 7</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mrow><mi>−</mi><mn>2</mn></mrow></msub><mn>8</mn></mrow><annotation encoding="application/x-tex">\log_{-2}8</annotation></semantics></math></li>
+</ol>
+</section>
+<section id="c43.-cálculo-exacto" class="level3">
+<h3><span class="session-chip">Sesión 11</span> C43. Cálculo exacto</h3>
+<p>Calcula reescribiendo el argumento como una potencia de la base:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>2</mn></msub><mn>64</mn></mrow><annotation encoding="application/x-tex">\log_2 64</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>5</mn></msub><mstyle displaystyle="true"><mfrac><mn>1</mn><mn>125</mn></mfrac></mstyle></mrow><annotation encoding="application/x-tex">\log_5 \dfrac{1}{125}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>9</mn></msub><mn>3</mn></mrow><annotation encoding="application/x-tex">\log_9 3</annotation></semantics></math></li>
+</ol>
+</section>
+<section id="c44.-resultados-inmediatos-y-signo" class="level3">
+<h3><span class="session-chip">Sesión 11</span> C44. Resultados inmediatos y signo</h3>
+<ol type="1">
+<li>Calcula
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>7</mn></msub><mn>1</mn></mrow><annotation encoding="application/x-tex">\log_7 1</annotation></semantics></math>
+y
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>7</mn></msub><mn>7</mn></mrow><annotation encoding="application/x-tex">\log_7 7</annotation></semantics></math>.</li>
+<li>Sin calcular, indica el signo de
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>5</mn></msub><mn>0</mn><mo>,</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">\log_5 0{,}2</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>4</mn></msub><mn>9</mn></mrow><annotation encoding="application/x-tex">\log_4 9</annotation></semantics></math>
+y
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>10</mn></msub><mn>1</mn></mrow><annotation encoding="application/x-tex">\log_{10}1</annotation></semantics></math>.</li>
+<li>Comprueba uno de ellos pasando a forma exponencial.</li>
+</ol>
+</section>
+</section>
+<section id="sesión-12.-propiedades-de-los-logaritmos" class="level2">
+<h2>Sesión 12. Propiedades de los logaritmos</h2>
+<p>En todos los ejercicios se supone que la base es válida y que los
+argumentos de cada logaritmo son positivos.</p>
+<section id="c45.-producto-y-cociente" class="level3">
+<h3><span class="session-chip">Sesión 12</span> C45. Producto y cociente</h3>
+<ol type="1">
+<li>Desarrolla
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mi>y</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\log_a(xy)</annotation></semantics></math>.</li>
+<li>Desarrolla
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mstyle displaystyle="true"><mfrac><mi>x</mi><mi>y</mi></mfrac></mstyle><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\log_a\left(\dfrac{x}{y}\right)</annotation></semantics></math>.</li>
+<li>Condensa
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mi>m</mi><mo>+</mo><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mi>n</mi><mo>−</mo><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mi>p</mi></mrow><annotation encoding="application/x-tex">\log_a m+\log_a n-\log_a p</annotation></semantics></math>.</li>
+</ol>
+</section>
+<section id="c46.-potencias-y-raíces" class="level3">
+<h3><span class="session-chip">Sesión 12</span> C46. Potencias y raíces</h3>
+<p>Desarrolla:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mo stretchy="false" form="prefix">(</mo><msup><mi>x</mi><mn>4</mn></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\log_a(x^4)</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><msqrt><mi>x</mi></msqrt></mrow><annotation encoding="application/x-tex">\log_a\sqrt{x}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mroot><msup><mi>y</mi><mn>2</mn></msup><mn>3</mn></mroot></mrow><annotation encoding="application/x-tex">\log_a\sqrt[3]{y^2}</annotation></semantics></math></li>
+</ol>
+</section>
+<section id="c47.-desarrollar-por-capas" class="level3">
+<h3><span class="session-chip">Sesión 12</span> C47. Desarrollar por capas</h3>
+<p>Desarrolla completamente:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mo stretchy="false" form="prefix">(</mo><msup><mi>x</mi><mn>2</mn></msup><msup><mi>y</mi><mn>3</mn></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\log_a(x^2y^3)</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mstyle displaystyle="true"><mfrac><mrow><mi>x</mi><msqrt><mi>y</mi></msqrt></mrow><msup><mi>z</mi><mn>2</mn></msup></mfrac></mstyle><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\log_a\left(\dfrac{x\sqrt y}{z^2}\right)</annotation></semantics></math></li>
+</ol>
+<p><strong>Guía:</strong> identifica primero la operación exterior;
+después aplica producto o cociente y deja las potencias y raíces para el
+último paso.</p>
+</section>
+<section id="c48.-condensar-y-detectar-errores" class="level3">
+<h3><span class="session-chip">Sesión 12</span> C48. Condensar y detectar errores</h3>
+<ol type="1">
+<li>Condensa
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mi>x</mi><mo>+</mo><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mi>y</mi><mo>−</mo><mn>3</mn><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mi>z</mi></mrow><annotation encoding="application/x-tex">2\log_a x+\log_a y-3\log_a z</annotation></semantics></math>.</li>
+<li>Comprueba con
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mi>y</mi><mo>=</mo><mn>10</mn></mrow><annotation encoding="application/x-tex">x=y=10</annotation></semantics></math>
+que
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>+</mo><mi>y</mi><mo stretchy="false" form="postfix">)</mo><mo>≠</mo><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>x</mi><mo>+</mo><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">\log(x+y)\neq\log x+\log y</annotation></semantics></math>.</li>
+<li>Explica qué estructura interior corresponde a una suma de
+logaritmos.</li>
+</ol>
+</section>
+</section>
+<section id="sesión-13.-logaritmos-consolidación-y-problemas"
+class="level2">
+<h2>Sesión 13. Logaritmos: consolidación y problemas</h2>
+<section id="c49.-seleccionar-la-herramienta" class="level3">
+<h3><span class="session-chip">Sesión 13</span> C49. Seleccionar la herramienta</h3>
+<p>Calcula exactamente e indica la propiedad utilizada:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>3</mn></msub><mn>243</mn></mrow><annotation encoding="application/x-tex">\log_3 243</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>2</mn></msub><mn>40</mn><mo>−</mo><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>2</mn></msub><mn>5</mn></mrow><annotation encoding="application/x-tex">\log_2 40-\log_2 5</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>3</mn></msub><mn>6</mn><mo>+</mo><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>3</mn></msub><mn>18</mn><mo>−</mo><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>3</mn></msub><mn>4</mn></mrow><annotation encoding="application/x-tex">\log_3 6+\log_3 18-\log_3 4</annotation></semantics></math></li>
+</ol>
+</section>
+<section id="c50.-cambio-de-base" class="level3">
+<h3><span class="session-chip">Sesión 13</span> C50. Cambio de base</h3>
+<p>Utiliza
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mi>x</mi><mo>=</mo><mstyle displaystyle="true"><mfrac><mrow><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>x</mi></mrow><mrow><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></mrow></mfrac></mstyle></mrow><annotation encoding="application/x-tex">\log_a x=\dfrac{\log x}{\log a}</annotation></semantics></math>
+y aproxima a tres decimales:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>2</mn></msub><mn>10</mn></mrow><annotation encoding="application/x-tex">\log_2 10</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>3</mn></msub><mn>20</mn></mrow><annotation encoding="application/x-tex">\log_3 20</annotation></semantics></math></li>
+</ol>
+<p><strong>Guía:</strong> antes de usar la calculadora, busca dos
+potencias consecutivas de la base entre las que esté el argumento.
+Comprueba así la aproximación obtenida.</p>
+</section>
+<section id="c51.-escalas-logarítmicas" class="level3">
+<h3><span class="session-chip">Sesión 13</span> C51. Escalas logarítmicas</h3>
+<p>En una escala
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>=</mo><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>Q</mi></mrow><annotation encoding="application/x-tex">M=\log Q</annotation></semantics></math>:</p>
+<ol type="1">
+<li>¿Por qué factor cambia
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Q</mi><annotation encoding="application/x-tex">Q</annotation></semantics></math>
+si
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>M</mi><annotation encoding="application/x-tex">M</annotation></semantics></math>
+aumenta
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>1</mn><annotation encoding="application/x-tex">1</annotation></semantics></math>
+unidad?</li>
+<li>¿Y si aumenta
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>,</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">2{,}5</annotation></semantics></math>
+unidades?</li>
+<li>Si
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>=</mo><mn>6</mn><mo>,</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">M=6{,}2</annotation></semantics></math>,
+calcula
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Q</mi><annotation encoding="application/x-tex">Q</annotation></semantics></math>
+en notación científica con tres cifras significativas.</li>
+</ol>
+</section>
+<section id="c52.-interpretar-y-comprobar" class="level3">
+<h3><span class="session-chip">Sesión 13</span> C52. Interpretar y comprobar</h3>
+<p>El pH se define por
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">H</mi></mrow><mo>=</mo><mi>−</mi><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">[</mo><msup><mi mathvariant="normal">H</mi><mo>+</mo></msup><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">\mathrm{pH}=-\log[\mathrm{H}^+]</annotation></semantics></math>.</p>
+<ol type="1">
+<li>Compara las concentraciones de dos disoluciones de pH
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>3</mn><annotation encoding="application/x-tex">3</annotation></semantics></math>
+y pH
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>5</mn><annotation encoding="application/x-tex">5</annotation></semantics></math>.</li>
+<li>Indica cuál tiene mayor concentración y cuántas veces mayor.</li>
+<li>Explica por qué una diferencia aditiva de
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>2</mn><annotation encoding="application/x-tex">2</annotation></semantics></math>
+unidades produce un factor multiplicativo.</li>
+</ol>
+</section>
+</section>
+<section id="sesión-14.-integración-y-cierre-autónomo" class="level2">
+<h2>Sesión 14. Integración y cierre autónomo</h2>
+<section id="c53.-números-exactitud-y-error" class="level3">
+<h3><span class="session-chip">Sesión 14</span> C53. Números, exactitud y error</h3>
+<ol type="1">
+<li>Clasifica
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msqrt><mn>36</mn></msqrt><annotation encoding="application/x-tex">\sqrt{36}</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><msqrt><mn>36</mn></msqrt></mrow><annotation encoding="application/x-tex">-\sqrt{36}</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mover><mn>18</mn><mo accent="true">¯</mo></mover></mrow><annotation encoding="application/x-tex">0{,}\overline{18}</annotation></semantics></math>
+y
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msqrt><mn>7</mn></msqrt><annotation encoding="application/x-tex">\sqrt{7}</annotation></semantics></math>
+en el conjunto más pequeño.</li>
+<li>Ordena
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msqrt><mn>10</mn></msqrt><annotation encoding="application/x-tex">\sqrt{10}</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn><mo>,</mo><mn>15</mn></mrow><annotation encoding="application/x-tex">3{,}15</annotation></semantics></math>
+y
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle displaystyle="true"><mfrac><mn>19</mn><mn>6</mn></mfrac></mstyle><annotation encoding="application/x-tex">\dfrac{19}{6}</annotation></semantics></math>.</li>
+<li>Aproxima
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msqrt><mn>10</mn></msqrt><annotation encoding="application/x-tex">\sqrt{10}</annotation></semantics></math>
+a centésimas y calcula los errores absoluto y relativo.</li>
+</ol>
+</section>
+<section id="c54.-intervalos-y-notación-científica" class="level3">
+<h3><span class="session-chip">Sesión 14</span> C54. Intervalos y notación científica</h3>
+<ol type="1">
+<li>Calcula
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><mi>−</mi><mn>2</mn><mo>,</mo><mn>6</mn><mo stretchy="false" form="postfix">)</mo><mo>∩</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>,</mo><mn>9</mn><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">[-2,6)\cap(1,9]</annotation></semantics></math>
+y
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><mi>−</mi><mn>2</mn><mo>,</mo><mn>6</mn><mo stretchy="false" form="postfix">)</mo><mo>∪</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>,</mo><mn>9</mn><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">[-2,6)\cup(1,9]</annotation></semantics></math>.</li>
+<li>Expresa
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>000000728</mn></mrow><annotation encoding="application/x-tex">0{,}000000728</annotation></semantics></math>
+en notación científica.</li>
+<li>Calcula
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>7</mn><mo>,</mo><mn>28</mn><mo>⋅</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>7</mn></mrow></msup><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>3</mn><mo>⋅</mo><msup><mn>10</mn><mn>5</mn></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(7{,}28\cdot10^{-7})(3\cdot10^5)</annotation></semantics></math>
+y normaliza.</li>
+</ol>
+</section>
+<section id="c55.-radicales-mezclados" class="level3">
+<h3><span class="session-chip">Sesión 14</span> C55. Radicales mezclados</h3>
+<p>Simplifica y racionaliza cuando proceda:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mn>48</mn></msqrt><mo>−</mo><msqrt><mn>27</mn></msqrt><mo>+</mo><mfrac><mn>3</mn><msqrt><mn>3</mn></msqrt></mfrac><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\sqrt{48}-\sqrt{27}+\frac{3}{\sqrt{3}}.
+</annotation></semantics></math></p>
+<p>Da primero la forma exacta y después una aproximación a
+centésimas.</p>
+</section>
+<section id="c56.-logaritmos-mezclados" class="level3">
+<h3><span class="session-chip">Sesión 14</span> C56. Logaritmos mezclados</h3>
+<ol type="1">
+<li>Calcula
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>2</mn></msub><mn>32</mn><mo>+</mo><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>2</mn></msub><mstyle displaystyle="true"><mfrac><mn>1</mn><mn>4</mn></mfrac></mstyle><mo>−</mo><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>2</mn></msub><msqrt><mn>2</mn></msqrt></mrow><annotation encoding="application/x-tex">\log_2 32+\log_2\dfrac14-\log_2\sqrt2</annotation></semantics></math>.</li>
+<li>Condensa
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mi>x</mi><mo>+</mo><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mi>y</mi><mo>−</mo><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mi>z</mi></mrow><annotation encoding="application/x-tex">2\log_a x+\log_a y-\log_a z</annotation></semantics></math>.</li>
+<li>Si una escala decimal aumenta de
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>,</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">2{,}4</annotation></semantics></math>
+a
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5</mn><mo>,</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">5{,}1</annotation></semantics></math>,
+interpreta el factor de cambio.</li>
+</ol>
+<blockquote>
+<p><strong>Cierre no calificable:</strong> anota dos contenidos que ya
+dominas, un error que todavía cometes y el ejercicio concreto que
+utilizarás para corregirlo.</p>
+</blockquote>
+<hr />
+</section>
+</section>
+</section>
+<section id="bloque-ii.-ejercicios-de-consolidación-para-hacer-en-casa"
+class="level1">
+<h1>Bloque II. Ejercicios de consolidación para hacer en casa</h1>
+<section id="sesión-1.-diagnóstico-y-reparación-1" class="level2">
+<h2>Sesión 1. Diagnóstico y reparación</h2>
+<p>Estos ejercicios son de refuerzo adaptativo. Realiza únicamente los
+que indique el profesor después de revisar el diagnóstico de clase.</p>
+<section id="h1.-operación-combinada-completa" class="level3">
+<h3><span class="session-chip">Sesión 1</span> H1. Operación combinada completa</h3>
+<p>Calcula y simplifica:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">[</mo><mfrac><mn>3</mn><mn>4</mn></mfrac><mo>−</mo><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>−</mo><mfrac><mn>5</mn><mn>6</mn></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">]</mo></mrow><mo>:</mo><mfrac><mn>7</mn><mn>12</mn></mfrac><mo>−</mo><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mn>2</mn><msup><mo stretchy="false" form="postfix">)</mo><mn>3</mn></msup><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\left[\frac34-\left(\frac12-\frac56\right)\right]:\frac7{12}-(-2)^3.
+</annotation></semantics></math></p>
+<p>Antes de operar, estima el signo del resultado.</p>
+</section>
+<section id="h2.-porcentajes-encadenados" class="level3">
+<h3><span class="session-chip">Sesión 1</span> H2. Porcentajes encadenados</h3>
+<p>Una asociación tenía
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>640</mn><annotation encoding="application/x-tex">640</annotation></semantics></math>
+personas inscritas. El primer mes aumenta un
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>12</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">12\%</annotation></semantics></math>
+y el segundo disminuye un
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>15</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">15\%</annotation></semantics></math>
+respecto al número del mes anterior.</p>
+<ol type="1">
+<li>Calcula el número teórico final.</li>
+<li>Compara con
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>640</mn><annotation encoding="application/x-tex">640</annotation></semantics></math>
+y halla la variación porcentual total.</li>
+<li>Explica por qué un aumento del
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>12</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">12\%</annotation></semantics></math>
+y una disminución del
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>12</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">12\%</annotation></semantics></math>
+no se anulan.</li>
+</ol>
+</section>
+<section id="h3.-detectar-y-reparar-errores" class="level3">
+<h3><span class="session-chip">Sesión 1</span> H3. Detectar y reparar errores</h3>
+<p>Una alumna escribe:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mn>2</mn><mn>3</mn></mfrac><mo>+</mo><mfrac><mn>1</mn><mn>5</mn></mfrac><mo>=</mo><mfrac><mn>3</mn><mn>8</mn></mfrac><mo>,</mo><mspace width="2.0em"></mspace><mn>24</mn><mo>:</mo><mn>6</mn><mo>⋅</mo><mn>2</mn><mo>=</mo><mn>2</mn><mo>,</mo><mspace width="2.0em"></mspace><mo>−</mo><msup><mn>3</mn><mn>2</mn></msup><mo>=</mo><mn>9</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\frac23+\frac15=\frac38,\qquad 24:6\cdot2=2,\qquad -3^2=9.
+</annotation></semantics></math></p>
+<p>Localiza el primer error de cada cálculo, corrígelo y formula la
+regla que se ha incumplido.</p>
+</section>
+</section>
+<section id="sesión-2.-conjuntos-numéricos-y-decimales-1"
+class="level2">
+<h2>Sesión 2. Conjuntos numéricos y decimales</h2>
+<section id="h4.-clasificación-razonada" class="level3">
+<h3><span class="session-chip">Sesión 2</span> H4. Clasificación razonada</h3>
+<p>Clasifica en el conjunto más pequeño y justifica sin basarte solo en
+la calculadora:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mn>0</mn><mn>7</mn></mfrac><mo>,</mo><mspace width="1.0em"></mspace><mfrac><mn>18</mn><mrow><mi>−</mi><mn>6</mn></mrow></mfrac><mo>,</mo><mspace width="1.0em"></mspace><msqrt><mn>121</mn></msqrt><mo>,</mo><mspace width="1.0em"></mspace><mroot><mrow><mi>−</mi><mn>8</mn></mrow><mn>3</mn></mroot><mo>,</mo><mspace width="1.0em"></mspace><mn>0</mn><mo>,</mo><mn>12</mn><mover><mn>3</mn><mo accent="true">¯</mo></mover><mo>,</mo><mspace width="1.0em"></mspace><mn>0</mn><mo>,</mo><mn>10110111011110</mn><mi>…</mi></mrow><annotation encoding="application/x-tex">
+\frac{0}{7},\quad \frac{18}{-6},\quad \sqrt{121},\quad \sqrt[3]{-8},\quad 0{,}12\overline{3},\quad 0{,}10110111011110\ldots
+</annotation></semantics></math></p>
+</section>
+<section id="h5.-fracciones-y-tipo-de-decimal" class="level3">
+<h3><span class="session-chip">Sesión 2</span> H5. Fracciones y tipo de decimal</h3>
+<p>Sin efectuar la división, decide cuáles producen decimal exacto y
+cuáles periódico:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mn>36</mn><mn>150</mn></mfrac><mo>,</mo><mspace width="2.0em"></mspace><mfrac><mn>42</mn><mn>315</mn></mfrac><mo>,</mo><mspace width="2.0em"></mspace><mfrac><mn>77</mn><mn>160</mn></mfrac><mo>,</mo><mspace width="2.0em"></mspace><mfrac><mn>63</mn><mn>550</mn></mfrac><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\frac{36}{150},\qquad \frac{42}{315},\qquad \frac{77}{160},\qquad \frac{63}{550}.
+</annotation></semantics></math></p>
+<p>Después calcula únicamente las expresiones decimales exactas.</p>
+</section>
+<section id="h6.-periódicos-a-fracción" class="level3">
+<h3><span class="session-chip">Sesión 2</span> H6. Periódicos a fracción</h3>
+<p>Convierte en fracción irreducible:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>,</mo><mover><mn>15</mn><mo accent="true">¯</mo></mover></mrow><annotation encoding="application/x-tex">2{,}\overline{15}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>4</mn><mover><mn>27</mn><mo accent="true">¯</mo></mover></mrow><annotation encoding="application/x-tex">0{,}4\overline{27}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn><mo>,</mo><mn>12</mn><mover><mn>45</mn><mo accent="true">¯</mo></mover></mrow><annotation encoding="application/x-tex">3{,}12\overline{45}</annotation></semantics></math></li>
+</ol>
+<p>Comprueba cada resultado justificando si su denominador debe producir
+un decimal exacto o periódico.</p>
+</section>
+</section>
+<section id="sesión-3.-orden-recta-valor-absoluto-y-aproximación-1"
+class="level2">
+<h2>Sesión 3. Orden, recta, valor absoluto y aproximación</h2>
+<section id="h7.-comparación-con-cotas" class="level3">
+<h3><span class="session-chip">Sesión 3</span> H7. Comparación con cotas</h3>
+<p>Ordena de menor a mayor sin redondear más de lo necesario:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><msqrt><mn>5</mn></msqrt><mo>,</mo><mspace width="2.0em"></mspace><mo>−</mo><mn>2</mn><mo>,</mo><mn>23</mn><mo>,</mo><mspace width="2.0em"></mspace><mo>−</mo><mfrac><mn>9</mn><mn>4</mn></mfrac><mo>,</mo><mspace width="2.0em"></mspace><mo>−</mo><mn>2</mn><mo>,</mo><mover><mn>2</mn><mo accent="true">¯</mo></mover><mo>,</mo><mspace width="2.0em"></mspace><mo>−</mo><mroot><mn>11</mn><mn>3</mn></mroot><mi>.</mi></mrow><annotation encoding="application/x-tex">
+-\sqrt{5},\qquad -2{,}23,\qquad -\frac94,\qquad -2{,}\overline2,\qquad -\sqrt[3]{11}.
+</annotation></semantics></math></p>
+<p>Explica la estrategia usada para comparar los dos valores más
+próximos.</p>
+</section>
+<section id="h8.-precisión-de-dos-mediciones" class="level3">
+<h3><span class="session-chip">Sesión 3</span> H8. Precisión de dos mediciones</h3>
+<p>La longitud exacta de una pieza es
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>,</mo><mn>48</mn></mrow><annotation encoding="application/x-tex">2{,}48</annotation></semantics></math>
+m. Dos aparatos registran
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>,</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">2{,}5</annotation></semantics></math>
+m y
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>,</mo><mn>472</mn></mrow><annotation encoding="application/x-tex">2{,}472</annotation></semantics></math>
+m. Otro objeto mide exactamente
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>24</mn></mrow><annotation encoding="application/x-tex">0{,}24</annotation></semantics></math>
+m y se registra como
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>25</mn></mrow><annotation encoding="application/x-tex">0{,}25</annotation></semantics></math>
+m.</p>
+<ol type="1">
+<li>Calcula los errores absoluto y relativo de las tres mediciones.</li>
+<li>Ordénalas de mayor a menor precisión relativa.</li>
+<li>Explica por qué el menor error absoluto no basta siempre para
+decidir.</li>
+</ol>
+</section>
+<section id="h9.-cifras-significativas-y-cotas" class="level3">
+<h3><span class="session-chip">Sesión 3</span> H9. Cifras significativas y cotas</h3>
+<p>Una población se publica como
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>29</mn><mo>⋅</mo><msup><mn>10</mn><mn>6</mn></msup></mrow><annotation encoding="application/x-tex">1{,}29\cdot10^6</annotation></semantics></math>
+habitantes, redondeada a tres cifras significativas.</p>
+<p>Supón que la población es un número entero y que se ha aplicado el
+redondeo habitual al múltiplo de
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn><mspace width="0.167em"></mspace><mn>000</mn></mrow><annotation encoding="application/x-tex">10\,000</annotation></semantics></math>
+más próximo.</p>
+<ol type="1">
+<li>Determina el intervalo de valores enteros que podrían haber
+producido ese redondeo.</li>
+<li>Da una cota del error absoluto.</li>
+<li>Calcula una cota aproximada del error relativo porcentual.</li>
+</ol>
+</section>
+</section>
+<section id="sesión-4.-intervalos-y-semirrectas-1" class="level2">
+<h2>Sesión 4. Intervalos y semirrectas</h2>
+<section id="h10.-cuatro-registros" class="level3">
+<h3><span class="session-chip">Sesión 4</span> H10. Cuatro registros</h3>
+<p>Para cada condición, escribe frase, desigualdad, intervalo y
+representación gráfica:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><msqrt><mn>2</mn></msqrt><mo>≤</mo><mi>x</mi><mo>&lt;</mo><mstyle displaystyle="true"><mfrac><mn>5</mn><mn>2</mn></mfrac></mstyle></mrow><annotation encoding="application/x-tex">-\sqrt2\leq x&lt;\dfrac52</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>&gt;</mo><mn>1</mn><mo>,</mo><mover><mn>3</mn><mo accent="true">¯</mo></mover></mrow><annotation encoding="application/x-tex">x&gt;1{,}\overline3</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>≤</mo><mi>−</mi><mstyle displaystyle="true"><mfrac><mn>7</mn><mn>4</mn></mfrac></mstyle></mrow><annotation encoding="application/x-tex">x\leq-\dfrac74</annotation></semantics></math></li>
+</ol>
+<p>Comprueba la pertenencia de cada extremo y de un número interior.</p>
+</section>
+<section id="h11.-reconstruir-el-intervalo" class="level3">
+<h3><span class="session-chip">Sesión 4</span> H11. Reconstruir el intervalo</h3>
+<p>Un intervalo acotado contiene
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>4</mn><annotation encoding="application/x-tex">4</annotation></semantics></math>,
+no contiene
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>6</mn><annotation encoding="application/x-tex">6</annotation></semantics></math>
+y tiene como extremos
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">-1</annotation></semantics></math>
+y
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>6</mn><annotation encoding="application/x-tex">6</annotation></semantics></math>.</p>
+<ol type="1">
+<li>Escribe todas las posibilidades compatibles.</li>
+<li>¿Qué información adicional permite escoger una sola?</li>
+<li>Si además se sabe que
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">-1</annotation></semantics></math>
+está incluido, escribe la única respuesta posible y justifica.</li>
+</ol>
+</section>
+<section id="h12.-restricciones-reales" class="level3">
+<h3><span class="session-chip">Sesión 4</span> H12. Restricciones reales</h3>
+<p>Un laboratorio conserva una muestra a una temperatura
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>T</mi><annotation encoding="application/x-tex">T</annotation></semantics></math>
+de al menos
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>18</mn><msup><mspace width="0.167em"></mspace><mo>∘</mo></msup><mi mathvariant="normal">C</mi></mrow><annotation encoding="application/x-tex">-18\,^{\circ}\mathrm{C}</annotation></semantics></math>
+y estrictamente inferior a
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>12</mn><mo>,</mo><mn>5</mn><msup><mspace width="0.167em"></mspace><mo>∘</mo></msup><mi mathvariant="normal">C</mi></mrow><annotation encoding="application/x-tex">-12{,}5\,^{\circ}\mathrm{C}</annotation></semantics></math>.</p>
+<ol type="1">
+<li>Escribe la condición en tres registros.</li>
+<li>Decide si pertenecen
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>18</mn></mrow><annotation encoding="application/x-tex">-18</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>12</mn><mo>,</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">-12{,}5</annotation></semantics></math>
+y
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>15</mn></mrow><annotation encoding="application/x-tex">-15</annotation></semantics></math>.</li>
+<li>Explica qué error práctico produciría intercambiar un paréntesis y
+un corchete.</li>
+</ol>
+</section>
+</section>
+<section id="sesión-5.-unión-intersección-y-restricciones-1"
+class="level2">
+<h2>Sesión 5. Unión, intersección y restricciones</h2>
+<section id="h13.-operaciones-encadenadas" class="level3">
+<h3><span class="session-chip">Sesión 5</span> H13. Operaciones encadenadas</h3>
+<p>Sean</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mo stretchy="false" form="prefix">[</mo><mi>−</mi><mn>4</mn><mo>,</mo><mn>3</mn><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mspace width="2.0em"></mspace><mi>B</mi><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mn>1</mn><mo>,</mo><mn>6</mn><mo stretchy="false" form="postfix">]</mo><mo>,</mo><mspace width="2.0em"></mspace><mi>C</mi><mo>=</mo><mo stretchy="false" form="prefix">[</mo><mn>3</mn><mo>,</mo><mn>8</mn><mo stretchy="false" form="postfix">)</mo><mi>.</mi></mrow><annotation encoding="application/x-tex">
+A=[-4,3),\qquad B=(-1,6],\qquad C=[3,8).
+</annotation></semantics></math></p>
+<p>Calcula y representa:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>∩</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A\cap B</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>A</mi><mo>∩</mo><mi>B</mi><mo stretchy="false" form="postfix">)</mo><mo>∪</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">(A\cap B)\cup C</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>∩</mo><mo stretchy="false" form="prefix">(</mo><mi>B</mi><mo>∪</mo><mi>C</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">A\cap(B\cup C)</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>A</mi><mo>∪</mo><mi>C</mi><mo stretchy="false" form="postfix">)</mo><mo>∩</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">(A\cup C)\cap B</annotation></semantics></math></li>
+</ol>
+</section>
+<section id="h14.-casos-de-contacto" class="level3">
+<h3><span class="session-chip">Sesión 5</span> H14. Casos de contacto</h3>
+<p>Para cada par, calcula unión e intersección y explica el papel del
+punto de contacto:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mn>2</mn><mo>,</mo><mn>4</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(-2,4)</annotation></semantics></math>
+y
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><mn>4</mn><mo>,</mo><mn>7</mn><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">[4,7]</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mn>2</mn><mo>,</mo><mn>4</mn><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">(-2,4]</annotation></semantics></math>
+y
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><mn>4</mn><mo>,</mo><mn>7</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">[4,7)</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mn>2</mn><mo>,</mo><mn>4</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(-2,4)</annotation></semantics></math>
+y
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>4</mn><mo>,</mo><mn>7</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(4,7)</annotation></semantics></math></li>
+</ol>
+</section>
+<section id="h15.-dos-condiciones-de-acceso" class="level3">
+<h3><span class="session-chip">Sesión 5</span> H15. Dos condiciones de acceso</h3>
+<p>Una ayuda se concede a personas con renta
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>r</mi><annotation encoding="application/x-tex">r</annotation></semantics></math>
+entre
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>8</mn><mspace width="0.167em"></mspace><mn>000</mn></mrow><annotation encoding="application/x-tex">8\,000</annotation></semantics></math>
+y
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>22</mn><mspace width="0.167em"></mspace><mn>000</mn></mrow><annotation encoding="application/x-tex">22\,000</annotation></semantics></math>
+euros, ambos incluidos, y edad
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>e</mi><annotation encoding="application/x-tex">e</annotation></semantics></math>
+entre
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>18</mn><annotation encoding="application/x-tex">18</annotation></semantics></math>
+años incluidos y
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>30</mn><annotation encoding="application/x-tex">30</annotation></semantics></math>
+años no incluidos. Una segunda vía admite renta inferior a
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn><mspace width="0.167em"></mspace><mn>000</mn></mrow><annotation encoding="application/x-tex">10\,000</annotation></semantics></math>
+euros sin restricción adicional de edad adulta salvo
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi><mo>≥</mo><mn>18</mn></mrow><annotation encoding="application/x-tex">e\geq18</annotation></semantics></math>.</p>
+<ol type="1">
+<li>Escribe por separado las restricciones sobre
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>r</mi><annotation encoding="application/x-tex">r</annotation></semantics></math>
+y
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>e</mi><annotation encoding="application/x-tex">e</annotation></semantics></math>.</li>
+<li>Identifica dónde aparece una intersección y dónde una unión.</li>
+<li>Comprueba dos perfiles, uno admitido y otro rechazado, justificando
+cada decisión.</li>
+</ol>
+<p><strong>Observación:</strong> las restricciones pertenecen a dos
+variables diferentes; el conjunto de perfiles no se representa en una
+única recta real.</p>
+</section>
+</section>
+<section id="sesión-6.-potencias-enteras-y-notación-científica-1"
+class="level2">
+<h2>Sesión 6. Potencias enteras y notación científica</h2>
+<section id="h16.-simplificación-de-potencias" class="level3">
+<h3><span class="session-chip">Sesión 6</span> H16. Simplificación de potencias</h3>
+<p>Expresa como una sola potencia y deja exponentes positivos:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle displaystyle="true"><mfrac><mrow><msup><mi>a</mi><mn>5</mn></msup><msup><mi>a</mi><mrow><mi>−</mi><mn>2</mn></mrow></msup></mrow><msup><mi>a</mi><mrow><mi>−</mi><mn>4</mn></mrow></msup></mfrac></mstyle><annotation encoding="application/x-tex">\dfrac{a^5a^{-2}}{a^{-4}}</annotation></semantics></math>,
+con
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>≠</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">a\neq0</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle displaystyle="true"><mfrac><mrow><mo stretchy="false" form="prefix">(</mo><msup><mi>x</mi><mn>3</mn></msup><msup><mo stretchy="false" form="postfix">)</mo><mn>4</mn></msup><msup><mi>x</mi><mrow><mi>−</mi><mn>5</mn></mrow></msup></mrow><msup><mi>x</mi><mn>2</mn></msup></mfrac></mstyle><annotation encoding="application/x-tex">\dfrac{(x^3)^4x^{-5}}{x^2}</annotation></semantics></math>,
+con
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>≠</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x\neq0</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mrow><mo stretchy="true" form="prefix">(</mo><mstyle displaystyle="true"><mfrac><mrow><msup><mn>2</mn><mrow><mi>−</mi><mn>2</mn></mrow></msup><msup><mn>3</mn><mn>3</mn></msup></mrow><msup><mn>2</mn><msup><mn>13</mn><mrow><mi>−</mi><mn>1</mn></mrow></msup></msup></mfrac></mstyle><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup><annotation encoding="application/x-tex">\left(\dfrac{2^{-2}3^3}{2^13^{-1}}\right)^2</annotation></semantics></math></li>
+</ol>
+</section>
+<section id="h17.-operación-científica-combinada" class="level3">
+<h3><span class="session-chip">Sesión 6</span> H17. Operación científica combinada</h3>
+<p>Calcula, normaliza y da tres cifras significativas:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mo stretchy="false" form="prefix">(</mo><mn>6</mn><mo>,</mo><mn>4</mn><mo>⋅</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>7</mn></mrow></msup><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>3</mn><mo>,</mo><mn>75</mn><mo>⋅</mo><msup><mn>10</mn><mn>12</mn></msup><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mn>1</mn><mo>,</mo><mn>2</mn><mo>⋅</mo><msup><mn>10</mn><mn>3</mn></msup></mrow></mfrac><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\frac{(6{,}4\cdot10^{-7})(3{,}75\cdot10^{12})}{1{,}2\cdot10^3}.
+</annotation></semantics></math></p>
+<p>Estima primero el orden de magnitud.</p>
+</section>
+<section id="h18.-datos-de-una-plataforma-educativa" class="level3">
+<h3><span class="session-chip">Sesión 6</span> H18. Datos de una plataforma educativa</h3>
+<p>Una plataforma registra
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn><mo>,</mo><mn>6</mn><mo>⋅</mo><msup><mn>10</mn><mn>5</mn></msup></mrow><annotation encoding="application/x-tex">3{,}6\cdot10^5</annotation></semantics></math>
+accesos diarios durante
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>28</mn><annotation encoding="application/x-tex">28</annotation></semantics></math>
+días. Cada acceso genera, por término medio,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>,</mo><mn>5</mn><mo>⋅</mo><msup><mn>10</mn><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">2{,}5\cdot10^3</annotation></semantics></math>
+bytes de información de registro.</p>
+<ol type="1">
+<li>Calcula el número total de accesos y exprésalo en notación
+científica.</li>
+<li>Calcula el volumen total de información generado, con tres cifras
+significativas.</li>
+<li>Interpreta el orden de magnitud de ambos resultados y comprueba si
+el volumen supera
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>⋅</mo><msup><mn>10</mn><mn>10</mn></msup></mrow><annotation encoding="application/x-tex">2\cdot10^{10}</annotation></semantics></math>
+bytes.</li>
+</ol>
+</section>
+</section>
+<section id="sesión-7.-exponentes-racionales-y-radicales-1"
+class="level2">
+<h2>Sesión 7. Exponentes racionales y radicales</h2>
+<section id="h19.-existencia-y-simplificación-previa" class="level3">
+<h3><span class="session-chip">Sesión 7</span> H19. Existencia y simplificación previa</h3>
+<p>Interpreta cada exponente racional a partir de su fracción
+irreducible y del radical real correspondiente. Calcula en
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="double-struck">ℝ</mi><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math>
+cuando sea posible y justifica los demás casos:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mn>64</mn><msup><mo stretchy="false" form="postfix">)</mo><mrow><mn>1</mn><mi>/</mi><mn>3</mn></mrow></msup></mrow><annotation encoding="application/x-tex">(-64)^{1/3}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mn>64</mn><msup><mo stretchy="false" form="postfix">)</mo><mrow><mn>2</mn><mi>/</mi><mn>3</mn></mrow></msup></mrow><annotation encoding="application/x-tex">(-64)^{2/3}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mn>16</mn><msup><mo stretchy="false" form="postfix">)</mo><mrow><mn>3</mn><mi>/</mi><mn>4</mn></mrow></msup></mrow><annotation encoding="application/x-tex">(-16)^{3/4}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mn>32</mn><msup><mo stretchy="false" form="postfix">)</mo><mrow><mn>4</mn><mi>/</mi><mn>5</mn></mrow></msup></mrow><annotation encoding="application/x-tex">(-32)^{4/5}</annotation></semantics></math></li>
+</ol>
+</section>
+<section id="h20.-varias-representaciones" class="level3">
+<h3><span class="session-chip">Sesión 7</span> H20. Varias representaciones</h3>
+<p>Escribe cada expresión de dos maneras equivalentes y calcula si es
+posible:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mroot><msup><mn>64</mn><mn>5</mn></msup><mn>6</mn></mroot><annotation encoding="application/x-tex">\sqrt[6]{64^5}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>125</mn><mrow><mn>4</mn><mi>/</mi><mn>3</mn></mrow></msup><annotation encoding="application/x-tex">125^{4/3}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mroot><mrow><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mn>32</mn><msup><mo stretchy="false" form="postfix">)</mo><mn>3</mn></msup></mrow><mn>5</mn></mroot><annotation encoding="application/x-tex">\sqrt[5]{(-32)^3}</annotation></semantics></math></li>
+</ol>
+<p>En cada caso, indica índice, radicando, exponente racional y signo
+esperado.</p>
+</section>
+<section id="h21.-raíz-principal-frente-a-ecuación" class="level3">
+<h3><span class="session-chip">Sesión 7</span> H21. Raíz principal frente a ecuación</h3>
+<ol type="1">
+<li>Calcula
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msqrt><mn>144</mn></msqrt><annotation encoding="application/x-tex">\sqrt{144}</annotation></semantics></math>
+y resuelve
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>=</mo><mn>144</mn></mrow><annotation encoding="application/x-tex">x^2=144</annotation></semantics></math>.</li>
+<li>Calcula
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mroot><mn>81</mn><mn>4</mn></mroot><annotation encoding="application/x-tex">\sqrt[4]{81}</annotation></semantics></math>
+y resuelve
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mn>4</mn></msup><mo>=</mo><mn>81</mn></mrow><annotation encoding="application/x-tex">x^4=81</annotation></semantics></math>
+en
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="double-struck">ℝ</mi><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math>.</li>
+<li>Explica por qué el símbolo radical no lleva
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>±</mi><annotation encoding="application/x-tex">\pm</annotation></semantics></math>,
+pero algunas ecuaciones sí producen dos soluciones.</li>
+</ol>
+</section>
+</section>
+<section id="sesión-8.-radicales-equivalentes-y-simplificación-1"
+class="level2">
+<h2>Sesión 8. Radicales equivalentes y simplificación</h2>
+<section id="h22.-simplificación-numérica-avanzada" class="level3">
+<h3><span class="session-chip">Sesión 8</span> H22. Simplificación numérica avanzada</h3>
+<p>Simplifica completamente:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msqrt><mrow><msup><mn>2</mn><mn>7</mn></msup><mo>⋅</mo><msup><mn>3</mn><mn>5</mn></msup></mrow></msqrt><annotation encoding="application/x-tex">\sqrt{2^7\cdot3^5}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mroot><mrow><msup><mn>2</mn><mn>8</mn></msup><mo>⋅</mo><msup><mn>5</mn><mn>4</mn></msup></mrow><mn>3</mn></mroot><annotation encoding="application/x-tex">\sqrt[3]{2^8\cdot5^4}</annotation></semantics></math></li>
+</ol>
+<p><strong>Ampliación:</strong>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mroot><mrow><msup><mn>3</mn><mn>10</mn></msup><mo>⋅</mo><msup><mn>7</mn><mn>5</mn></msup></mrow><mn>4</mn></mroot><annotation encoding="application/x-tex">\sqrt[4]{3^{10}\cdot7^5}</annotation></semantics></math>.</p>
+</section>
+<section id="h23.-radicales-algebraicos" class="level3">
+<h3><span class="session-chip">Sesión 8</span> H23. Radicales algebraicos</h3>
+<p>Simplifica para cualesquiera valores reales para los que existan las
+expresiones:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msqrt><mrow><mn>72</mn><msup><mi>x</mi><mn>4</mn></msup><msup><mi>y</mi><mn>2</mn></msup></mrow></msqrt><annotation encoding="application/x-tex">\sqrt{72x^4y^2}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mroot><mrow><mn>54</mn><msup><mi>a</mi><mn>7</mn></msup><msup><mi>b</mi><mn>4</mn></msup></mrow><mn>3</mn></mroot><annotation encoding="application/x-tex">\sqrt[3]{54a^7b^4}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msqrt><mrow><mn>25</mn><msup><mi>m</mi><mn>2</mn></msup><mo stretchy="false" form="prefix">(</mo><mi>m</mi><mo>−</mo><mn>1</mn><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup></mrow></msqrt><annotation encoding="application/x-tex">\sqrt{25m^2(m-1)^2}</annotation></semantics></math></li>
+</ol>
+<p>Indica con precisión dónde son necesarios valores absolutos.</p>
+</section>
+<section id="h24.-equivalencia-y-dominio" class="level3">
+<h3><span class="session-chip">Sesión 8</span> H24. Equivalencia y dominio</h3>
+<p>Una persona afirma que
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><msup><mi>x</mi><mn>2</mn></msup></msqrt><mo>=</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">\sqrt{x^2}=x</annotation></semantics></math>
+para todo
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mi mathvariant="double-struck">ℝ</mi></mrow><annotation encoding="application/x-tex">x\in\mathbb{R}</annotation></semantics></math>
+y que
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mroot><msup><mi>x</mi><mn>2</mn></msup><mn>4</mn></mroot><mo>=</mo><msqrt><mi>x</mi></msqrt></mrow><annotation encoding="application/x-tex">\sqrt[4]{x^2}=\sqrt{x}</annotation></semantics></math>.</p>
+<ol type="1">
+<li>Refuta la primera afirmación con un contraejemplo.</li>
+<li>Determina para qué valores de
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+es correcta cada igualdad.</li>
+<li>Reescribe correctamente ambas relaciones.</li>
+</ol>
+</section>
+</section>
+<section id="sesión-9.-operaciones-elementales-con-radicales-1"
+class="level2">
+<h2>Sesión 9. Operaciones elementales con radicales</h2>
+<section id="h25.-operación-mixta" class="level3">
+<h3><span class="session-chip">Sesión 9</span> H25. Operación mixta</h3>
+<p>Simplifica exactamente:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn><msqrt><mn>8</mn></msqrt><mo>−</mo><mn>2</mn><msqrt><mn>18</mn></msqrt><mo>+</mo><msqrt><mn>50</mn></msqrt><mo>+</mo><msqrt><mn>12</mn></msqrt><mo>⋅</mo><msqrt><mn>3</mn></msqrt><mi>.</mi></mrow><annotation encoding="application/x-tex">
+3\sqrt{8}-2\sqrt{18}+\sqrt{50}+\sqrt{12}\cdot\sqrt{3}.
+</annotation></semantics></math></p>
+<p>Separa al final la parte racional de la parte irracional.</p>
+</section>
+<section id="h26.-índices-diferentes" class="level3">
+<h3><span class="session-chip">Sesión 9</span> H26. Índices diferentes</h3>
+<p>Reduce al menor índice común y simplifica:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mroot><mn>4</mn><mn>3</mn></mroot><mo>⋅</mo><mroot><mn>8</mn><mn>4</mn></mroot></mrow><annotation encoding="application/x-tex">\sqrt[3]{4}\cdot\sqrt[4]{8}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mi>a</mi></msqrt><mo>⋅</mo><mroot><msup><mi>a</mi><mn>2</mn></msup><mn>3</mn></mroot></mrow><annotation encoding="application/x-tex">\sqrt a\cdot\sqrt[3]{a^2}</annotation></semantics></math>,
+con
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">a&gt;0</annotation></semantics></math>.</li>
+</ol>
+<p><strong>Ampliación:</strong>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle displaystyle="true"><mfrac><mroot><mn>2</mn><mn>4</mn></mroot><mroot><mn>8</mn><mn>6</mn></mroot></mfrac></mstyle><annotation encoding="application/x-tex">\dfrac{\sqrt[4]{2}}{\sqrt[6]{8}}</annotation></semantics></math>.</p>
+</section>
+<section id="h27.-error-por-redondeo-prematuro" class="level3">
+<h3><span class="session-chip">Sesión 9</span> H27. Error por redondeo prematuro</h3>
+<p>Calcula
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mn>50</mn></msqrt><mo>+</mo><msqrt><mn>8</mn></msqrt><mo>−</mo><msqrt><mn>18</mn></msqrt></mrow><annotation encoding="application/x-tex">\sqrt{50}+\sqrt8-\sqrt{18}</annotation></semantics></math>
+de dos formas:</p>
+<ol type="1">
+<li>Simplificando exactamente y aproximando al final a centésimas.</li>
+<li>Redondeando cada radical a una décima antes de operar.</li>
+<li>Compara los resultados y calcula el error absoluto provocado por la
+segunda estrategia respecto al valor exacto.</li>
+</ol>
+</section>
+</section>
+<section id="sesión-10.-radicales-consolidación-y-casos-combinados-1"
+class="level2">
+<h2>Sesión 10. Radicales: consolidación y casos combinados</h2>
+<section id="h28.-distributiva-y-radicales" class="level3">
+<h3><span class="session-chip">Sesión 10</span> H28. Distributiva y radicales</h3>
+<p>Simplifica:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msqrt><mn>12</mn></msqrt><mo>+</mo><msqrt><mn>3</mn></msqrt><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><msqrt><mn>12</mn></msqrt><mo>−</mo><msqrt><mn>3</mn></msqrt><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\sqrt{12}+\sqrt3)(\sqrt{12}-\sqrt3)</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>2</mn><msqrt><mn>2</mn></msqrt><mo>−</mo><msqrt><mn>8</mn></msqrt><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><msqrt><mn>18</mn></msqrt><mo>+</mo><msqrt><mn>2</mn></msqrt><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(2\sqrt2-\sqrt8)(\sqrt{18}+\sqrt2)</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mn>6</mn></msqrt><mo stretchy="false" form="prefix">(</mo><msqrt><mn>24</mn></msqrt><mo>−</mo><msqrt><mn>54</mn></msqrt><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mn>6</mn></mrow><annotation encoding="application/x-tex">\sqrt6(\sqrt{24}-\sqrt{54})+6</annotation></semantics></math></li>
+</ol>
+</section>
+<section id="h29.-racionalización" class="level3">
+<h3><span class="session-chip">Sesión 10</span> H29. Racionalización</h3>
+<p>Racionaliza y simplifica completamente:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle displaystyle="true"><mfrac><mn>7</mn><mrow><mn>2</mn><msqrt><mn>3</mn></msqrt></mrow></mfrac></mstyle><annotation encoding="application/x-tex">\dfrac{7}{2\sqrt3}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle displaystyle="true"><mfrac><mn>3</mn><mrow><msqrt><mn>5</mn></msqrt><mo>−</mo><mn>1</mn></mrow></mfrac></mstyle><annotation encoding="application/x-tex">\dfrac{3}{\sqrt5-1}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle displaystyle="true"><mfrac><mn>2</mn><mroot><mn>12</mn><mn>3</mn></mroot></mfrac></mstyle><annotation encoding="application/x-tex">\dfrac{2}{\sqrt[3]{12}}</annotation></semantics></math></li>
+</ol>
+</section>
+<section id="h30.-comparar-expresiones-exactas" class="level3">
+<h3><span class="session-chip">Sesión 10</span> H30. Comparar expresiones exactas</h3>
+<p>Sin aproximar al principio, decide cuál es mayor en cada pareja:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn><msqrt><mn>2</mn></msqrt></mrow><annotation encoding="application/x-tex">3\sqrt2</annotation></semantics></math>
+y
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msqrt><mn>20</mn></msqrt><annotation encoding="application/x-tex">\sqrt{20}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle displaystyle="true"><mfrac><mn>5</mn><msqrt><mn>5</mn></msqrt></mfrac></mstyle><annotation encoding="application/x-tex">\dfrac{5}{\sqrt5}</annotation></semantics></math>
+y
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msqrt><mn>6</mn></msqrt><annotation encoding="application/x-tex">\sqrt6</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle displaystyle="true"><mfrac><mn>1</mn><mrow><msqrt><mn>3</mn></msqrt><mo>+</mo><mn>1</mn></mrow></mfrac></mstyle><annotation encoding="application/x-tex">\dfrac{1}{\sqrt3+1}</annotation></semantics></math>
+y
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle displaystyle="true"><mfrac><mrow><msqrt><mn>3</mn></msqrt><mo>−</mo><mn>1</mn></mrow><mn>2</mn></mfrac></mstyle><annotation encoding="application/x-tex">\dfrac{\sqrt3-1}{2}</annotation></semantics></math></li>
+</ol>
+<p>Justifica mediante simplificación, racionalización o elevación a una
+potencia adecuada.</p>
+</section>
+</section>
+<section id="sesión-11.-el-logaritmo-como-exponente-1" class="level2">
+<h2>Sesión 11. El logaritmo como exponente</h2>
+<section id="h31.-cálculo-exacto-no-inmediato" class="level3">
+<h3><span class="session-chip">Sesión 11</span> H31. Cálculo exacto no inmediato</h3>
+<p>Calcula exactamente:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>4</mn></msub><mstyle displaystyle="true"><mfrac><mn>1</mn><mn>32</mn></mfrac></mstyle></mrow><annotation encoding="application/x-tex">\log_4\dfrac1{32}</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>27</mn></msub><mn>9</mn></mrow><annotation encoding="application/x-tex">\log_{27}9</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mrow><mn>1</mn><mi>/</mi><mn>2</mn></mrow></msub><mn>16</mn></mrow><annotation encoding="application/x-tex">\log_{1/2}16</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>8</mn></msub><mroot><mn>4</mn><mn>3</mn></mroot></mrow><annotation encoding="application/x-tex">\log_8\sqrt[3]{4}</annotation></semantics></math></li>
+</ol>
+</section>
+<section id="h32.-incógnita-en-distintas-posiciones" class="level3">
+<h3><span class="session-chip">Sesión 11</span> H32. Incógnita en distintas posiciones</h3>
+<p>Resuelve usando únicamente la definición:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>3</mn></msub><mi>x</mi><mo>=</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">\log_3 x=4</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>x</mi></msub><mn>81</mn><mo>=</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">\log_x 81=4</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>2</mn></msub><mn>32</mn><mo>=</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">\log_2 32=x</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>x</mi></msub><mstyle displaystyle="true"><mfrac><mn>1</mn><mn>8</mn></mfrac></mstyle><mo>=</mo><mi>−</mi><mn>3</mn></mrow><annotation encoding="application/x-tex">\log_x\dfrac18=-3</annotation></semantics></math></li>
+</ol>
+<p>Comprueba en cada caso las condiciones sobre la base y el
+argumento.</p>
+</section>
+<section id="h33.-razonamiento-sobre-el-signo" class="level3">
+<h3><span class="session-chip">Sesión 11</span> H33. Razonamiento sobre el signo</h3>
+<p>Sin calculadora, ordena de menor a mayor:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>5</mn></msub><mfrac><mn>1</mn><mn>25</mn></mfrac><mo>,</mo><mspace width="2.0em"></mspace><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>5</mn></msub><mfrac><mn>1</mn><mn>5</mn></mfrac><mo>,</mo><mspace width="2.0em"></mspace><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>5</mn></msub><mn>1</mn><mo>,</mo><mspace width="2.0em"></mspace><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>5</mn></msub><mn>3</mn><mo>,</mo><mspace width="2.0em"></mspace><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>5</mn></msub><mn>25</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\log_5\frac1{25},\qquad \log_5\frac15,\qquad \log_5 1,\qquad \log_5 3,\qquad \log_5 25.
+</annotation></semantics></math></p>
+<p>Justifica el orden mediante potencias de
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>5</mn><annotation encoding="application/x-tex">5</annotation></semantics></math>
+y acota el único valor no exacto entre dos enteros.</p>
+</section>
+</section>
+<section id="sesión-12.-propiedades-de-los-logaritmos-1" class="level2">
+<h2>Sesión 12. Propiedades de los logaritmos</h2>
+<section id="h34.-desarrollo-completo" class="level3">
+<h3><span class="session-chip">Sesión 12</span> H34. Desarrollo completo</h3>
+<p>Desarrolla hasta obtener logaritmos de
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>
+y
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>z</mi><annotation encoding="application/x-tex">z</annotation></semantics></math>:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mstyle displaystyle="true"><mfrac><mrow><msup><mi>x</mi><mn>3</mn></msup><msqrt><mi>y</mi></msqrt></mrow><msup><mi>z</mi><mn>4</mn></msup></mfrac></mstyle><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\log_a\left(\dfrac{x^3\sqrt y}{z^4}\right)</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mroot><mstyle displaystyle="true"><mfrac><mrow><msup><mi>x</mi><mn>2</mn></msup><msup><mi>y</mi><mn>5</mn></msup></mrow><mi>z</mi></mfrac></mstyle><mn>3</mn></mroot></mrow><annotation encoding="application/x-tex">\log_a\sqrt[3]{\dfrac{x^2y^5}{z}}</annotation></semantics></math></li>
+</ol>
+</section>
+<section id="h35.-condensación-completa" class="level3">
+<h3><span class="session-chip">Sesión 12</span> H35. Condensación completa</h3>
+<p>Condensa en un único logaritmo:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mi>x</mi><mo>+</mo><mstyle displaystyle="true"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mi>y</mi><mo>−</mo><mn>2</mn><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mi>z</mi></mrow><annotation encoding="application/x-tex">3\log_a x+\dfrac12\log_a y-2\log_a z</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle displaystyle="true"><mfrac><mn>1</mn><mn>3</mn></mfrac></mstyle><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mi>m</mi><mo>−</mo><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mi>n</mi><mo>+</mo><mn>4</mn><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mi>p</mi></mrow><annotation encoding="application/x-tex">\dfrac13\log_a m-\log_a n+4\log_a p</annotation></semantics></math></li>
+<li>Construye una expresión diferente que, al desarrollarla, produzca
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mi>x</mi><mo>−</mo><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mi>y</mi><mo>+</mo><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mi>z</mi></mrow><annotation encoding="application/x-tex">2\log_a x-\log_a y+\log_a z</annotation></semantics></math>.
+Indica las condiciones de dominio.</li>
+</ol>
+</section>
+<section id="h36.-validar-identidades" class="level3">
+<h3><span class="session-chip">Sesión 12</span> H36. Validar identidades</h3>
+<p>Decide si cada igualdad es siempre verdadera. Demuéstrala con
+propiedades o refútala con un contraejemplo.</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mi>y</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mi>x</mi><mo>+</mo><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mi>y</mi></mrow><annotation encoding="application/x-tex">\log_a(xy)=\log_a x+\log_a y</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>+</mo><mi>y</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mi>x</mi><mo>+</mo><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mi>y</mi></mrow><annotation encoding="application/x-tex">\log_a(x+y)=\log_a x+\log_a y</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mo stretchy="false" form="prefix">(</mo><msup><mi>x</mi><mn>2</mn></msup><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>2</mn><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mi>x</mi></mrow><annotation encoding="application/x-tex">\log_a(x^2)=2\log_a x</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mi>x</mi><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup><mo>=</mo><mn>2</mn><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mi>x</mi></mrow><annotation encoding="application/x-tex">(\log_a x)^2=2\log_a x</annotation></semantics></math></li>
+</ol>
+<p>Indica también las condiciones de dominio necesarias.</p>
+</section>
+</section>
+<section id="sesión-13.-logaritmos-consolidación-y-problemas-1"
+class="level2">
+<h2>Sesión 13. Logaritmos: consolidación y problemas</h2>
+<section id="h37.-transformación-con-resultado-exacto" class="level3">
+<h3><span class="session-chip">Sesión 13</span> H37. Transformación con resultado exacto</h3>
+<p>Calcula exactamente:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>2</mn></msub><mn>18</mn><mo>+</mo><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>2</mn></msub><mn>12</mn><mo>−</mo><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>2</mn></msub><mn>27</mn></mrow><annotation encoding="application/x-tex">\log_2 18+\log_2 12-\log_2 27</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>3</mn></msub><mn>6</mn><mo>−</mo><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>3</mn></msub><mn>4</mn></mrow><annotation encoding="application/x-tex">2\log_3 6-\log_3 4</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>5</mn></msub><mn>2</mn><mo>+</mo><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>5</mn></msub><mn>50</mn><mo>−</mo><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>5</mn></msub><mn>4</mn></mrow><annotation encoding="application/x-tex">\log_5 2+\log_5 50-\log_5 4</annotation></semantics></math></li>
+</ol>
+</section>
+<section id="h38.-cambio-de-base-con-control" class="level3">
+<h3><span class="session-chip">Sesión 13</span> H38. Cambio de base con control</h3>
+<p>Aproxima a cuatro decimales:</p>
+<ol type="1">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>4</mn></msub><mn>7</mn></mrow><annotation encoding="application/x-tex">\log_4 7</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mrow><mn>0</mn><mo>,</mo><mn>5</mn></mrow></msub><mn>3</mn></mrow><annotation encoding="application/x-tex">\log_{0{,}5}3</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>12</mn></msub><mn>1000</mn></mrow><annotation encoding="application/x-tex">\log_{12}1000</annotation></semantics></math></li>
+</ol>
+<p>Antes de usar la calculadora, predice el signo y acota cada resultado
+entre dos enteros consecutivos. Comprueba después en forma
+exponencial.</p>
+</section>
+<section id="h39.-difusión-digital-y-razones" class="level3">
+<h3><span class="session-chip">Sesión 13</span> H39. Difusión digital y razones</h3>
+<p>Una plataforma define un índice de difusión mediante
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo>=</mo><mn>10</mn><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mstyle displaystyle="true"><mfrac><mi>V</mi><msub><mi>V</mi><mn>0</mn></msub></mfrac></mstyle><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">D=10\log\left(\dfrac{V}{V_0}\right)</annotation></semantics></math>,
+donde
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>V</mi><annotation encoding="application/x-tex">V</annotation></semantics></math>
+es el número de visualizaciones y
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>V</mi><mn>0</mn></msub><annotation encoding="application/x-tex">V_0</annotation></semantics></math>
+una referencia fija.</p>
+<ol type="1">
+<li>¿Cuánto cambia
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>D</mi><annotation encoding="application/x-tex">D</annotation></semantics></math>
+si
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>V</mi><annotation encoding="application/x-tex">V</annotation></semantics></math>
+se multiplica por
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>100</mn><annotation encoding="application/x-tex">100</annotation></semantics></math>?</li>
+<li>Si dos contenidos difieren en
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>35</mn><annotation encoding="application/x-tex">35</annotation></semantics></math>
+unidades de
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>D</mi><annotation encoding="application/x-tex">D</annotation></semantics></math>,
+calcula la razón entre sus visualizaciones.</li>
+<li>Explica por qué la respuesta no se obtiene mediante una simple resta
+de visualizaciones.</li>
+</ol>
+</section>
+</section>
+<section id="sesión-14.-integración-y-cierre-autónomo-1" class="level2">
+<h2>Sesión 14. Integración y cierre autónomo</h2>
+<section id="h40.-restricción-aproximación-y-decisión" class="level3">
+<h3><span class="session-chip">Sesión 14</span> H40. Restricción, aproximación y decisión</h3>
+<p>Una máquina trabaja correctamente cuando la medida real
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+pertenece a
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><mn>9</mn><mo>,</mo><mn>95</mn><mo>,</mo><mn>10</mn><mo>,</mo><mn>05</mn><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">[9{,}95,10{,}05]</annotation></semantics></math>.
+Un sensor muestra
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn><mo>,</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">10{,}0</annotation></semantics></math>
+tras redondear a décimas.</p>
+<ol type="1">
+<li>Escribe el intervalo de valores reales compatibles con la lectura
+del sensor.</li>
+<li>Calcula su intersección con el intervalo de funcionamiento
+correcto.</li>
+<li>Decide si la lectura garantiza que la máquina funciona correctamente
+y justifica.</li>
+</ol>
+</section>
+<section id="h41.-potencias-radicales-y-notación-científica"
+class="level3">
+<h3><span class="session-chip">Sesión 14</span> H41. Potencias, radicales y notación científica</h3>
+<p>Simplifica y expresa el resultado en notación científica:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mo stretchy="false" form="prefix">(</mo><mn>3</mn><msqrt><mn>50</mn></msqrt><mo>−</mo><mn>2</mn><msqrt><mn>8</mn></msqrt><mo stretchy="false" form="postfix">)</mo><mo>⋅</mo><mn>4</mn><mo>⋅</mo><msup><mn>10</mn><mn>7</mn></msup></mrow><mrow><msqrt><mn>2</mn></msqrt><mo>⋅</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>3</mn></mrow></msup></mrow></mfrac><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\frac{(3\sqrt{50}-2\sqrt8)\cdot 4\cdot10^7}{\sqrt2\cdot10^{-3}}.
+</annotation></semantics></math></p>
+<p>Estima primero el signo y el orden de magnitud.</p>
+</section>
+<section id="h42.-logaritmos-e-interpretación" class="level3">
+<h3><span class="session-chip">Sesión 14</span> H42. Logaritmos e interpretación</h3>
+<p>Sea
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>=</mo><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>Q</mi></mrow><annotation encoding="application/x-tex">M=\log Q</annotation></semantics></math>.
+Se sabe que
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi><mo>=</mo><mstyle displaystyle="true"><mfrac><mrow><msup><mn>3</mn><mn>4</mn></msup><mo>⋅</mo><mn>27</mn></mrow><msqrt><mn>3</mn></msqrt></mfrac></mstyle></mrow><annotation encoding="application/x-tex">Q=\dfrac{3^4\cdot27}{\sqrt3}</annotation></semantics></math>.</p>
+<ol type="1">
+<li>Expresa
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Q</mi><annotation encoding="application/x-tex">Q</annotation></semantics></math>
+como una única potencia de
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>3</mn><annotation encoding="application/x-tex">3</annotation></semantics></math>.</li>
+<li>Calcula
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>3</mn></msub><mi>Q</mi></mrow><annotation encoding="application/x-tex">\log_3 Q</annotation></semantics></math>
+exactamente.</li>
+<li>Calcula
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>M</mi><annotation encoding="application/x-tex">M</annotation></semantics></math>
+por cambio de base y aproxima a tres decimales.</li>
+<li>Interpreta qué factor separa esta cantidad de otra cuya medida sea
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>−</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">M-2</annotation></semantics></math>.</li>
+</ol>
+<hr />
+</section>
+</section>
+</section>
+<section id="bloque-iii.-ejercicios-escalados-para-entregar"
+class="level1">
+<h1>Bloque III. Ejercicios escalados para entregar</h1>
+<p>La entrega es <strong>individual</strong>. Deben aparecer los pasos,
+las propiedades utilizadas y las comprobaciones solicitadas. La
+calculadora puede usarse para aproximar o comprobar, pero no sustituye
+el desarrollo exacto.</p>
+<section id="nivel-1.-aplicación-directa" class="level2">
+<h2>Nivel 1. Aplicación directa</h2>
+<section id="e1.-sesión-1---herramientas-de-cálculo" class="level3">
+<h3>E1. Sesión 1 - Herramientas de cálculo</h3>
+<p>Calcula y simplifica:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mn>5</mn><mn>6</mn></mfrac><mo>−</mo><mfrac><mn>1</mn><mn>4</mn></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>:</mo><mfrac><mn>7</mn><mn>12</mn></mfrac><mo>+</mo><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mn>2</mn><msup><mo stretchy="false" form="postfix">)</mo><mn>4</mn></msup><mo>−</mo><mn>3</mn><mo>⋅</mo><mn>5</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\left(\frac56-\frac14\right):\frac7{12}+(-2)^4-3\cdot5.
+</annotation></semantics></math></p>
+<p>Indica el signo estimado antes de operar.</p>
+</section>
+<section id="e2.-sesión-2---conjuntos-y-decimales" class="level3">
+<h3>E2. Sesión 2 - Conjuntos y decimales</h3>
+<p>Clasifica en el conjunto más pequeño y justifica:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><msqrt><mn>81</mn></msqrt><mo>,</mo><mspace width="2.0em"></mspace><mfrac><mn>24</mn><mn>6</mn></mfrac><mo>,</mo><mspace width="2.0em"></mspace><mn>0</mn><mo>,</mo><mn>1</mn><mover><mn>6</mn><mo accent="true">¯</mo></mover><mo>,</mo><mspace width="2.0em"></mspace><msqrt><mn>13</mn></msqrt><mo>,</mo><mspace width="2.0em"></mspace><mn>0</mn><mo>,</mo><mn>101001000100001</mn><mi>…</mi></mrow><annotation encoding="application/x-tex">
+-\sqrt{81},\qquad \frac{24}{6},\qquad 0{,}1\overline6,\qquad \sqrt{13},\qquad 0{,}101001000100001\ldots
+</annotation></semantics></math></p>
+<p>Convierte además
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>1</mn><mover><mn>6</mn><mo accent="true">¯</mo></mover></mrow><annotation encoding="application/x-tex">0{,}1\overline6</annotation></semantics></math>
+en fracción irreducible.</p>
+</section>
+<section id="e3.-sesión-2---predicción-decimal" class="level3">
+<h3>E3. Sesión 2 - Predicción decimal</h3>
+<p>Sin dividir, decide si las fracciones
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle displaystyle="true"><mfrac><mn>18</mn><mn>75</mn></mfrac></mstyle><annotation encoding="application/x-tex">\dfrac{18}{75}</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle displaystyle="true"><mfrac><mn>35</mn><mn>84</mn></mfrac></mstyle><annotation encoding="application/x-tex">\dfrac{35}{84}</annotation></semantics></math>
+y
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle displaystyle="true"><mfrac><mn>77</mn><mn>200</mn></mfrac></mstyle><annotation encoding="application/x-tex">\dfrac{77}{200}</annotation></semantics></math>
+producen decimal exacto o periódico. Debes simplificar y factorizar cada
+denominador irreducible.</p>
+</section>
+</section>
+<section id="nivel-2.-variación" class="level2">
+<h2>Nivel 2. Variación</h2>
+<section id="e4.-sesión-3---orden-y-aproximación" class="level3">
+<h3>E4. Sesión 3 - Orden y aproximación</h3>
+<p>Ordena de menor a mayor</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mn>11</mn></msqrt><mo>,</mo><mspace width="2.0em"></mspace><mn>3</mn><mo>,</mo><mn>31</mn><mo>,</mo><mspace width="2.0em"></mspace><mfrac><mn>10</mn><mn>3</mn></mfrac><mo>,</mo><mspace width="2.0em"></mspace><mn>3</mn><mo>,</mo><mn>3</mn><mover><mn>2</mn><mo accent="true">¯</mo></mover><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\sqrt{11},\qquad 3{,}31,\qquad \frac{10}{3},\qquad 3{,}3\overline2.
+</annotation></semantics></math></p>
+<p>Después redondea
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msqrt><mn>11</mn></msqrt><annotation encoding="application/x-tex">\sqrt{11}</annotation></semantics></math>
+a tres cifras significativas y calcula los errores absoluto y relativo
+porcentual cometidos.</p>
+</section>
+<section id="e5.-sesión-3---precisión-en-contexto" class="level3">
+<h3>E5. Sesión 3 - Precisión en contexto</h3>
+<p>Una cantidad exacta de
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>48</mn><mo>,</mo><mn>6</mn></mrow><annotation encoding="application/x-tex">48{,}6</annotation></semantics></math>
+millones se publica como
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>49</mn><annotation encoding="application/x-tex">49</annotation></semantics></math>
+millones y otra cantidad exacta de
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>,</mo><mn>04</mn></mrow><annotation encoding="application/x-tex">2{,}04</annotation></semantics></math>
+millones se publica como
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>2</mn><annotation encoding="application/x-tex">2</annotation></semantics></math>
+millones.</p>
+<ol type="1">
+<li>Calcula los errores absoluto y relativo de ambas
+aproximaciones.</li>
+<li>Decide cuál es relativamente más precisa.</li>
+<li>Explica la diferencia entre comparar errores absolutos y
+relativos.</li>
+</ol>
+</section>
+<section id="e6.-sesión-4---cuatro-representaciones" class="level3">
+<h3>E6. Sesión 4 - Cuatro representaciones</h3>
+<p>Representa el conjunto de números mayores o iguales que
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mstyle displaystyle="true"><mfrac><mn>3</mn><mn>2</mn></mfrac></mstyle></mrow><annotation encoding="application/x-tex">-\dfrac32</annotation></semantics></math>
+y estrictamente menores que
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msqrt><mn>5</mn></msqrt><annotation encoding="application/x-tex">\sqrt5</annotation></semantics></math>
+mediante:</p>
+<ol type="1">
+<li>una desigualdad doble;</li>
+<li>un intervalo;</li>
+<li>una frase inequívoca;</li>
+<li>una gráfica en la recta real.</li>
+</ol>
+<p>Comprueba la pertenencia de los dos extremos y de
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math>.</p>
+</section>
+<section id="e7.-sesión-5---unión-e-intersección" class="level3">
+<h3>E7. Sesión 5 - Unión e intersección</h3>
+<p>Sean</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mo stretchy="false" form="prefix">[</mo><mi>−</mi><mn>4</mn><mo>,</mo><mn>2</mn><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mspace width="2.0em"></mspace><mi>B</mi><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mn>1</mn><mo>,</mo><mn>5</mn><mo stretchy="false" form="postfix">]</mo><mo>,</mo><mspace width="2.0em"></mspace><mi>C</mi><mo>=</mo><mo stretchy="false" form="prefix">[</mo><mn>2</mn><mo>,</mo><mn>7</mn><mo stretchy="false" form="postfix">)</mo><mi>.</mi></mrow><annotation encoding="application/x-tex">
+A=[-4,2),\qquad B=(-1,5],\qquad C=[2,7).
+</annotation></semantics></math></p>
+<p>Calcula y representa
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>∩</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A\cap B</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>A</mi><mo>∩</mo><mi>B</mi><mo stretchy="false" form="postfix">)</mo><mo>∪</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">(A\cap B)\cup C</annotation></semantics></math>
+y
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>∩</mo><mo stretchy="false" form="prefix">(</mo><mi>B</mi><mo>∪</mo><mi>C</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">A\cap(B\cup C)</annotation></semantics></math>.
+En el último resultado, comprueba un valor interior, uno exterior y los
+extremos conflictivos.</p>
+</section>
+</section>
+<section id="nivel-3.-combinación-de-procedimientos" class="level2">
+<h2>Nivel 3. Combinación de procedimientos</h2>
+<section id="e8.-sesión-6---datos-en-notación-científica"
+class="level3">
+<h3>E8. Sesión 6 - Datos en notación científica</h3>
+<p>Una red de centros registra
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>,</mo><mn>4</mn><mo>⋅</mo><msup><mn>10</mn><mn>6</mn></msup></mrow><annotation encoding="application/x-tex">2{,}4\cdot10^6</annotation></semantics></math>
+operaciones diarias en cada uno de
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>7</mn><mo>,</mo><mn>5</mn><mo>⋅</mo><msup><mn>10</mn><mn>1</mn></msup></mrow><annotation encoding="application/x-tex">7{,}5\cdot10^1</annotation></semantics></math>
+centros durante
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn><mo>,</mo><mn>0</mn><mo>⋅</mo><msup><mn>10</mn><mn>1</mn></msup></mrow><annotation encoding="application/x-tex">3{,}0\cdot10^1</annotation></semantics></math>
+días. Otro proceso añade
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn><mo>,</mo><mn>2</mn><mo>⋅</mo><msup><mn>10</mn><mn>7</mn></msup></mrow><annotation encoding="application/x-tex">4{,}2\cdot10^7</annotation></semantics></math>
+operaciones. Calcula el total mediante la expresión</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>2</mn><mo>,</mo><mn>4</mn><mo>⋅</mo><msup><mn>10</mn><mn>6</mn></msup><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>7</mn><mo>,</mo><mn>5</mn><mo>⋅</mo><msup><mn>10</mn><mn>1</mn></msup><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>3</mn><mo>,</mo><mn>0</mn><mo>⋅</mo><msup><mn>10</mn><mn>1</mn></msup><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mn>4</mn><mo>,</mo><mn>2</mn><mo>⋅</mo><msup><mn>10</mn><mn>7</mn></msup><mi>.</mi></mrow><annotation encoding="application/x-tex">
+(2{,}4\cdot10^6)(7{,}5\cdot10^1)(3{,}0\cdot10^1)+4{,}2\cdot10^7.
+</annotation></semantics></math></p>
+<p>Expresa el resultado normalizado con dos cifras significativas e
+incluye una estimación previa del orden de magnitud.</p>
+</section>
+<section id="e9.-sesión-7---exponentes-racionales" class="level3">
+<h3>E9. Sesión 7 - Exponentes racionales</h3>
+<p>Interpreta los exponentes mediante fracciones irreducibles. Calcula
+en
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="double-struck">ℝ</mi><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math>
+cuando sea posible y justifica los casos no definidos:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mn>243</mn><msup><mo stretchy="false" form="postfix">)</mo><mrow><mn>2</mn><mi>/</mi><mn>5</mn></mrow></msup><mo>,</mo><mspace width="2.0em"></mspace><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mn>81</mn><msup><mo stretchy="false" form="postfix">)</mo><mrow><mn>3</mn><mi>/</mi><mn>4</mn></mrow></msup><mo>,</mo><mspace width="2.0em"></mspace><msup><mn>64</mn><mrow><mn>5</mn><mi>/</mi><mn>6</mn></mrow></msup><mo>,</mo><mspace width="2.0em"></mspace><mroot><msup><mn>16</mn><mn>3</mn></msup><mn>4</mn></mroot><mi>.</mi></mrow><annotation encoding="application/x-tex">
+(-243)^{2/5},\qquad (-81)^{3/4},\qquad 64^{5/6},\qquad \sqrt[4]{16^3}.
+</annotation></semantics></math></p>
+<p>Escribe dos de las expresiones definidas también en la otra forma,
+radical o potencia racional según corresponda.</p>
+</section>
+<section id="e10.-sesión-8---simplificación-algebraica" class="level3">
+<h3>E10. Sesión 8 - Simplificación algebraica</h3>
+<p>Simplifica completamente para valores reales de las letras:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mrow><mn>72</mn><msup><mi>x</mi><mn>4</mn></msup><msup><mi>y</mi><mn>2</mn></msup></mrow></msqrt><mo>+</mo><msqrt><mrow><mn>18</mn><msup><mi>x</mi><mn>4</mn></msup><msup><mi>y</mi><mn>2</mn></msup></mrow></msqrt><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\sqrt{72x^4y^2}+\sqrt{18x^4y^2}.
+</annotation></semantics></math></p>
+<p>Indica dónde aparece un valor absoluto y explica por qué.</p>
+</section>
+<section id="e11.-sesión-9---operaciones-con-radicales" class="level3">
+<h3>E11. Sesión 9 - Operaciones con radicales</h3>
+<p>Reduce a forma exacta simplificada:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><msqrt><mn>27</mn></msqrt><mo>−</mo><msqrt><mn>12</mn></msqrt><mo>+</mo><mn>3</mn><msqrt><mn>75</mn></msqrt><mo>−</mo><mfrac><msqrt><mn>48</mn></msqrt><msqrt><mn>3</mn></msqrt></mfrac><mi>.</mi></mrow><annotation encoding="application/x-tex">
+2\sqrt{27}-\sqrt{12}+3\sqrt{75}-\frac{\sqrt{48}}{\sqrt3}.
+</annotation></semantics></math></p>
+<p>Después aproxima a centésimas y comprueba que el signo y el tamaño
+son razonables.</p>
+</section>
+<section id="e12.-sesión-10---operación-combinada-y-racionalización"
+class="level3">
+<h3>E12. Sesión 10 - Operación combinada y racionalización</h3>
+<p>Simplifica y racionaliza:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mn>2</mn><mrow><msqrt><mn>3</mn></msqrt><mo>−</mo><mn>1</mn></mrow></mfrac><mo>−</mo><msqrt><mn>3</mn></msqrt><mo stretchy="false" form="prefix">(</mo><msqrt><mn>12</mn></msqrt><mo>−</mo><msqrt><mn>3</mn></msqrt><mo stretchy="false" form="postfix">)</mo><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\frac{2}{\sqrt3-1}-\sqrt3(\sqrt{12}-\sqrt3).
+</annotation></semantics></math></p>
+<p>Cada línea debe indicar una transformación válida; incluye una
+comprobación decimal final.</p>
+</section>
+</section>
+<section id="nivel-4.-contexto-y-transferencia" class="level2">
+<h2>Nivel 4. Contexto y transferencia</h2>
+<section id="e13.-sesión-10---radicales-en-una-decisión-de-ajuste"
+class="level3">
+<h3>E13. Sesión 10 - Radicales en una decisión de ajuste</h3>
+<p>Una pieza cuadrada tiene un área de
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>12</mn><mspace width="0.222em"></mspace><msup><mrow><mi mathvariant="normal">c</mi><mi mathvariant="normal">m</mi></mrow><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">12\ \mathrm{cm}^2</annotation></semantics></math>.
+Para ajustar una máquina se utiliza el factor
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo>=</mo><mstyle displaystyle="true"><mfrac><mrow><mn>6</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">c</mi><mi mathvariant="normal">m</mi></mrow></mrow><mi>s</mi></mfrac></mstyle></mrow><annotation encoding="application/x-tex">r=\dfrac{6\ \mathrm{cm}}{s}</annotation></semantics></math>,
+donde
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>s</mi><annotation encoding="application/x-tex">s</annotation></semantics></math>
+es la longitud del lado, en centímetros. La máquina acepta índices en
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><mn>1</mn><mo>,</mo><mn>70</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>75</mn><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">[1{,}70,1{,}75]</annotation></semantics></math>.</p>
+<ol type="1">
+<li>Obtén
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>s</mi><annotation encoding="application/x-tex">s</annotation></semantics></math>
+y expresa
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>r</mi><annotation encoding="application/x-tex">r</annotation></semantics></math>
+en forma exacta, simplificada y con el denominador racionalizado.</li>
+<li>Decide si la pieza es aceptada sin comenzar por una aproximación
+decimal.</li>
+<li>Aproxima al final para comprobar la decisión e interpreta el
+resultado en el contexto de la máquina.</li>
+</ol>
+</section>
+<section id="e14.-sesión-11---logaritmos-como-exponentes"
+class="level3">
+<h3>E14. Sesión 11 - Logaritmos como exponentes</h3>
+<p>Resuelve, calcula o decide la existencia según corresponda:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>4</mn></msub><mi>x</mi><mo>=</mo><mi>−</mi><mfrac><mn>3</mn><mn>2</mn></mfrac><mo>,</mo><mspace width="2.0em"></mspace><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mrow><mn>1</mn><mi>/</mi><mn>3</mn></mrow></msub><mn>27</mn><mo>,</mo><mspace width="2.0em"></mspace><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mrow><mi>−</mi><mn>2</mn></mrow></msub><mn>8</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\log_4 x=-\frac32,\qquad \log_{1/3}27,\qquad \log_{-2}8.
+</annotation></semantics></math></p>
+<p>En cada caso, escribe la igualdad exponencial correspondiente y
+comprueba las condiciones sobre base y argumento.</p>
+</section>
+<section id="e15.-sesión-12---desarrollar-y-condensar" class="level3">
+<h3>E15. Sesión 12 - Desarrollar y condensar</h3>
+<p>Suponiendo
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>z</mi><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x,y,z&gt;0</annotation></semantics></math>:</p>
+<ol type="1">
+<li>Desarrolla
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mroot><mfrac><mrow><msup><mi>x</mi><mn>4</mn></msup><mi>y</mi></mrow><msup><mi>z</mi><mn>2</mn></msup></mfrac><mn>3</mn></mroot></mrow><annotation encoding="application/x-tex">\displaystyle \log_a\sqrt[3]{\frac{x^4y}{z^2}}</annotation></semantics></math>.</li>
+<li>Condensa
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mn>3</mn><mn>2</mn></mfrac><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mi>x</mi><mo>+</mo><mn>2</mn><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mi>y</mi><mo>−</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mi>z</mi></mrow><annotation encoding="application/x-tex">\displaystyle \frac32\log_a x+2\log_a y-\frac12\log_a z</annotation></semantics></math>.</li>
+<li>Explica por qué no puede aplicarse el mismo proceso a
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>a</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>+</mo><mi>y</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\log_a(x+y)</annotation></semantics></math>.</li>
+</ol>
+</section>
+<section id="e16.-sesión-13---propiedades-combinadas" class="level3">
+<h3>E16. Sesión 13 - Propiedades combinadas</h3>
+<p>Calcula exactamente, sin aproximar los logaritmos por separado:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>3</mn></msub><mn>6</mn><mo>+</mo><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>3</mn></msub><mn>12</mn><mo>−</mo><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>3</mn></msub><mn>16</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">
+2\log_3 6+\log_3 12-\log_3 16.
+</annotation></semantics></math></p>
+<p>Comprueba el resultado mediante la definición de logaritmo.</p>
+</section>
+<section id="e17.-sesión-13---índice-logarítmico-de-difusión"
+class="level3">
+<h3>E17. Sesión 13 - Índice logarítmico de difusión</h3>
+<p>Una plataforma publica un índice decimal de difusión
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>=</mo><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>Q</mi></mrow><annotation encoding="application/x-tex">M=\log Q</annotation></semantics></math>,
+donde
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Q</mi><annotation encoding="application/x-tex">Q</annotation></semantics></math>
+es el número de visualizaciones.</p>
+<ol type="1">
+<li>Dos observaciones tienen medidas
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi><mn>1</mn></msub><mo>=</mo><mn>2</mn><mo>,</mo><mn>7</mn></mrow><annotation encoding="application/x-tex">M_1=2{,}7</annotation></semantics></math>
+y
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi><mn>2</mn></msub><mo>=</mo><mn>6</mn><mo>,</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">M_2=6{,}1</annotation></semantics></math>.
+Calcula cuántas veces mayor es
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>Q</mi><mn>2</mn></msub><annotation encoding="application/x-tex">Q_2</annotation></semantics></math>
+que
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>Q</mi><mn>1</mn></msub><annotation encoding="application/x-tex">Q_1</annotation></semantics></math>.</li>
+<li>Si
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Q</mi><mn>1</mn></msub><mo>=</mo><mn>4</mn><mo>,</mo><mn>0</mn><mo>⋅</mo><msup><mn>10</mn><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">Q_1=4{,}0\cdot10^2</annotation></semantics></math>,
+calcula
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>Q</mi><mn>2</mn></msub><annotation encoding="application/x-tex">Q_2</annotation></semantics></math>
+en notación científica con tres cifras significativas.</li>
+<li>Interpreta el resultado con una frase completa y explica por qué la
+escala no es lineal.</li>
+</ol>
+</section>
+</section>
+<section id="nivel-5.-integración-e-interpretación" class="level2">
+<h2>Nivel 5. Integración e interpretación</h2>
+<section id="e18.-sesión-14---tarea-integradora" class="level3">
+<h3>E18. Sesión 14 - Tarea integradora</h3>
+<p>Una plataforma registra una cantidad positiva
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Q</mi><annotation encoding="application/x-tex">Q</annotation></semantics></math>
+y publica el índice
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mo>=</mo><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mi>Q</mi></mrow><annotation encoding="application/x-tex">I=\log Q</annotation></semantics></math>.
+El valor exacto es</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi><mo>=</mo><mfrac><mrow><mo stretchy="false" form="prefix">(</mo><mn>3</mn><msqrt><mn>50</mn></msqrt><mo>−</mo><mn>2</mn><msqrt><mn>8</mn></msqrt><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup></mrow><mn>2</mn></mfrac><mo>⋅</mo><msup><mn>10</mn><mn>4</mn></msup><mi>.</mi></mrow><annotation encoding="application/x-tex">
+Q=\frac{(3\sqrt{50}-2\sqrt8)^2}{2}\cdot10^4.
+</annotation></semantics></math></p>
+<ol type="1">
+<li>Simplifica la expresión radical y obtén el valor exacto de
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Q</mi><annotation encoding="application/x-tex">Q</annotation></semantics></math>.</li>
+<li>Escribe
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Q</mi><annotation encoding="application/x-tex">Q</annotation></semantics></math>
+en notación científica normalizada.</li>
+<li>Calcula
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>I</mi><annotation encoding="application/x-tex">I</annotation></semantics></math>
+mediante propiedades de los logaritmos y aproxima a tres decimales.</li>
+<li>El sistema acepta índices en el intervalo
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><mn>5</mn><mo>,</mo><mn>8</mn><mo>,</mo><mn>6</mn><mo>,</mo><mn>2</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">[5{,}8,6{,}2)</annotation></semantics></math>.
+Decide si el registro es aceptado.</li>
+<li>Un segundo registro tiene índice
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mo>−</mo><mn>1</mn><mo>,</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">I-1{,}5</annotation></semantics></math>.
+Calcula cuántas veces mayor es la primera cantidad que la segunda e
+interpreta el resultado.</li>
+<li>Escribe dos comprobaciones independientes que permitan detectar un
+error de cálculo en el proceso.</li>
+</ol>
+</section>
+</section>
+</section>
+<footer class="app-footer" aria-label="Créditos">
+  <div class="footer-meta">
+    <span>Creado por:</span>
+    <span class="footer-highlight">IES de Teis - Matemáticas Aplicadas 1</span>
+    <span class="footer-separator">|</span>
+    <span>Licencia:</span>
+    <a class="footer-highlight" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-NC-SA 4.0</a>
+  </div>
+</footer>
+</body>
+</html>
+
+
+

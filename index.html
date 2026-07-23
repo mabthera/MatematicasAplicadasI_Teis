@@ -1,0 +1,421 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Portada del alumnado para la unidad didáctica 1: Fundamentos numéricos.">
+  <title>UD 1 · Fundamentos numéricos · Material del alumnado</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --navy: #123e64;
+      --blue: #176b9a;
+      --blue-soft: #eaf5fb;
+      --ink: #17232e;
+      --muted: #536573;
+      --paper: #ffffff;
+      --bg: #f2f5f7;
+      --line: #cad7df;
+      --learn: #8e3159;
+      --method: #6546a6;
+      --example: #187052;
+      --warning: #9a5b13;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+      font: 16px/1.55 "Segoe UI", Arial, sans-serif;
+    }
+
+    a { color: inherit; }
+
+    .skip {
+      position: fixed;
+      top: .75rem;
+      left: .75rem;
+      z-index: 10;
+      padding: .65rem .9rem;
+      color: #fff;
+      background: var(--navy);
+      border-radius: 4px;
+      transform: translateY(-150%);
+    }
+
+    .skip:focus { transform: translateY(0); }
+
+    .hero,
+    main,
+    footer {
+      width: min(920px, calc(100% - 2rem));
+      margin-inline: auto;
+    }
+
+    .hero {
+      margin-top: 1.5rem;
+      padding: clamp(1.45rem, 4vw, 2.2rem);
+      color: #fff;
+      background: var(--navy);
+      border-radius: 8px 8px 0 0;
+      border-bottom: 5px solid var(--blue);
+    }
+
+    .eyebrow {
+      margin: 0 0 .35rem;
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      opacity: .82;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.8rem, 5vw, 2.65rem);
+      line-height: 1.12;
+    }
+
+    .lead {
+      max-width: 720px;
+      margin: .65rem 0 0;
+      font-size: 1rem;
+      opacity: .9;
+    }
+
+    main { margin-block: 1rem 2rem; }
+
+    .panel {
+      margin-top: 1rem;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      overflow: hidden;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.15rem 1.4rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    h2 {
+      margin: 0;
+      color: var(--navy);
+      font-size: clamp(1.3rem, 3vw, 1.55rem);
+      line-height: 1.2;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .9rem;
+      text-align: right;
+    }
+
+    .notice {
+      margin: .9rem 1.4rem;
+      padding: .65rem .85rem;
+      color: #173e5c;
+      background: var(--blue-soft);
+      border-left: 3px solid var(--blue);
+    }
+
+    .notice strong { display: block; }
+    .notice p { margin: .08rem 0 0; font-size: .9rem; }
+
+    .units { display: block; }
+
+    .unit-block,
+    .session-grid { display: contents; }
+
+    .unit-block h3 { display: none; }
+
+    .session-card {
+      display: grid;
+      grid-template-columns: 2.35rem minmax(0, 1fr) auto;
+      align-items: center;
+      gap: .9rem;
+      min-height: 4.5rem;
+      padding: .7rem 1.4rem;
+      text-decoration: none;
+      background: var(--paper);
+      border-top: 1px solid #e0e7ec;
+      transition: background-color .14s ease;
+    }
+
+    .session-card:hover { background: #f5f8fa; }
+
+    .session-card:focus-visible,
+    .resource-card:focus-visible {
+      position: relative;
+      z-index: 1;
+      outline: 3px solid #e8b04c;
+      outline-offset: -3px;
+    }
+
+    .session-no {
+      display: grid;
+      place-items: center;
+      width: 2.35rem;
+      height: 2.35rem;
+      color: #fff;
+      background: var(--blue);
+      border-radius: 5px;
+      font-size: .9rem;
+      font-weight: 850;
+    }
+
+    .powers .session-no { background: var(--method); }
+    .logs .session-no { background: var(--learn); }
+
+    .session-title strong {
+      display: block;
+      color: var(--navy);
+      font-size: 1rem;
+      line-height: 1.25;
+    }
+
+    .session-title span {
+      display: block;
+      margin-top: .12rem;
+      color: var(--muted);
+      font-size: .84rem;
+    }
+
+    .arrow {
+      color: #7b8c99;
+      font-size: 1.25rem;
+      font-weight: 800;
+    }
+
+    .session-card:hover .arrow { color: var(--blue); }
+
+    .resources { display: block; }
+
+    .resource-card {
+      display: grid;
+      grid-template-columns: 9.5rem minmax(0, 1fr);
+      grid-template-rows: auto auto;
+      column-gap: 1rem;
+      align-items: center;
+      padding: .9rem 1.4rem;
+      color: var(--ink);
+      text-decoration: none;
+      background: var(--paper);
+      border-top: 1px solid #e0e7ec;
+      transition: background-color .14s ease;
+    }
+
+    .resource-card:hover { background: #f5f8fa; }
+
+    .resource-label {
+      grid-row: 1 / 3;
+      display: inline-block;
+      justify-self: start;
+      margin: 0;
+      padding: .24rem .55rem;
+      color: #fff;
+      background: var(--example);
+      border-radius: 4px;
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    .solutions .resource-label { background: var(--warning); }
+
+    .resource-card h3 {
+      margin: 0;
+      color: var(--navy);
+      font-size: 1.05rem;
+      line-height: 1.25;
+    }
+
+    .resource-card p {
+      margin: .18rem 0 0;
+      color: var(--muted);
+      font-size: .86rem;
+    }
+
+    footer {
+      padding: .2rem 0 2rem;
+      color: var(--muted);
+      font-size: .86rem;
+      text-align: center;
+    }
+
+    footer a { font-weight: 700; }
+
+    @media (max-width: 700px) {
+      .hero,
+      main,
+      footer { width: calc(100% - 1rem); }
+
+      .hero { margin-top: .5rem; }
+      .section-head { display: block; }
+      .section-head p { margin-top: .3rem; text-align: left; }
+      .session-card { padding-inline: .9rem; }
+      .resource-card { grid-template-columns: 1fr; padding-inline: .9rem; }
+      .resource-label { grid-row: auto; margin-bottom: .45rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .session-card, .resource-card { transition: none; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .hero, main, footer { width: 100%; }
+      .hero { margin: 0; color: var(--ink); background: #fff; border: 2px solid var(--navy); }
+      .session-card, .resource-card { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#contenido">Saltar al contenido</a>
+
+  <header class="hero">
+    <p class="eyebrow">Matemáticas Aplicadas a las Ciencias Sociales I</p>
+    <h1>UD 01 - Fundamentos numéricos</h1>
+    <p class="lead">Todo el material de la unidad en un solo lugar. Entra en la sesión que estés trabajando o accede al boletín de ejercicios.</p>
+
+  </header>
+
+  <main id="contenido">
+    <section class="panel" aria-labelledby="sesiones-title">
+      <div class="section-head">
+        <h2 id="sesiones-title">Índice de sesiones</h2>
+        <p>Avanza en orden o vuelve al contenido que necesites repasar.</p>
+      </div>
+
+      <div class="notice">
+        <span aria-hidden="true">💡</span>
+        <div>
+          <strong>Cómo utilizar las sesiones</strong>
+          <p>Lee la explicación, reconstruye los ejemplos y termina con los ejercicios autocorregibles.</p>
+        </div>
+      </div>
+
+      <div class="units">
+        <div class="unit-block">
+          <h3>Números reales e intervalos</h3>
+          <div class="session-grid">
+            <a class="session-card" href="01_sesion_01_diagnostico_reparacion.html">
+              <span class="session-no">1</span>
+              <span class="session-title"><strong>Diagnóstico y reparación</strong><span>Punto de partida y errores básicos</span></span>
+              <span class="arrow" aria-hidden="true">›</span>
+            </a>
+            <a class="session-card" href="02_sesion_02_conjuntos_numericos_decimales.html">
+              <span class="session-no">2</span>
+              <span class="session-title"><strong>Conjuntos numéricos y decimales</strong><span>Clasificación y tipos de decimal</span></span>
+              <span class="arrow" aria-hidden="true">›</span>
+            </a>
+            <a class="session-card" href="03_sesion_03_orden_recta_aproximacion.html">
+              <span class="session-no">3</span>
+              <span class="session-title"><strong>Orden, recta y aproximación</strong><span>Valor absoluto, redondeo y error</span></span>
+              <span class="arrow" aria-hidden="true">›</span>
+            </a>
+            <a class="session-card" href="04_sesion_04_intervalos_semirrectas.html">
+              <span class="session-no">4</span>
+              <span class="session-title"><strong>Intervalos y semirrectas</strong><span>Notación y representación gráfica</span></span>
+              <span class="arrow" aria-hidden="true">›</span>
+            </a>
+            <a class="session-card" href="05_sesion_05_union_interseccion_restricciones.html">
+              <span class="session-no">5</span>
+              <span class="session-title"><strong>Unión, intersección y restricciones</strong><span>Operaciones con intervalos</span></span>
+              <span class="arrow" aria-hidden="true">›</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="unit-block">
+          <h3>Potencias y radicales</h3>
+          <div class="session-grid">
+            <a class="session-card powers" href="06_sesion_06_potencias_notacion_cientifica.html">
+              <span class="session-no">6</span>
+              <span class="session-title"><strong>Potencias y notación científica</strong><span>Exponentes enteros y órdenes de magnitud</span></span>
+              <span class="arrow" aria-hidden="true">›</span>
+            </a>
+            <a class="session-card powers" href="07_sesion_07_exponentes_racionales_radicales.html">
+              <span class="session-no">7</span>
+              <span class="session-title"><strong>Exponentes racionales y radicales</strong><span>Dos formas de expresar una misma idea</span></span>
+              <span class="arrow" aria-hidden="true">›</span>
+            </a>
+            <a class="session-card powers" href="08_sesion_08_radicales_equivalentes_simplificacion.html">
+              <span class="session-no">8</span>
+              <span class="session-title"><strong>Radicales equivalentes y simplificación</strong><span>Índices, factores y forma reducida</span></span>
+              <span class="arrow" aria-hidden="true">›</span>
+            </a>
+            <a class="session-card powers" href="09_sesion_09_operaciones_radicales.html">
+              <span class="session-no">9</span>
+              <span class="session-title"><strong>Operaciones con radicales</strong><span>Suma, producto y cociente</span></span>
+              <span class="arrow" aria-hidden="true">›</span>
+            </a>
+            <a class="session-card powers" href="10_sesion_10_radicales_consolidacion.html">
+              <span class="session-no">10</span>
+              <span class="session-title"><strong>Radicales: consolidación</strong><span>Casos combinados y control de resultados</span></span>
+              <span class="arrow" aria-hidden="true">›</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="unit-block">
+          <h3>Logaritmos</h3>
+          <div class="session-grid">
+            <a class="session-card logs" href="11_sesion_11_logaritmo_como_exponente.html">
+              <span class="session-no">11</span>
+              <span class="session-title"><strong>Logaritmo como exponente</strong><span>Definición, lectura y cálculo básico</span></span>
+              <span class="arrow" aria-hidden="true">›</span>
+            </a>
+            <a class="session-card logs" href="12_sesion_12_propiedades_logaritmos.html">
+              <span class="session-no">12</span>
+              <span class="session-title"><strong>Propiedades de los logaritmos</strong><span>Producto, cociente y potencia</span></span>
+              <span class="arrow" aria-hidden="true">›</span>
+            </a>
+            <a class="session-card logs" href="13_sesion_13_logaritmos_consolidacion_problemas.html">
+              <span class="session-no">13</span>
+              <span class="session-title"><strong>Logaritmos: consolidación y problemas</strong><span>Estrategias, cambio de base y aplicaciones</span></span>
+              <span class="arrow" aria-hidden="true">›</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="practica-title">
+      <div class="section-head">
+        <h2 id="practica-title">Practica la unidad</h2>
+        <p>Primero resuelve; después comprueba.</p>
+      </div>
+      <div class="resources">
+        <a class="resource-card practice" href="15_boletin_ejercicios_ud1_imprimible.html">
+          <span class="resource-label">Ejercicios</span>
+          <h3>Boletín de la UD 1</h3>
+          <p>Actividades de clase, consolidación en casa y ejercicios escalados para entregar.</p>
+        </a>
+        <a class="resource-card solutions" href="16_soluciones_boletin_ud1.html">
+          <span class="resource-label">Comprueba al final</span>
+          <h3>Soluciones razonadas</h3>
+          <p>Revisa el procedimiento, localiza tus errores y corrige después de haberlo intentado.</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>Creado por David Rodríguez Vicente</span>
+    <span aria-hidden="true"> · </span>
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-NC-SA 4.0</a>
+  </footer>
+</body>
+</html>
