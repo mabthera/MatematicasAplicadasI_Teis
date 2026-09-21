@@ -1,0 +1,65 @@
+/* Acceso común al índice principal de la UD 01. */
+.hero .ud1-index-link {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+}
+
+.ud1-index-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  padding: .38rem .68rem;
+  color: #fff;
+  background: rgba(8, 42, 66, .2);
+  border: 1px solid rgba(255, 255, 255, .6);
+  border-radius: 999px;
+  font-size: .84rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+  transition: background-color .15s ease, color .15s ease;
+}
+
+.ud1-index-link:hover,
+.ud1-index-link:focus-visible {
+  color: #123e64;
+  background: #fff;
+  outline: none;
+}
+
+.ud1-index-link:focus-visible {
+  box-shadow: 0 0 0 3px #f0b65a;
+}
+
+.print-toolbar .ud1-index-link,
+.consult-tools .ud1-index-link {
+  position: static;
+  flex: 0 0 auto;
+  color: #fff;
+  background: transparent;
+}
+
+@media (max-width: 520px) {
+  .hero .ud1-index-link {
+    top: .75rem;
+    right: .75rem;
+  }
+
+  .hero .ud1-index-link span:last-child {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+}
+
+@media print {
+  .ud1-index-link { display: none !important; }
+}
