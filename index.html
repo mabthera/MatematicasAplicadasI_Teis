@@ -198,6 +198,41 @@
 
     .session-card:hover .arrow { color: var(--blue); }
 
+    .theory-test-card {
+      grid-template-columns: 5.2rem minmax(0, 1fr) auto;
+      min-height: 4.8rem;
+      margin: .7rem 1rem .85rem;
+      padding: .75rem 1rem;
+      background: #eef0f2;
+      border: 1px solid #b9c1c8;
+      border-radius: 8px;
+      box-shadow: 0 6px 15px rgba(42, 48, 55, .18);
+      transition: background-color .14s ease, box-shadow .14s ease;
+    }
+
+    .theory-test-card:hover {
+      background: #e5e9ec;
+      box-shadow: 0 8px 18px rgba(42, 48, 55, .24);
+    }
+
+    .theory-test-card .test-badge {
+      display: inline-block;
+      justify-self: start;
+      padding: .36rem .55rem;
+      color: #37424b;
+      background: #d8dde1;
+      border: 1px solid #aeb7be;
+      border-radius: 5px;
+      font-size: .73rem;
+      font-weight: 850;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .theory-test-card .session-title strong { color: #303b45; }
+    .theory-test-card .arrow,
+    .theory-test-card:hover .arrow { color: #596670; }
+
     .resources { display: block; }
 
     .resource-card {
@@ -270,7 +305,7 @@
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      .session-card, .resource-card { transition: none; }
+      .session-card, .resource-card, .theory-test-card { transition: none; }
     }
 
     @media print {
@@ -364,6 +399,11 @@
             <a class="session-card powers" href="10_sesion_10_radicales_consolidacion.html">
               <span class="session-no">10</span>
               <span class="session-title"><strong>Radicales: consolidación</strong><span>Casos combinados y control de resultados</span></span>
+              <span class="arrow" aria-hidden="true">›</span>
+            </a>
+            <a class="session-card theory-test-card" href="18_solucionario_prueba_entrenamiento_radicales_sesiones_01_10.html">
+              <span class="test-badge">Prueba</span>
+              <span class="session-title"><strong>Prueba de teoría</strong><span>Radicales · Solucionario paso a paso</span></span>
               <span class="arrow" aria-hidden="true">›</span>
             </a>
           </div>
