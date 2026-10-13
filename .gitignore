@@ -1,5 +1,10 @@
 *
-!*.html
-!ud1-menu.css
+!UD01/
+!UD02/
+!UD01/*.html
+!UD01/*.css
+!UD02/*.html
+!index.html
 !.gitignore
+!.gitattributes
 !.nojekyll
