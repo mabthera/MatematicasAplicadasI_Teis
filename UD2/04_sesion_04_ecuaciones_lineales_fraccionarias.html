@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Sesión 4 de la UD 2: resolución de ecuaciones lineales con paréntesis, incógnita en ambos miembros y fracciones.">
+<title>UD 2 · Sesión 4 · Ecuaciones lineales y fraccionarias</title>
+<style>
+    :root {
+      color-scheme: light;
+      --navy:#123e64; --blue:#176b9a; --blue-soft:#eaf5fb;
+      --ink:#17232e; --muted:#536573; --paper:#fff; --bg:#edf3f6; --line:#cad7df;
+      --learn:#8e3159; --learn-bg:#fbeaf2; --understand:#176b9a; --understand-bg:#e9f5fb;
+      --method:#6546a6; --method-bg:#f1edfb; --example:#187052; --example-bg:#e9f7f0;
+      --warning:#9a5b13; --warning-bg:#fff4df; --danger:#923e36; --success:#216647; --primary:#176b9a;
+      --side:18.5rem;
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth;scroll-padding-top:1rem}
+    body{margin:0;color:var(--ink);background:var(--bg);font:16px/1.62 system-ui,-apple-system,"Segoe UI",sans-serif}
+    button,input{font:inherit} button{cursor:pointer} a{color:var(--blue)}
+    button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid #efb94f;outline-offset:3px}
+    sup,sub{line-height:0}.math{display:inline-block;padding:.04rem .28rem;color:#172a39;background:#f0f4f6;border-radius:.25rem;font:1.05em/1.45 "Cambria Math",Cambria,Georgia,serif;white-space:nowrap}
+    .frac{display:inline-flex;flex-direction:column;align-items:stretch;justify-content:center;min-width:1.15em;margin:0 .12em;vertical-align:middle;line-height:1.05;text-align:center}.frac .num{display:block;padding:0 .16em .08em;border-bottom:1.4px solid currentColor}.frac .den{display:block;padding:.08em .16em 0}.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+    .skip{position:fixed;z-index:100;top:.5rem;left:.5rem;padding:.5rem .7rem;color:#fff;background:var(--navy);border-radius:.4rem;transform:translateY(-150%)}.skip:focus{transform:none}
+
+    .sidebar{position:fixed;z-index:30;inset:0 auto 0 0;width:var(--side);padding:1.15rem 1rem 2rem;overflow:auto;color:#fff;background:linear-gradient(180deg,#103653,#174f77 68%,#123e64);box-shadow:8px 0 24px #0a26392c;transition:transform .25s ease}
+    .brand{padding:.2rem 3rem 1rem .25rem;border-bottom:1px solid #ffffff38}.brand strong{display:block;font-size:1.08rem}.brand span{color:#cbe5f3;font-size:.85rem}
+    nav{margin-top:.9rem}.nav-label{margin:1rem .45rem .35rem;color:#b9d7e9;font-size:.72rem;font-weight:850;letter-spacing:.1em;text-transform:uppercase}
+    nav a{display:flex;gap:.6rem;margin:.12rem 0;padding:.48rem .55rem;color:#eff9fe;border-left:3px solid transparent;border-radius:.35rem;text-decoration:none;font-size:.9rem;line-height:1.3}
+    nav a:hover,nav a[aria-current="true"]{background:#ffffff1f;border-left-color:#f1c76e}.nav-no{min-width:1.25rem;color:#9ed2ef;font-weight:900}
+    .side-actions{display:grid;gap:.45rem;margin-top:1.2rem}
+    .hero .ud2-index-link{position:absolute;top:1rem;right:1rem;z-index:2;display:inline-flex;align-items:center;gap:.35rem;padding:.38rem .68rem;color:#fff;background:rgba(8,42,66,.2);border:1px solid rgba(255,255,255,.6);border-radius:999px;font-size:.84rem;font-weight:700;line-height:1.2;text-decoration:none;transition:background-color .15s ease,color .15s ease}
+    .hero .ud2-index-link:hover,.hero .ud2-index-link:focus-visible{color:#123e64;background:#fff;outline:none}
+    .hero .ud2-index-link:focus-visible{box-shadow:0 0 0 3px #f0b65a}
+    @media(max-width:520px){.hero .ud2-index-link{top:.75rem;right:.75rem}.hero .ud2-index-link span:last-child{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}}
+    @media print{.ud2-index-link{display:none!important}}.side-actions button{padding:.45rem .6rem;color:#fff;background:transparent;border:1px solid #ffffff6b;border-radius:.45rem;text-align:left}.side-actions button:hover{background:#ffffff1e}
+    #nav-toggle{position:fixed;z-index:40;top:.8rem;left:calc(var(--side) - 3.35rem);display:grid;place-items:center;width:2.6rem;height:2.6rem;padding:0;color:#fff;background:#174f77;border:1px solid #ffffff73;border-radius:.55rem;box-shadow:0 4px 14px #08223440;transition:left .25s ease}
+    #nav-toggle:hover{background:#0d304a}.open-icon{display:none}.close-icon,.open-icon{font-size:1.3rem;line-height:1}
+    #scrim{display:none}body.nav-collapsed .sidebar{transform:translateX(-103%)}body.nav-collapsed #nav-toggle{left:.8rem}body.nav-collapsed .close-icon{display:none}body.nav-collapsed .open-icon{display:block}
+    main{width:min(1000px,calc(100% - var(--side) - 2.5rem));margin-left:max(calc(var(--side) + 1.25rem),calc((100vw - 1000px + var(--side))/2));padding:1.35rem 0 3rem;transition:width .25s ease,margin .25s ease}
+    body.nav-collapsed main{width:min(1000px,calc(100% - 2rem));margin-inline:auto}
+
+    .hero{position:relative;isolation:isolate;overflow:hidden;padding:clamp(1.5rem,5vw,3.5rem);color:#fff;background:linear-gradient(135deg,#123e64,#176b9a 72%,#2787aa);border-radius:1.05rem;box-shadow:0 9px 28px #1935491a}
+    .hero:after{position:absolute;z-index:-1;right:-5rem;bottom:-7rem;width:22rem;height:22rem;content:"";border:3rem solid #ffffff12;border-radius:50%}
+    .eyebrow{margin:0;font-size:.82rem;font-weight:850;letter-spacing:.1em;text-transform:uppercase;opacity:.9}.hero h1{max-width:760px;margin:.35rem 0 .65rem;font-size:clamp(2rem,5.4vw,3.75rem);line-height:1.03}.lead{max-width:740px;margin:0;color:#e6f5fc;font-size:clamp(1.03rem,2vw,1.2rem)}
+    .chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.25rem}.chips span{padding:.32rem .68rem;border:1px solid #ffffff70;border-radius:999px;font-size:.84rem;font-weight:750}
+    .toolbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.7rem;margin:1rem 0;padding:.75rem .9rem;background:#fff;border:1px solid var(--line);border-radius:.7rem}.toolbar p{margin:0;color:var(--muted);font-size:.88rem}.buttons{display:flex;flex-wrap:wrap;gap:.45rem}
+    .btn{padding:.45rem .72rem;color:var(--navy);background:#fff;border:1px solid #8caabd;border-radius:.48rem;font-weight:760}.btn:hover{color:#fff;background:var(--navy)}.btn.primary{color:#fff;background:var(--navy);border-color:var(--navy)}.btn.danger{color:var(--danger);border-color:#d8a29d}.btn.danger:hover{color:#fff;background:var(--danger)}
+
+    .intro,.topic,.sources{margin-top:1rem;background:#fff;border:1px solid var(--line);border-radius:.85rem;box-shadow:0 4px 18px #203e5212}.intro,.sources{padding:clamp(1rem,3vw,1.55rem)}
+    h2,h3,h4{color:var(--navy);line-height:1.22}h2{font-size:clamp(1.35rem,3vw,1.85rem)}h3{margin:1.2rem 0 .4rem;font-size:1.15rem}h4{margin:.25rem 0;font-size:1rem}p{margin:.52rem 0}ul,ol{margin:.4rem 0 .7rem;padding-left:1.35rem}li+li{margin-top:.26rem}
+    .legend{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.65rem;margin-top:1rem}.legend div{padding:.75rem;border:1px solid;border-radius:.65rem}.legend strong{display:block}.learn-key{color:var(--learn);background:var(--learn-bg);border-color:#eabbd0!important}.understand-key{color:var(--understand);background:var(--understand-bg);border-color:#b7dcea!important}.method-key{color:var(--method);background:var(--method-bg);border-color:#d5c9ef!important}.example-key{color:var(--example);background:var(--example-bg);border-color:#bae0ce!important}.warning-key{color:var(--warning);background:var(--warning-bg);border-color:#e9cc91!important}
+    .route{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.65rem;margin-top:1rem}.route div{padding:.7rem .8rem;background:#f5f8fa;border-left:4px solid var(--blue);border-radius:.4rem}
+    details.topic{overflow:clip}details.topic>summary{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:.85rem;min-height:4.8rem;padding:.8rem 1rem;cursor:pointer;list-style:none;border-left:.38rem solid var(--blue)}details.topic>summary::-webkit-details-marker{display:none}details.topic>summary:hover{background:#f7fafb}details.topic[open]>summary{background:var(--blue-soft);border-bottom:1px solid var(--line)}
+    .chapter-no{display:grid;place-items:center;width:2.55rem;height:2.55rem;color:#fff;background:var(--blue);border-radius:.62rem;font-weight:900}.summary-title strong{display:block;color:var(--navy);font-size:1.14rem}.summary-title span{color:var(--muted);font-size:.88rem}.chevron{color:var(--blue);font-size:1.3rem;transition:transform .2s ease}details[open]>summary .chevron{transform:rotate(180deg)}.topic-body{padding:.35rem clamp(1rem,3vw,1.5rem) 1.4rem}.topic-intro{max-width:800px;color:var(--muted);font-size:1.02rem}
+    .cards{display:grid;grid-template-columns:1fr;gap:.75rem;margin:1rem 0}.card{padding:.85rem .95rem;border:1px solid;border-radius:.68rem}.card-label{display:block;margin-bottom:.3rem;font-size:.72rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+    .card.learn{background:var(--learn-bg);border-color:#e8b8ce}.card.learn .card-label,.card.learn h3,.card.learn h4{color:var(--learn)}.card.understand{background:var(--understand-bg);border-color:#b7dce9}.card.understand .card-label,.card.understand h3,.card.understand h4{color:var(--understand)}.card.method{background:var(--method-bg);border-color:#d3c7ed}.card.method .card-label,.card.method h3,.card.method h4{color:var(--method)}.card.example{background:var(--example-bg);border-color:#b9dec9}.card.example .card-label,.card.example h3,.card.example h4{color:var(--example)}.card.warning{background:var(--warning-bg);border-color:#e9cc91}.card.warning .card-label,.card.warning h3,.card.warning h4{color:var(--warning)}
+    .formula-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.5rem;margin:.65rem 0}.formula-grid div{padding:.6rem .7rem;background:#fff;border:1px solid #3d5a6c2e;border-radius:.48rem}.formula-grid .math{display:block;width:max-content;max-width:100%;margin-bottom:.2rem;font-weight:720}
+    .steps{counter-reset:step;padding:0;list-style:none}.steps li{position:relative;min-height:2rem;padding-left:2.45rem}.steps li:before{position:absolute;left:0;display:grid;place-items:center;width:1.75rem;height:1.75rem;color:#fff;background:var(--method);border-radius:50%;counter-increment:step;content:counter(step);font-size:.82rem;font-weight:850}
+    .table-wrap{overflow:auto;margin:.7rem 0;border:1px solid var(--line);border-radius:.55rem}table{width:100%;border-collapse:collapse;background:#fff;font-size:.92rem}th,td{padding:.6rem .7rem;border-bottom:1px solid #dce5ea;text-align:left;vertical-align:top}th{color:#fff;background:var(--navy)}tr:last-child td{border-bottom:0}tbody tr:nth-child(even){background:#f7f9fa}
+    .mini-check{margin-top:.8rem;padding:.65rem .75rem;color:#573a93;background:#f3effb;border-left:4px solid var(--method);border-radius:.45rem}.mini-check strong{display:block}
+
+    #practica>summary{border-left-color:var(--method)}#practica .chapter-no{background:var(--method)}
+    .score{position:sticky;z-index:5;top:.6rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.7rem;margin:.8rem 0 1rem;padding:.75rem .9rem;background:#fff;border:2px solid #bcaade;border-radius:.65rem;box-shadow:0 5px 18px #3b27611f}.score strong{color:var(--method)}.track{flex:1 1 220px;height:.65rem;overflow:hidden;background:#e8e2f4;border-radius:999px}#bar{width:0;height:100%;background:linear-gradient(90deg,var(--method),#8d68d1);transition:width .3s ease}
+    .quiz-block{margin:.75rem 0;border:1px solid #d8cee9;border-radius:.65rem;overflow:clip}.quiz-block>summary{padding:.7rem .85rem;color:#49327f;background:#f4f0fb;cursor:pointer;font-weight:820}.quiz-content{display:grid;gap:.7rem;padding:.8rem}.question{padding:.8rem .85rem;background:#fff;border:1px solid #dce4e9;border-radius:.6rem}.question.correct{border-color:#79bd9e;box-shadow:inset 4px 0 var(--success)}.question.incorrect{border-color:#d59a94;box-shadow:inset 4px 0 var(--danger)}.question>p{margin-top:0;font-weight:760}.options{display:grid;gap:.32rem}.option{display:flex;align-items:flex-start;gap:.5rem;padding:.38rem .45rem;border-radius:.38rem}.option:hover{background:#f4f7f9}.option input{margin-top:.28rem;accent-color:var(--method)}.check-one{margin-top:.65rem;padding:.36rem .62rem;color:var(--method);background:#fff;border:1px solid #a58fcf;border-radius:.4rem;font-weight:740}.check-one:hover{color:#fff;background:var(--method)}.feedback{display:none;margin-top:.65rem;padding:.5rem .6rem;border-radius:.42rem;font-size:.91rem}.correct .feedback{display:block;color:#154c35;background:#e5f5ed}.incorrect .feedback{display:block;color:#752f29;background:#fbeae8}.correct .feedback:before{content:"✓ Correcto. ";font-weight:900}.incorrect .feedback:before{content:"✗ Revisa. ";font-weight:900}.quiz-actions{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.9rem}
+    .sources h2{margin-top:0}.sources p:last-child{margin-bottom:0}.app-footer {
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+  text-align: center;
+  margin-top: 18px;
+  padding: 4px 18px 10px;
+  color: var(--muted);
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.footer-meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(4px, 1.2vw, 10px);
+  flex-wrap: nowrap;
+  font-size: clamp(0.72rem, 2vw, 0.94rem);
+  line-height: 1.55;
+  white-space: nowrap;
+}
+
+.footer-separator {
+  color: rgba(88, 101, 106, 0.55);
+  font-weight: 700;
+}
+
+.footer-highlight {
+  display: inline-block;
+  font-weight: 800;
+  color: var(--ink);
+  background: rgba(28, 77, 127, 0.1);
+  border-radius: 999px;
+  padding: 2px 10px;
+  text-decoration: none;
+}
+
+a.footer-highlight:hover,
+a.footer-highlight:focus-visible {
+  background: rgba(28, 77, 127, 0.16);
+  outline: none;
+}
+
+
+    @media(max-width:920px){.legend{grid-template-columns:repeat(2,minmax(0,1fr))}.route{grid-template-columns:1fr}}
+    @media(max-width:820px){main,body.nav-collapsed main{width:min(100% - 1rem,720px);margin-inline:auto;padding-top:.55rem}.sidebar{width:min(var(--side),88vw);transform:translateX(-103%)}#nav-toggle,body.nav-collapsed #nav-toggle{left:.75rem}#nav-toggle .close-icon{display:none}#nav-toggle .open-icon{display:block}body.nav-open .sidebar{transform:none}body.nav-open #nav-toggle{left:min(calc(var(--side) - 3.25rem),calc(88vw - 3.25rem))}body.nav-open #nav-toggle .close-icon{display:block}body.nav-open #nav-toggle .open-icon{display:none}body.nav-open #scrim{position:fixed;z-index:20;inset:0;display:block;width:100%;height:100%;padding:0;background:#0a1c297a;border:0}.cards{grid-template-columns:1fr}}
+    @media(max-width:520px){body{font-size:15px}.hero{padding:3.6rem 1rem 1.3rem;border-radius:.72rem}.legend{grid-template-columns:1fr}details.topic>summary{grid-template-columns:auto 1fr;padding:.7rem}.chevron{display:none}.chapter-no{width:2.25rem;height:2.25rem}.buttons{width:100%}.buttons .btn{flex:1}.score{position:static}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+    @media print{body{background:#fff;font-size:10.5pt}.sidebar,#nav-toggle,#scrim,.toolbar,.score,.quiz-actions,.check-one{display:none!important}main,body.nav-collapsed main{width:100%;margin:0;padding:0}.hero{color:#111;background:#fff;border:2px solid var(--navy);box-shadow:none}.hero .lead{color:#333}.intro,.topic,.sources{box-shadow:none;break-inside:avoid}details.topic:not([open])>.topic-body,.quiz-block:not([open])>.quiz-content{display:block!important}.question{break-inside:avoid}}
+  
+.card{position:relative;padding:1.15rem 1.25rem 1.25rem 1.35rem;border-left-width:6px;border-radius:.82rem;box-shadow:0 4px 14px #17344b12;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 8px 20px #17344b1c}
+.card.understand{border-left-color:var(--understand)}.card.learn{border-left-color:var(--learn)}.card.method{border-left-color:var(--method)}.card.example{border-left-color:var(--example)}.card.warning{border-left-color:var(--warning)}
+.card-label{display:inline-flex;align-items:center;margin:0 0 .65rem;padding:.27rem .72rem;border:1px solid #ffffffc7;border-radius:999px;background:#ffffffb8;font-size:.76rem;font-weight:900;letter-spacing:.035em;text-transform:none}
+.card h3{margin:.05rem 0 .7rem;font-size:1.2rem}.card p{line-height:1.66}.card p+p{margin-top:.65rem}
+.concept-visual,.variable-visual{display:grid;grid-template-columns:minmax(115px,.65fr) minmax(0,1.35fr);gap:.7rem;margin:.8rem 0;padding:.8rem;background:#ffffffb8;border:1px solid #c8d8e2;border-radius:.7rem}
+.concept-main{display:grid;align-content:center;justify-items:center;gap:.2rem;padding:.6rem;background:#f5f8fb;border-radius:.55rem}
+.math-large{color:var(--navy);font:700 1.8rem/1.2 "Cambria Math",Cambria,Georgia,serif}
+.visual-caption{color:var(--muted);font-size:.78rem;font-weight:750;text-align:center}
+.concept-parts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.4rem}
+.concept-parts div,.variable-item{display:grid;align-content:center;justify-items:center;gap:.18rem;padding:.45rem .35rem;background:#fff;border:1px solid #dbe5ea;border-radius:.5rem;text-align:center}
+.concept-parts strong,.variable-item strong{color:var(--navy);font:700 1.1rem "Cambria Math",Cambria,Georgia,serif}
+.concept-parts small,.variable-item small{color:var(--muted);font-size:.72rem;line-height:1.25}
+.variable-visual{grid-template-columns:1fr}.variable-formula{padding:.65rem;background:#f5f8fb;border-radius:.55rem;color:var(--navy);font:700 1.35rem "Cambria Math",Cambria,Georgia,serif;text-align:center}
+.variable-items{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.4rem}
+.rule-stack,.worked-list,.check-list{display:grid;gap:.48rem;margin:.8rem 0}
+.rule-row,.worked-row{display:grid;grid-template-columns:2.15rem minmax(0,1fr);align-items:start;gap:.55rem;padding:.65rem .7rem;background:#ffffffc2;border:1px solid #dbe4ea;border-radius:.58rem}
+.rule-symbol,.worked-no{display:grid;place-items:center;width:1.8rem;height:1.8rem;color:#fff;background:var(--primary);border-radius:50%;font-size:.82rem;font-weight:900}
+.card.learn .rule-symbol{background:var(--learn)}.card.method .rule-symbol{background:var(--method)}.card.example .worked-no{background:var(--example)}
+.rule-row p,.worked-row p{margin:0}.rule-row p+p,.worked-row p+p{margin-top:.3rem}
+.rule-row strong,.worked-row strong{color:var(--navy)}
+.formula-band{display:block;margin:.35rem 0;padding:.38rem .55rem;background:#f4f7fa;border-radius:.4rem;color:var(--navy);font:600 1.04rem/1.5 "Cambria Math",Cambria,Georgia,serif;overflow-wrap:anywhere}
+.worked-result{margin:.75rem 0 0;padding:.65rem .75rem;background:#ffffffc7;border:1px solid #b9dec9;border-left:4px solid var(--example);border-radius:.5rem}
+.balance-visual{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:.5rem;margin:.8rem 0;padding:.65rem;background:#ffffffb8;border:1px solid #c8d8e2;border-radius:.65rem}
+.balance-side{padding:.65rem .45rem;background:#f5f8fb;border:1px solid #dbe5ea;border-radius:.5rem;color:var(--navy);font:600 1.05rem "Cambria Math",Cambria,Georgia,serif;text-align:center}
+.balance-equals{color:var(--primary);font-size:1.45rem;font-weight:900}
+.balance-caption{grid-column:1/-1;color:var(--muted);font-size:.8rem;text-align:center}
+.check-list{padding:0;list-style:none}
+.check-list li{position:relative;padding:.55rem .65rem .55rem 2rem;background:#ffffffb8;border:1px solid #ecd7aa;border-radius:.55rem}
+.check-list li:before{position:absolute;left:.65rem;top:.55rem;content:"✓";color:var(--success);font-weight:950}
+.compare-stack{display:grid;gap:.45rem;margin:.75rem 0}
+.compare-item{display:grid;grid-template-columns:minmax(110px,.8fr) minmax(0,1.2fr);align-items:center;gap:.55rem;padding:.55rem .65rem;background:#ffffffbe;border:1px solid #ecd7aa;border-radius:.55rem}
+.compare-item strong{color:var(--navy)}.compare-item span{font:600 1.05rem "Cambria Math",Cambria,Georgia,serif}
+@media(max-width:560px){.concept-visual{grid-template-columns:1fr}.balance-visual{grid-template-columns:1fr}.balance-equals{justify-self:center}.balance-caption{grid-column:auto}.concept-parts{grid-template-columns:repeat(3,minmax(0,1fr))}.compare-item{grid-template-columns:1fr}}
+
+/* Jerarquía visual de la rutina: cada tarjeta es un paso conectado. */
+.cards{position:relative;gap:1rem;margin:1.2rem 0 1.25rem;padding-left:1.15rem}
+.cards:before{position:absolute;top:1.15rem;bottom:1.15rem;left:.32rem;width:3px;content:"";background:linear-gradient(180deg,#176b9a 0%,#8e3159 25%,#6546a6 50%,#187052 75%,#9a5b13 100%);border-radius:99px;opacity:.55}
+.card{z-index:1;overflow:hidden;padding:1.15rem 1.25rem 1.25rem 1.35rem;border-radius:.9rem;box-shadow:0 5px 16px #17344b14}
+.card:after{position:absolute;top:-2.5rem;right:-2.2rem;width:7rem;height:7rem;content:"";border:1.15rem solid currentColor;border-radius:50%;opacity:.045;pointer-events:none}
+.card.understand{color:#164c69}.card.learn{color:#702344}.card.method{color:#4c367f}.card.example{color:#155c43}.card.warning{color:#75470f}
+.card-label{position:relative;z-index:1;margin-bottom:.75rem;padding:.34rem .78rem;color:#fff!important;border:0;border-radius:.4rem;background:var(--primary);box-shadow:0 2px 5px #102c401a}
+.card.understand .card-label{background:var(--understand)}.card.learn .card-label{background:var(--learn)}.card.method .card-label{background:var(--method)}.card.example .card-label{background:var(--example)}.card.warning .card-label{background:var(--warning)}
+.card h3{position:relative;padding-bottom:.62rem;border-bottom:1px solid currentColor;border-color:#17344b24}
+.concept-visual,.variable-visual,.balance-visual{box-shadow:inset 0 0 0 1px #ffffff80,0 3px 10px #18394b0a}
+.concept-main,.variable-formula,.balance-side{box-shadow:inset 0 1px #ffffff,0 2px 5px #1d3c4d0b}
+.concept-parts div,.variable-item{border-top:3px solid #176b9a;box-shadow:0 2px 6px #18394b0a}
+.concept-parts div:nth-child(2),.variable-item:nth-child(2){border-top-color:#8e3159}.concept-parts div:nth-child(3),.variable-item:nth-child(3){border-top-color:#6546a6}
+.rule-stack{counter-reset:rule}.rule-row{position:relative;box-shadow:0 2px 7px #18394b09}.rule-row:before{position:absolute;top:50%;left:-.55rem;width:.35rem;height:1.35rem;content:"";background:var(--learn);border-radius:0 .25rem .25rem 0;transform:translateY(-50%)}
+.worked-list{position:relative}.worked-row{box-shadow:0 2px 7px #18394b09}.formula-band{border-left:3px solid #187052;background:linear-gradient(90deg,#e9f7f0,#f8fbf9)}
+.steps li{margin:.55rem 0;padding:.45rem .65rem .45rem 2.65rem;background:#ffffffa8;border:1px solid #d8d0ed;border-radius:.55rem}.steps li:before{top:50%;transform:translateY(-50%);box-shadow:0 2px 5px #39236c26}
+.check-list li{box-shadow:0 2px 6px #77551b0b}
+.mini-check{border:1px solid #d8ccef;box-shadow:0 3px 10px #39236c0a}.mini-check summary{cursor:pointer;font-weight:800}
+@media(max-width:560px){.cards{padding-left:.75rem}.cards:before{left:.08rem}.card{padding:1rem}.card-label{max-width:100%}.variable-items{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(prefers-reduced-motion:reduce){.card{transition:none}}
+@media print{.cards{padding-left:0}.cards:before{display:none}.card:after{display:none}.card{box-shadow:none}}
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],processEscapes:true},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]},chtml:{scale:1.05}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<button id="scrim" type="button" aria-label="Cerrar el índice"></button>
+<aside class="sidebar" id="sidebar" aria-label="Índice de la sesión">
+<div class="brand"><strong>UD 2 · Sesión 4</strong><span>Ecuaciones lineales y fraccionarias</span></div>
+
+<nav id="toc">
+<p class="nav-label">Orientación</p><a href="#inicio"><span class="nav-no">⌂</span><span>Cómo trabajar</span></a>
+<p class="nav-label">Teoría necesaria</p><a href="#lineales"><span class="nav-no">1</span><span>Ecuaciones lineales</span></a><a href="#fracciones"><span class="nav-no">2</span><span>Ecuaciones con fracciones</span></a>
+<p class="nav-label">Comprueba</p><a href="#practica"><span class="nav-no">✓</span><span>Ejercicios autocorregibles</span></a>
+</nav>
+<div class="side-actions"><button id="expand-side" type="button">Abrir todas las secciones</button><button id="collapse-side" type="button">Cerrar todas las secciones</button></div>
+</aside>
+<button id="nav-toggle" type="button" aria-controls="sidebar" aria-expanded="true" aria-label="Ocultar el índice"><span class="close-icon" aria-hidden="true">×</span><span class="open-icon" aria-hidden="true">☰</span></button>
+<main id="contenido">
+<header class="hero">
+<a class="ud2-index-link" href="index.html" aria-label="Volver al menú principal de la unidad"><span aria-hidden="true">←</span><span>Menú de la unidad</span></a><p class="eyebrow">UD 2 · Ecuaciones y sistemas · Sesión 4</p><h1>Ecuaciones lineales y fraccionarias</h1>
+<p class="lead">Resuelve ecuaciones con paréntesis, incógnitas en ambos miembros y fracciones, justificando cada transformación y comprobando la solución.</p>
+</header></div>
+<section class="intro" id="inicio"><h2>Cómo trabajar en esta sesión</h2><div class="legend"><div class="understand-key"><strong>1. Comprende</strong>La idea que da sentido al contenido.</div><div class="learn-key"><strong>2. Aprende</strong>La regla que debes recordar.</div><div class="method-key"><strong>3. Procedimiento</strong>Los pasos para aplicarla.</div><div class="example-key"><strong>4. Ejemplo</strong>Un modelo resuelto paso a paso.</div><div class="warning-key"><strong>5. Comprueba</strong>El error que debes evitar o la comprobación final.</div></div></section>
+<details class="topic" id="lineales" open><summary><span class="chapter-no">1</span><span class="summary-title"><strong>Ecuaciones con paréntesis e incógnita en ambos miembros</strong><span>Simplifica, reúne las incógnitas y aplica transformaciones equivalentes</span></span><span class="chevron" aria-hidden="true">⌄</span></summary><div class="topic-body">
+<p class="topic-intro">En las sesiones 2 y 3 aprendiste qué significa que una igualdad sea verdadera y cómo representar relaciones con una ecuación. Ahora resolveremos esas ecuaciones: buscaremos un valor de la incógnita y justificaremos los pasos que nos llevan hasta él.</p>
+<div class="cards">
+<article class="card understand"><span class="card-label">1 · Comprende</span><h3>¿Qué es una ecuación lineal?</h3><p>Una <strong>ecuación lineal con una incógnita</strong> es una igualdad entre expresiones algebraicas en la que, después de simplificar, la incógnita aparece únicamente con exponente 1. Su forma reducida es \(ax+b=0\), donde \(a\ne0\); también puede aparecer con términos en los dos miembros, como \(ax+b=cx+d\).</p><div class="formula-grid"><div><span class="math">\(3x+5=17\)</span>Lineal: \(x\) tiene exponente 1</div><div><span class="math">\(2(x-1)=x+6\)</span>Lineal: al desarrollar sigue siendo de grado 1</div><div><span class="math">\(x^2+3=7\)</span>No es lineal: aparece \(x^2\)</div></div><p>Resolverla consiste en encontrar los valores de \(x\) que hacen verdadera la igualdad. En las ecuaciones de esta sesión, simplificaremos y aplicaremos transformaciones equivalentes hasta aislar \(x\); al final comprobaremos la solución en la ecuación inicial.</p></article>
+<article class="card learn"><span class="card-label">2 · Aprende</span><h3>Desarrolla con cuidado y opera a ambos lados</h3><div class="rule-stack"><div class="rule-row"><span class="rule-symbol">×</span><div><strong>Aplica la distributiva a todos los términos.</strong><p>En \(a(b+c)\), el factor \(a\) multiplica a \(b\) y también a \(c\). Si delante del paréntesis hay un signo menos, cambia el signo de cada término al quitarlo.</p></div></div><div class="rule-row"><span class="rule-symbol">≈</span><div><strong>Reduce términos semejantes en cada miembro.</strong><p>Combina las partes con \(x\) entre sí y las constantes entre sí; no sumes términos que no son semejantes.</p></div></div><div class="rule-row"><span class="rule-symbol">↔</span><div><strong>Reúne incógnitas y números con operaciones equivalentes.</strong><p>Resta o suma la misma expresión a ambos miembros. Divide entre el coeficiente de \(x\) solo si es distinto de cero.</p></div></div></div><p>Como estrategia, simplifica cada miembro primero; después deja los términos con incógnita en un lado y los números en el otro.</p></article>
+<article class="card method"><span class="card-label">3 · Procedimiento</span><h3>Resuelve y justifica cada línea</h3><ol class="steps"><li>Copia la ecuación original y, si hay paréntesis, aplica la distributiva en todos sus términos.</li><li>Reduce términos semejantes por separado en el miembro izquierdo y en el derecho.</li><li>Elige una operación para reunir las incógnitas en un miembro y aplícala a ambos.</li><li>Reúne las constantes en el otro miembro, también aplicando la misma operación a ambos lados.</li><li>Divide por el coeficiente no nulo de la incógnita para aislarla.</li><li>Sustituye el resultado en la ecuación original y comprueba que ambos miembros coinciden.</li></ol><div class="mini-check"><strong>Control de cada transformación</strong>Pregunta qué operación has aplicado y si se puede deshacer para recuperar la línea anterior.</div></article>
+<article class="card example"><span class="card-label">4 · Ejemplo resuelto</span><h3>Paréntesis e incógnita en los dos miembros</h3><p>Resolvemos \(3(2x-1)-4=2(x+5)+1\). Anotamos qué hacemos antes de simplificar.</p><div class="worked-list"><div class="worked-row"><span class="worked-no">1</span><div><strong>Desarrolla los dos paréntesis.</strong><span class="formula-band">\(3(2x-1)-4=2(x+5)+1\Rightarrow6x-3-4=2x+10+1\)</span><p>El 3 multiplica a \(2x\) y a \(-1\); el 2 multiplica a \(x\) y a 5.</p></div></div><div class="worked-row"><span class="worked-no">2</span><div><strong>Reduce términos semejantes.</strong><span class="formula-band">\(6x-7=2x+11\)</span><p>En la izquierda, \(-3-4=-7\); en la derecha, \(10+1=11\).</p></div></div><div class="worked-row"><span class="worked-no">3</span><div><strong>Resta \(2x\) a ambos miembros.</strong><span class="formula-band">\(6x-7-2x=2x+11-2x\Rightarrow4x-7=11\)</span><p>La operación elimina el término \(2x\) del miembro derecho y conserva la equivalencia.</p></div></div><div class="worked-row"><span class="worked-no">4</span><div><strong>Suma 7 a ambos miembros y divide entre 4.</strong><span class="formula-band">\(4x=18\Rightarrow x=\frac{18}{4}=\frac{9}{2}\)</span><p>El coeficiente 4 no es cero; simplificamos la fracción para expresar la solución.</p></div></div><div class="worked-row"><span class="worked-no">5</span><div><strong>Comprueba en la ecuación original.</strong><span class="formula-band">\(3(9-1)-4=20\qquad;\qquad2\left(\frac{9}{2}+5\right)+1=20\)</span><p>Ambos miembros valen 20. Por tanto, \(x=\frac{9}{2}\) es solución.</p></div></div></div></article>
+<article class="card warning"><span class="card-label">5 · Comprueba</span><h3>Evita errores de signo y de equilibrio</h3><ul class="check-list"><li>En \(-2(x-3)\), el resultado es \(-2x+6\): el factor multiplica a los dos términos.</li><li>No «pases» un término sin explicar qué operación haces en ambos miembros.</li><li>Al reunir términos, conserva sus signos: \(6x-2x=4x\), no \(8x\).</li><li>Si al simplificar desaparece la incógnita, compara los números que quedan: puede no haber solución o cumplirse para cualquier valor.</li><li>La comprobación final se hace en la ecuación original, incluidos sus paréntesis.</li></ul></article>
+</div><details class="mini-check"><summary>Autocomprobación rápida</summary><p>1. Desarrolla \(-2(x-3)\). 2. Resuelve \(5x-4=2x+8\). 3. ¿Qué valor de \(x\) satisface \(3(x+1)=12\)?</p><p><strong>Respuestas:</strong> 1. \(-2x+6\). 2. \(x=4\). 3. \(x=3\).</p></details>
+</div></details>
+<details class="topic" id="fracciones" open><summary><span class="chapter-no">2</span><span class="summary-title"><strong>Ecuaciones con fracciones</strong><span>Simplifica o elimina denominadores sin alterar las soluciones</span></span><span class="chevron" aria-hidden="true">⌄</span></summary><div class="topic-body">
+<p class="topic-intro">Una fracción en una ecuación puede resolverse con las mismas ideas. A veces basta con simplificar; en otros casos, multiplicar ambos miembros por el mínimo común múltiplo de los denominadores permite trabajar con una ecuación sin fracciones.</p>
+<div class="cards">
+<article class="card understand"><span class="card-label">1 · Comprende</span><h3>Quitar denominadores es aplicar la misma operación a toda la igualdad</h3><p>Multiplicar ambos miembros por un número distinto de cero conserva la equivalencia. Si ese número es múltiplo de todos los denominadores, cada fracción se convierte en un término entero. Hay que multiplicar <strong>cada término de ambos miembros</strong>, no solo los que parecen tener fracción.</p><div class="formula-grid"><div><span class="math">\(\frac{x-1}{3}+\frac{x+2}{2}=4\)</span>Dos denominadores: 3 y 2</div><div><span class="math">\(\operatorname{mcm}(3,2)=6\)</span>Mínimo común múltiplo</div><div><span class="math">\(6\cdot\frac{x-1}{3}+6\cdot\frac{x+2}{2}=6\cdot4\)</span>La misma operación en toda la igualdad</div></div><p>Los denominadores de esta técnica son números distintos de cero. Una incógnita en un denominador requiere además estudiar qué valores no están permitidos antes de transformar.</p></article>
+<article class="card learn"><span class="card-label">2 · Aprende</span><h3>Usa el mínimo común múltiplo para limpiar los denominadores</h3><div class="rule-stack"><div class="rule-row"><span class="rule-symbol">1</span><div><strong>Calcula el m.c.m.</strong><p>Busca el menor número positivo divisible por todos los denominadores.</p></div></div><div class="rule-row"><span class="rule-symbol">2</span><div><strong>Multiplica todos los términos de ambos miembros.</strong><p>El cociente entre el m.c.m. y cada denominador muestra qué factor queda delante del numerador.</p></div></div><div class="rule-row"><span class="rule-symbol">3</span><div><strong>Resuelve la ecuación resultante y comprueba.</strong><p>Una vez eliminadas las fracciones, aplica el procedimiento de la tarjeta anterior y verifica el resultado en la ecuación original.</p></div></div></div><p>Si hay fracciones numéricas fáciles de simplificar, hacerlo primero puede reducir los cálculos. Elige la ruta que deje una ecuación más clara.</p></article>
+<article class="card method"><span class="card-label">3 · Procedimiento</span><h3>Elimina denominadores término a término</h3><ol class="steps"><li>Identifica todos los denominadores numéricos y calcula su mínimo común múltiplo.</li><li>Multiplica cada término de los dos miembros por ese m.c.m.; escribe la operación para no dejar ningún término fuera.</li><li>Divide cada factor entre su denominador y simplifica los productos.</li><li>Resuelve la ecuación lineal obtenida: desarrolla, reduce y aísla la incógnita.</li><li>Comprueba la solución sustituyendo en la ecuación fraccionaria original.</li></ol><div class="mini-check"><strong>Antes de simplificar</strong>Comprueba que el m.c.m. es distinto de cero y que se ha aplicado a todos los términos de ambos miembros.</div></article>
+<article class="card example"><span class="card-label">4 · Ejemplo resuelto</span><h3>Resuelve una ecuación con denominadores distintos</h3><p>Resolvemos \(\frac{x-1}{3}+\frac{x+2}{2}=4\).</p><div class="worked-list"><div class="worked-row"><span class="worked-no">1</span><div><strong>Calcula el mínimo común múltiplo.</strong><span class="formula-band">\(\operatorname{mcm}(3,2)=6\)</span><p>Multiplicaremos toda la igualdad por 6.</p></div></div><div class="worked-row"><span class="worked-no">2</span><div><strong>Aplica el factor 6 a cada término.</strong><span class="formula-band">\(6\cdot\frac{x-1}{3}+6\cdot\frac{x+2}{2}=6\cdot4\)</span><p>La operación afecta a los dos sumandos fraccionarios y también al 4 del segundo miembro.</p></div></div><div class="worked-row"><span class="worked-no">3</span><div><strong>Simplifica cada producto.</strong><span class="formula-band">\(2(x-1)+3(x+2)=24\)</span><p>Como \(6/3=2\) y \(6/2=3\), permanecen esos factores delante de los numeradores.</p></div></div><div class="worked-row"><span class="worked-no">4</span><div><strong>Desarrolla, reduce y resuelve.</strong><span class="formula-band">\(2x-2+3x+6=24\Rightarrow5x+4=24\Rightarrow5x=20\Rightarrow x=4\)</span><p>Se han aplicado las mismas transformaciones equivalentes que en el primer bloque.</p></div></div><div class="worked-row"><span class="worked-no">5</span><div><strong>Comprueba en la ecuación original.</strong><span class="formula-band">\(\frac{4-1}{3}+\frac{4+2}{2}=1+3=4\)</span><p>El miembro izquierdo vale 4, igual que el derecho; \(x=4\) es solución.</p></div></div></div></article>
+<article class="card warning"><span class="card-label">5 · Comprueba</span><h3>Revisa qué has multiplicado y dónde verificas</h3><ul class="check-list"><li>Si multiplicas por 6, multiplica también los términos enteros y todos los sumandos.</li><li>\(6\cdot\frac{x-1}{3}=2(x-1)\): el factor 2 multiplica al numerador completo.</li><li>No sustituyas la comprobación original por revisar solo la última línea sin fracciones.</li><li>Si una incógnita aparece en un denominador, ese denominador no puede valer cero; anota la restricción antes de eliminarlo.</li><li>Escribe las fracciones con paréntesis cuando el numerador contiene más de un término.</li></ul></article>
+</div><details class="mini-check"><summary>Autocomprobación rápida</summary><p>1. ¿Cuál es el m.c.m. de 4 y 6? 2. Al multiplicar \(\frac{x+1}{4}=3\) por 4, ¿qué ecuación resulta? 3. Resuelve \(\frac{x}{2}+\frac{x}{3}=5\).</p><p><strong>Respuestas:</strong> 1. 12. 2. \(x+1=12\). 3. \(x=6\).</p></details>
+</div></details>
+<details class="topic" id="practica"><summary><span class="chapter-no">✓</span><span class="summary-title"><strong>Comprueba lo que has aprendido</strong><span>Cuestionario autocorregible y reintento de fallos</span></span><span class="chevron" aria-hidden="true">⌄</span></summary><div class="topic-body">
+<p class="topic-intro">Resuelve primero sin consultar los ejemplos. Después comprueba cada respuesta y vuelve a intentar las que necesites revisar.</p>
+<div class="score"><strong id="score-text">0 de 12 correctas</strong><span id="answered">0 comprobadas</span><div class="track"><div id="bar"></div></div></div>
+<details class="quiz-block" open><summary>A · Paréntesis y transformaciones</summary><div class="quiz-content">
+<article class="question" id="q1" data-answer="c"><p>1. Desarrolla \(-4(2x-3)\).</p><div class="options"><label class="option"><input type="radio" name="q1" value="a"> \(-8x-12\)</label><label class="option"><input type="radio" name="q1" value="b"> \(-8x-3\)</label><label class="option"><input type="radio" name="q1" value="c"> \(-8x+12\)</label></div><button class="check-one" type="button">Comprobar</button><div class="feedback">Distribuye \(-4\) en ambos términos: \(-8x+12\).</div></article>
+<article class="question" id="q2" data-answer="a"><p>2. Al desarrollar \(-2(x-4)\), se obtiene…</p><div class="options"><label class="option"><input type="radio" name="q2" value="a"> \(-2x+8\)</label><label class="option"><input type="radio" name="q2" value="b"> \(-2x-8\)</label><label class="option"><input type="radio" name="q2" value="c"> \(2x+8\)</label></div><button class="check-one" type="button">Comprobar</button><div class="feedback">Multiplicar \(-2\) por cada término da \(-2x\) y \(+8\).</div></article>
+<article class="question" id="q3" data-answer="a"><p>3. Resuelve \(7x-5=3x+11\).</p><div class="options"><label class="option"><input type="radio" name="q3" value="a"> \(x=4\)</label><label class="option"><input type="radio" name="q3" value="b"> \(x=3\)</label><label class="option"><input type="radio" name="q3" value="c"> \(x=16\)</label></div><button class="check-one" type="button">Comprobar</button><div class="feedback">Resta \(3x\) a ambos miembros y suma 5: \(4x=16\), por lo que \(x=4\).</div></article>
+<article class="question" id="q4" data-answer="b"><p>4. Resuelve \(3(x+2)=2x+11\).</p><div class="options"><label class="option"><input type="radio" name="q4" value="a"> \(x=3\)</label><label class="option"><input type="radio" name="q4" value="b"> \(x=5\)</label><label class="option"><input type="radio" name="q4" value="c"> \(x=17\)</label></div><button class="check-one" type="button">Comprobar</button><div class="feedback">Desarrolla \(3x+6=2x+11\), resta \(2x\) y después resta 6: \(x=5\).</div></article>
+</div></details>
+<details class="quiz-block"><summary>B · Simplificar y resolver</summary><div class="quiz-content">
+<article class="question" id="q5" data-answer="a"><p>5. Resuelve \(4(2x-1)-3=5x+8\).</p><div class="options"><label class="option"><input type="radio" name="q5" value="a"> \(x=5\)</label><label class="option"><input type="radio" name="q5" value="b"> \(x=3\)</label><label class="option"><input type="radio" name="q5" value="c"> \(x=1\)</label></div><button class="check-one" type="button">Comprobar</button><div class="feedback">Al desarrollar queda \(8x-7=5x+8\); por tanto \(3x=15\) y \(x=5\).</div></article>
+<article class="question" id="q6" data-answer="c"><p>6. ¿Qué paso mantiene la equivalencia de \(7x+2=3x+10\)?</p><div class="options"><label class="option"><input type="radio" name="q6" value="a"> restar \(3x\) solo al miembro derecho</label><label class="option"><input type="radio" name="q6" value="b"> sumar 2 al miembro izquierdo y restar 2 al derecho</label><label class="option"><input type="radio" name="q6" value="c"> restar \(3x\) a ambos miembros</label></div><button class="check-one" type="button">Comprobar</button><div class="feedback">Aplicar la misma operación a los dos miembros conserva la igualdad.</div></article>
+<article class="question" id="q7" data-answer="b"><p>7. Resuelve \(2(x+3)=2x+6\). ¿Qué concluyes?</p><div class="options"><label class="option"><input type="radio" name="q7" value="a"> \(x=0\) es la única solución</label><label class="option"><input type="radio" name="q7" value="b"> todos los valores de \(x\) son solución</label><label class="option"><input type="radio" name="q7" value="c"> no hay solución</label></div><button class="check-one" type="button">Comprobar</button><div class="feedback">Al desarrollar queda \(2x+6=2x+6\), una identidad verdadera para cualquier valor.</div></article>
+<article class="question" id="q8" data-answer="a"><p>8. Resuelve \(3(x+1)=3x+5\). ¿Qué ocurre?</p><div class="options"><label class="option"><input type="radio" name="q8" value="a"> no hay solución</label><label class="option"><input type="radio" name="q8" value="b"> \(x=2\)</label><label class="option"><input type="radio" name="q8" value="c"> todos los valores son solución</label></div><button class="check-one" type="button">Comprobar</button><div class="feedback">Al desarrollar y restar \(3x\) en ambos miembros queda \(3=5\), imposible.</div></article>
+</div></details>
+<details class="quiz-block"><summary>C · Fracciones y comprobación</summary><div class="quiz-content">
+<article class="question" id="q9" data-answer="b"><p>9. ¿Cuál es el m.c.m. de 4 y 6?</p><div class="options"><label class="option"><input type="radio" name="q9" value="a"> 10</label><label class="option"><input type="radio" name="q9" value="b"> 12</label><label class="option"><input type="radio" name="q9" value="c"> 24</label></div><button class="check-one" type="button">Comprobar</button><div class="feedback">El mínimo común múltiplo es 12, el menor número divisible entre 4 y entre 6.</div></article>
+<article class="question" id="q10" data-answer="b"><p>10. Al multiplicar \(\frac{x-2}{3}=4\) por 3, resulta…</p><div class="options"><label class="option"><input type="radio" name="q10" value="a"> \(x-2=4\)</label><label class="option"><input type="radio" name="q10" value="b"> \(x-2=12\)</label><label class="option"><input type="radio" name="q10" value="c"> \(3x-2=12\)</label></div><button class="check-one" type="button">Comprobar</button><div class="feedback">Multiplica todos los términos de ambos miembros por 3: \(3\cdot\frac{x-2}{3}=3\cdot4\).</div></article>
+<article class="question" id="q11" data-answer="c"><p>11. Resuelve \(\frac{x}{4}+\frac{x}{2}=9\).</p><div class="options"><label class="option"><input type="radio" name="q11" value="a"> \(x=9\)</label><label class="option"><input type="radio" name="q11" value="b"> \(x=18\)</label><label class="option"><input type="radio" name="q11" value="c"> \(x=12\)</label></div><button class="check-one" type="button">Comprobar</button><div class="feedback">Multiplica por 4: \(x+2x=36\), así que \(3x=36\) y \(x=12\).</div></article>
+<article class="question" id="q12" data-answer="c"><p>12. ¿Qué igualdad comprueba correctamente \(x=3\) en \(\frac{x+2}{5}+\frac{x-1}{2}=2\)?</p><div class="options"><label class="option"><input type="radio" name="q12" value="a"> \(\frac{3+2}{5}+\frac{3-1}{2}=1\)</label><label class="option"><input type="radio" name="q12" value="b"> \(\frac{3+2}{5}+\frac{3-1}{2}=3\)</label><label class="option"><input type="radio" name="q12" value="c"> \(\frac{3+2}{5}+\frac{3-1}{2}=2\)</label></div><button class="check-one" type="button">Comprobar</button><div class="feedback">Al sustituir, el miembro izquierdo vale \(1+1=2\), igual que el miembro derecho.</div></article>
+</div></details>
+<div class="quiz-actions"><button class="btn primary" id="check-all" type="button">Corregir las respondidas</button><button class="btn" id="retry" type="button">Reintentar fallos</button><button class="btn danger" id="reset" type="button">Borrar resultados</button></div>
+</div></details>
+<footer class="app-footer" aria-label="Créditos"><div class="footer-meta"><span>Creado por:</span><span class="footer-highlight">David Rodríguez Vicente</span><span class="footer-separator">|</span><span>Licencia:</span><a class="footer-highlight" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-NC-SA 4.0</a></div></footer>
+</main>
+<script>
+(()=>{
+const body=document.body,toggle=document.getElementById('nav-toggle'),scrim=document.getElementById('scrim');
+const topics=[...document.querySelectorAll('details.topic')],questions=[...document.querySelectorAll('.question')],links=[...document.querySelectorAll('#toc a')];
+const key='ud2-sesion04-revisada-v1',desktop=()=>matchMedia('(min-width:821px)').matches;
+function setNav(open){if(desktop()){body.classList.toggle('nav-collapsed',!open);body.classList.remove('nav-open')}else{body.classList.toggle('nav-open',open);body.classList.remove('nav-collapsed')}toggle.setAttribute('aria-expanded',String(open));toggle.setAttribute('aria-label',open?'Ocultar el índice':'Mostrar el índice')}
+toggle.addEventListener('click',()=>{const open=desktop()?!body.classList.contains('nav-collapsed'):body.classList.contains('nav-open');setNav(!open)});scrim.addEventListener('click',()=>setNav(false));
+const openTopics=open=>topics.forEach(t=>t.open=open);document.getElementById('expand-side').onclick=()=>openTopics(true);document.getElementById('collapse-side').onclick=()=>openTopics(false);
+function update(){const good=questions.filter(q=>q.classList.contains('correct')).length,done=questions.filter(q=>q.classList.contains('correct')||q.classList.contains('incorrect')).length;document.getElementById('score-text').textContent=good+' de '+questions.length+' correctas';document.getElementById('answered').textContent=done+' comprobadas';document.getElementById('bar').style.width=(good/questions.length*100)+'%'}
+function save(){const data={};questions.forEach(q=>{const chosen=q.querySelector('input:checked');data[q.id]={value:chosen?chosen.value:'',checked:q.classList.contains('correct')||q.classList.contains('incorrect')}});try{localStorage.setItem(key,JSON.stringify(data))}catch(e){}}
+function grade(q){const chosen=q.querySelector('input:checked');if(!chosen){q.classList.remove('correct','incorrect');return}const ok=chosen.value===q.dataset.answer;q.classList.toggle('correct',ok);q.classList.toggle('incorrect',!ok);save();update()}
+function restore(){try{const data=JSON.parse(localStorage.getItem(key))||{};questions.forEach(q=>{const saved=data[q.id];if(!saved)return;const input=q.querySelector('input[value="'+saved.value+'"]');if(input)input.checked=true;if(saved.checked&&input){const ok=input.value===q.dataset.answer;q.classList.toggle('correct',ok);q.classList.toggle('incorrect',!ok)}})}catch(e){}update()}
+document.addEventListener('click',e=>{const button=e.target.closest('.check-one');if(!button)return;const question=button.closest('.question');if(!question.querySelector('input:checked')){button.textContent='Elige una respuesta';setTimeout(()=>button.textContent='Comprobar',1400);return}grade(question)});
+questions.forEach(q=>q.addEventListener('change',()=>{q.classList.remove('correct','incorrect');save();update()}));
+document.getElementById('check-all').onclick=()=>{questions.forEach(grade);questions.find(q=>q.classList.contains('incorrect'))?.scrollIntoView({behavior:'smooth',block:'center'})};
+document.getElementById('retry').onclick=()=>{const wrong=questions.filter(q=>q.classList.contains('incorrect'));wrong.forEach(q=>{q.classList.remove('incorrect');const input=q.querySelector('input:checked');if(input)input.checked=false});save();update();if(wrong[0])wrong[0].scrollIntoView({behavior:'smooth',block:'center'})};
+document.getElementById('reset').onclick=()=>{questions.forEach(q=>{q.classList.remove('correct','incorrect');q.querySelectorAll('input').forEach(i=>i.checked=false)});try{localStorage.removeItem(key)}catch(e){}update()};
+links.forEach(a=>a.addEventListener('click',()=>{const target=document.querySelector(a.getAttribute('href'));if(target&&target.matches('details'))target.open=true;if(!desktop())setNav(false)}));
+if('IntersectionObserver'in window){const obs=new IntersectionObserver(entries=>{const visible=entries.filter(x=>x.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];if(visible)links.forEach(a=>a.setAttribute('aria-current',String(a.getAttribute('href')==='#'+visible.target.id)))},{rootMargin:'-15% 0px -70% 0px',threshold:[0,.1,.5]});document.querySelectorAll('#inicio,details.topic').forEach(s=>obs.observe(s))}
+addEventListener('resize',()=>{body.classList.remove('nav-open');if(!desktop())body.classList.remove('nav-collapsed')});
+if(!desktop())setNav(false);restore();
+})();
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
